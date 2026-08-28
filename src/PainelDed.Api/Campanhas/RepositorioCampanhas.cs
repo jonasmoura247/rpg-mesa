@@ -10,6 +10,21 @@ public class RepositorioCampanhas
         PropertyNameCaseInsensitive = true,
     };
 
+    // Protege a leitura-modificação-escrita de index.json em Criar contra duas requisições
+    // HTTP concorrentes (ex: duplo clique em "nova campanha", duas abas abertas) — sem isso,
+    // a segunda escrita pode sobrescrever o índice antes da primeira gravar, perdendo uma
+    // campanha inteira silenciosamente. RepositorioCampanhas é registrado como singleton no
+    // DI, então uma trava de instância cobre todas as requisições do processo.
+    //
+    // O padrão leia-modifique-escreva de CarregarEstado + SalvarEstado feito pelos serviços
+    // (quests, histórico) não tem essa mesma proteção — duas escritas concorrentes no estado
+    // da MESMA campanha ainda podem fazer uma perder a outra. Esse risco mais estreito já foi
+    // avaliado e aceito no spec do projeto (uso local de um único mestre; a última escrita
+    // vence é aceitável nesse contexto) — o corte de proteção aqui é deliberadamente só para
+    // o índice de campanhas, que é uma perda de dados mais severa (some a campanha, não só
+    // uma rolagem/quest isolada).
+    private readonly object _bloqueio = new();
+
     private readonly string _pastaCampanhas;
 
     public RepositorioCampanhas(string pastaCampanhas)
@@ -35,14 +50,17 @@ public class RepositorioCampanhas
 
     public Campanha Criar(string nome)
     {
-        var campanhas = Listar();
-        var campanha = new Campanha(Guid.NewGuid().ToString("N")[..8], nome, DateTimeOffset.UtcNow);
-        campanhas.Add(campanha);
+        lock (_bloqueio)
+        {
+            var campanhas = Listar();
+            var campanha = new Campanha(Guid.NewGuid().ToString("N")[..8], nome, DateTimeOffset.UtcNow);
+            campanhas.Add(campanha);
 
-        File.WriteAllText(CaminhoIndice, JsonSerializer.Serialize(campanhas, Opcoes));
-        SalvarEstado(campanha.Id, new EstadoCampanha(new List<Quest>(), new List<EntradaHistorico>()));
+            File.WriteAllText(CaminhoIndice, JsonSerializer.Serialize(campanhas, Opcoes));
+            SalvarEstado(campanha.Id, new EstadoCampanha(new List<Quest>(), new List<EntradaHistorico>()));
 
-        return campanha;
+            return campanha;
+        }
     }
 
     public Campanha? Obter(string id) => Listar().FirstOrDefault(c => c.Id == id);
@@ -67,6 +85,9 @@ public class RepositorioCampanhas
 
     public void SalvarEstado(string id, EstadoCampanha estado)
     {
-        File.WriteAllText(CaminhoEstado(id), JsonSerializer.Serialize(estado, Opcoes));
+        lock (_bloqueio)
+        {
+            File.WriteAllText(CaminhoEstado(id), JsonSerializer.Serialize(estado, Opcoes));
+        }
     }
 }
