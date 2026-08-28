@@ -65,4 +65,21 @@ public class ConversorSecaoTestes : IDisposable
 
         Assert.Equal("sem-titulo", secao.Notas[0].Titulo);
     }
+
+    [Fact]
+    public void Converter_ComArquivoVazioOuSoWhitespace_UsaIdComoTituloENaoLancaExcecao()
+    {
+        var caminhoVazio = Path.Combine(_pastaTemporaria, "vazio.md");
+        var caminhoWhitespace = Path.Combine(_pastaTemporaria, "so-whitespace.md");
+        File.WriteAllText(caminhoVazio, "");
+        File.WriteAllText(caminhoWhitespace, "   \n\t  \n");
+
+        var secao = ConversorSecao.Converter("mundo", _pastaTemporaria, new[] { caminhoVazio, caminhoWhitespace });
+
+        Assert.Equal(2, secao.Notas.Count);
+        Assert.Equal("so-whitespace", secao.Notas[0].Titulo);
+        Assert.Empty(secao.Notas[0].Tabelas);
+        Assert.Equal("vazio", secao.Notas[1].Titulo);
+        Assert.Empty(secao.Notas[1].Tabelas);
+    }
 }
