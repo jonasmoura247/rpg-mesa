@@ -15,6 +15,12 @@ const botaoVoltar = document.getElementById('btnVoltar');
 const botaoAvancar = document.getElementById('btnAvancar');
 const itensProgresso = document.querySelectorAll('#progresso li');
 
+function escaparHtml(texto) {
+  const div = document.createElement('div');
+  div.textContent = texto;
+  return div.innerHTML;
+}
+
 function mostrarErro(mensagem) {
   elementoErro.textContent = mensagem;
   elementoErro.hidden = false;
@@ -311,7 +317,7 @@ function renderEtapaResumo() {
   ).join('');
 
   elementoConteudo.innerHTML = `
-    <h2>Resumo — ${dadosFicha.nome}</h2>
+    <h2>Resumo — ${escaparHtml(dadosFicha.nome)}</h2>
     <p>${dadosFicha.raca} · ${dadosFicha.classe} · Nível ${dadosFicha.nivel}</p>
     <div class="destaques">
       <span class="destaque">PV ${dadosFicha.pv}</span>
