@@ -46,7 +46,23 @@ function podeAvancar() {
     }
     return true;
   }
-  return true; // demais etapas validadas nas próximas tasks
+  if (etapaAtual === 1) {
+    const raca = racaSelecionada();
+    if (!raca) {
+      mostrarErro('Selecione uma raça.');
+      return false;
+    }
+    if (raca.escolhaLivre) {
+      const escolhas = ficha.bonusEscolhidoMeioElfo.filter(Boolean);
+      const semDuplicados = new Set(escolhas).size === escolhas.length;
+      if (escolhas.length !== raca.escolhaLivre || !semDuplicados) {
+        mostrarErro(`Escolha ${raca.escolhaLivre} atributos diferentes para o bônus de +1.`);
+        return false;
+      }
+    }
+    return true;
+  }
+  return true; // etapas seguintes validadas nas próximas tasks
 }
 
 const NOMES_ATRIBUTOS = {
@@ -98,10 +114,72 @@ function renderEtapaAtributos() {
   });
 }
 
+function racaSelecionada() {
+  return DADOS.RACAS.find(r => r.nome === ficha.raca) || null;
+}
+
+function textoBonus(bonus) {
+  return Object.entries(bonus).map(([atributo, valor]) => `+${valor} ${NOMES_ATRIBUTOS[atributo]}`).join(', ');
+}
+
+function renderEtapaRaca() {
+  limparErro();
+
+  const opcoes = DADOS.RACAS.map(raca =>
+    `<option value="${raca.nome}" ${ficha.raca === raca.nome ? 'selected' : ''}>${raca.nome}</option>`
+  ).join('');
+
+  const raca = racaSelecionada();
+  let blocoBonus = '';
+  let blocoEscolhaLivre = '';
+
+  if (raca) {
+    blocoBonus = `<p class="bonus-raca">Bônus fixo: ${textoBonus(raca.bonus)}</p>`;
+
+    if (raca.escolhaLivre) {
+      const atributosDisponiveis = Object.keys(NOMES_ATRIBUTOS).filter(a => !(a in raca.bonus));
+      const selects = Array.from({ length: raca.escolhaLivre }).map((_valor, indice) => {
+        const opcoesAtributo = atributosDisponiveis.map(atributo =>
+          `<option value="${atributo}" ${ficha.bonusEscolhidoMeioElfo[indice] === atributo ? 'selected' : ''}>${NOMES_ATRIBUTOS[atributo]}</option>`
+        ).join('');
+        return `
+          <select class="escolha-livre" data-indice="${indice}">
+            <option value="">+1 em qual atributo?</option>
+            ${opcoesAtributo}
+          </select>`;
+      }).join('');
+      blocoEscolhaLivre = `<div class="escolhas-livres"><p>Escolha ${raca.escolhaLivre} atributos diferentes para +1 cada:</p>${selects}</div>`;
+    }
+  }
+
+  elementoConteudo.innerHTML = `
+    <h2>Raça</h2>
+    <select id="campoRaca">
+      <option value="">Selecione uma raça</option>
+      ${opcoes}
+    </select>
+    ${blocoBonus}
+    ${blocoEscolhaLivre}
+  `;
+
+  document.getElementById('campoRaca').addEventListener('change', evento => {
+    ficha.raca = evento.target.value || null;
+    ficha.bonusEscolhidoMeioElfo = [];
+    renderEtapaRaca();
+  });
+
+  document.querySelectorAll('.escolha-livre').forEach(select => {
+    select.addEventListener('change', evento => {
+      const indice = Number(evento.target.dataset.indice);
+      ficha.bonusEscolhidoMeioElfo[indice] = evento.target.value || null;
+    });
+  });
+}
+
 function renderEtapaAtual() {
   limparErro();
   if (etapaAtual === 0) renderEtapaAtributos();
-  if (etapaAtual === 1) elementoConteudo.innerHTML = '<p>Etapa de Raça (em construção)</p>';
+  if (etapaAtual === 1) renderEtapaRaca();
   if (etapaAtual === 2) elementoConteudo.innerHTML = '<p>Etapa de Classe (em construção)</p>';
   if (etapaAtual === 3) elementoConteudo.innerHTML = '<p>Etapa de Resumo (em construção)</p>';
 
