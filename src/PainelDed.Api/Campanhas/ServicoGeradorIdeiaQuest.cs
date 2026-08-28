@@ -6,6 +6,11 @@ namespace PainelDed.Api.Campanhas;
 
 public class ServicoGeradorIdeiaQuest
 {
+    // Ids fixos do vault (Plano 1) — se essas notas forem renomeadas/movidas e o
+    // ingestor reexecutado, ObterNota passa a retornar null e GerarRascunho falha
+    // silenciosamente (sem log/mensagem). Aceitável para o volume/estabilidade
+    // atual do conteúdo, mas é a primeira coisa a checar se "Gerar ideia" parar
+    // de funcionar depois de uma reorganização do vault.
     private static readonly string[] NotasCandidatas =
     {
         "Costa da Travessia/09-Fortaleza",
@@ -36,6 +41,9 @@ public class ServicoGeradorIdeiaQuest
             return null;
         }
 
+        // Rola TODAS as tabelas da nota escolhida (não só uma) pra dar um rascunho
+        // mais rico — o mestre edita/apaga o que não servir antes de salvar. Pode
+        // gerar rascunhos longos em notas com muitas tabelas; é intencional.
         var linhas = new List<string>();
         foreach (var tabela in nota.Tabelas)
         {
