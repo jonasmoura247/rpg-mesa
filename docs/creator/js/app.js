@@ -172,6 +172,7 @@ function renderEtapaRaca() {
     select.addEventListener('change', evento => {
       const indice = Number(evento.target.dataset.indice);
       ficha.bonusEscolhidoMeioElfo[indice] = evento.target.value || null;
+      limparErro();
     });
   });
 }
