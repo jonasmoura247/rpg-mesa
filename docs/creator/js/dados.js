@@ -25,7 +25,24 @@
   const ATRIBUTO_MINIMO = 8;
   const ATRIBUTO_MAXIMO = 15;
 
-  const api = { PERICIAS, CUSTO_POINT_BUY, ORCAMENTO_PONTOS, ATRIBUTO_MINIMO, ATRIBUTO_MAXIMO };
+  const RACAS = [
+    { nome: 'Humano', bonus: { forca: 1, destreza: 1, constituicao: 1, inteligencia: 1, sabedoria: 1, carisma: 1 } },
+    { nome: 'Anão da Colina', bonus: { constituicao: 2, sabedoria: 1 } },
+    { nome: 'Anão da Montanha', bonus: { constituicao: 2, forca: 2 } },
+    { nome: 'Elfo Alto', bonus: { destreza: 2, inteligencia: 1 } },
+    { nome: 'Elfo da Floresta', bonus: { destreza: 2, sabedoria: 1 } },
+    { nome: 'Elfo Negro (Drow)', bonus: { destreza: 2, carisma: 1 } },
+    { nome: 'Halfling Pés Leves', bonus: { destreza: 2, carisma: 1 } },
+    { nome: 'Halfling Robusto', bonus: { destreza: 2, constituicao: 1 } },
+    { nome: 'Draconato', bonus: { forca: 2, carisma: 1 } },
+    { nome: 'Gnomo da Floresta', bonus: { inteligencia: 2, destreza: 1 } },
+    { nome: 'Gnomo das Rochas', bonus: { inteligencia: 2, constituicao: 1 } },
+    { nome: 'Meio-Elfo', bonus: { carisma: 2 }, escolhaLivre: 2 },
+    { nome: 'Meio-Orc', bonus: { forca: 2, constituicao: 1 } },
+    { nome: 'Tiefling', bonus: { carisma: 2, inteligencia: 1 } }
+  ];
+
+  const api = { PERICIAS, CUSTO_POINT_BUY, ORCAMENTO_PONTOS, ATRIBUTO_MINIMO, ATRIBUTO_MAXIMO, RACAS };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;
