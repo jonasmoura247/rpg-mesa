@@ -411,6 +411,30 @@ public class ParserWikilinkTestes
 
         Assert.Empty(links);
     }
+
+    [Fact]
+    public void ExtrairLinks_ComAncoraDeSecao_RemoveAncoraDoAlvo()
+    {
+        var texto = "Um [[../monstros/01-Humanoides#Goblin\\|goblin]] se aproxima.";
+
+        var links = ParserWikilink.ExtrairLinks(texto);
+
+        Assert.Single(links);
+        Assert.Equal("goblin", links[0].Rotulo);
+        Assert.Equal("monstros/01-Humanoides", links[0].Alvo);
+    }
+
+    [Fact]
+    public void ExtrairLinks_ComAncoraSemRotulo_UsaAlvoSemAncoraComoRotulo()
+    {
+        var texto = "Ver [[Costa da Travessia#Alguma Seção]] para mais.";
+
+        var links = ParserWikilink.ExtrairLinks(texto);
+
+        Assert.Single(links);
+        Assert.Equal("Costa da Travessia", links[0].Rotulo);
+        Assert.Equal("Costa da Travessia", links[0].Alvo);
+    }
 }
 ```
 
@@ -421,6 +445,12 @@ Expected: FAIL — `The type or namespace name 'ParserWikilink' could not be fou
 
 - [ ] **Step 3: Implementar `ParserWikilink`**
 
+> **Nota pós-implementação:** o vault real usa extensivamente o padrão `[[nota#Secao|rotulo]]`
+> (link para uma seção específica de outra nota — 177 ocorrências em 13 arquivos, principalmente
+> referências a monstros dentro de tabelas de encontro). A versão abaixo já inclui o tratamento
+> desse caso: a âncora (`#Secao`) é descartada do `Alvo`, porque a resolução de conteúdo navega
+> por nota inteira, não por seção.
+
 `src/PainelDed.Nucleo/Parsing/ParserWikilink.cs`:
 ```csharp
 using System.Text.RegularExpressions;
@@ -430,8 +460,11 @@ namespace PainelDed.Nucleo.Parsing;
 
 public static class ParserWikilink
 {
+    // O alvo para no '#' quando o link aponta pra uma seção específica de outra nota
+    // (ex: [[../monstros/01-Humanoides#Goblin|goblin]]) — a âncora é descartada porque
+    // a resolução de conteúdo (RepositorioConteudo) navega por nota inteira, não por seção.
     private static readonly Regex RegexLink = new(
-        @"\[\[(?<alvo>[^\]|\\]+)(?:\\?\|(?<rotulo>[^\]]+))?\]\]",
+        @"\[\[(?<alvo>[^\]|\\#]+)(?:#[^\]|\\]*)?(?:\\?\|(?<rotulo>[^\]]+))?\]\]",
         RegexOptions.Compiled);
 
     public static List<LinkReferencia> ExtrairLinks(string texto)
@@ -471,7 +504,7 @@ public static class ParserWikilink
 - [ ] **Step 4: Rodar e confirmar sucesso**
 
 Run: `dotnet test tests/PainelDed.Nucleo.Testes --filter ParserWikilinkTestes`
-Expected: `Passed! - Failed: 0, Passed: 5`
+Expected: `Passed! - Failed: 0, Passed: 7`
 
 - [ ] **Step 5: Commit**
 
@@ -692,7 +725,7 @@ Expected: `Passed! - Failed: 0, Passed: 5`
 - [ ] **Step 5: Rodar toda a suíte do Nucleo pra garantir que nada quebrou**
 
 Run: `dotnet test tests/PainelDed.Nucleo.Testes`
-Expected: `Passed! - Failed: 0, Passed: 19` (8 Dado + 5 Wikilink + 5 Tabela + 1 Serialização)
+Expected: `Passed! - Failed: 0, Passed: 27` (14 Dado + 7 Wikilink + 5 Tabela + 1 Serialização — as contagens de Dado e Wikilink foram ajustadas após fixes de débito técnico aplicados depois da revisão de qualidade dessas tasks)
 
 - [ ] **Step 6: Commit**
 
