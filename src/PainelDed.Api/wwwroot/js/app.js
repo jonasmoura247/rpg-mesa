@@ -192,4 +192,13 @@ async function exibirNota(nomeSecao, idNota) {
 document.addEventListener('DOMContentLoaded', async () => {
   await Campanha.inicializar();
   carregarArvoreNavegacao();
+
+  document.getElementById('botao-quadro-quests').addEventListener('click', () => Quests.exibir());
+
+  document.addEventListener('campanha-trocada', () => {
+    const mural = document.getElementById('mural-quests');
+    if (mural) {
+      Quests.recarregar();
+    }
+  });
 });

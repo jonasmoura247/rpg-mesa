@@ -39,4 +39,41 @@ const Api = {
     if (!resposta.ok) throw new Error('Falha ao criar campanha');
     return resposta.json();
   },
+
+  async listarQuests(campanhaId) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/quests`);
+    if (!resposta.ok) throw new Error('Falha ao listar quests');
+    return resposta.json();
+  },
+
+  async criarQuest(campanhaId, dados) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/quests`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dados),
+    });
+    if (!resposta.ok) throw new Error('Falha ao criar quest');
+    return resposta.json();
+  },
+
+  async atualizarQuest(campanhaId, questId, dados) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/quests/${questId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dados),
+    });
+    if (!resposta.ok) throw new Error('Falha ao atualizar quest');
+    return resposta.json();
+  },
+
+  async removerQuest(campanhaId, questId) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/quests/${questId}`, { method: 'DELETE' });
+    if (!resposta.ok) throw new Error('Falha ao remover quest');
+  },
+
+  async gerarIdeiaDeQuest(campanhaId) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/quests/gerar-ideia`, { method: 'POST' });
+    if (!resposta.ok) throw new Error('Falha ao gerar ideia de quest');
+    return resposta.json();
+  },
 };

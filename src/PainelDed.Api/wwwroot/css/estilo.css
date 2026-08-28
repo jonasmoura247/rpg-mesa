@@ -520,3 +520,117 @@ body {
   font-size: 0.88rem;
   color: var(--cor-historico-texto);
 }
+
+.mural-quests {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.coluna-quests {
+  flex: 0 0 260px;
+  background: var(--cor-fundo);
+  border-radius: 10px;
+  padding: 0.9rem;
+}
+
+.coluna-quests h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+  margin: 0 0 0.75rem;
+}
+
+.cartao-quest {
+  background: var(--cor-fundo-elevado);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 0.8rem;
+  margin-bottom: 0.75rem;
+  box-shadow: var(--sombra);
+}
+
+.cartao-quest h4 {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+}
+
+.cartao-quest p {
+  margin: 0 0 0.4rem;
+  font-size: 0.85rem;
+}
+
+.detalhes-quest {
+  color: var(--cor-texto-suave);
+  font-size: 0.78rem !important;
+}
+
+.acoes-cartao-quest {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.acoes-cartao-quest select {
+  border-radius: 6px;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-size: 0.78rem;
+}
+
+.fundo-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-formulario {
+  background: var(--cor-fundo-elevado);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 32rem;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: var(--sombra);
+}
+
+.campo-formulario {
+  display: block;
+  margin-bottom: 0.9rem;
+}
+
+.campo-formulario span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+  margin-bottom: 0.3rem;
+}
+
+.campo-formulario input,
+.campo-formulario textarea {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.acoes-modal {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
