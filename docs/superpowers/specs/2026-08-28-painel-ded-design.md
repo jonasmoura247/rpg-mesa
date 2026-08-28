@@ -108,6 +108,7 @@ O backend carrega esses JSONs em memória na inicialização e os expõe via API
 - Resultado de rolagem: número em destaque, linha da tabela realçada, conteúdo linkado expandido inline (sem navegação/modal bloqueante).
 - Histórico de últimas rolagens sempre visível na lateral.
 - Tipografia grande, alto contraste, poucas cores — otimizado para leitura rápida durante a sessão, não estética de portfólio.
+- Suporte a modo claro e escuro, com alternância manual (botão) e detecção automática da preferência do sistema operacional na primeira visita; escolha persistida localmente.
 - Level-up dispara um destaque visual (ex: "🎉 Fulano subiu para o nível 3!").
 
 ## Criador de Ficha Standalone (`/creator`)

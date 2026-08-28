@@ -1424,6 +1424,7 @@ git commit -m "feat: endpoints da API + testes de integração"
 **Files:**
 - Create: `src/PainelDed.Api/wwwroot/index.html`
 - Create: `src/PainelDed.Api/wwwroot/css/estilo.css`
+- Create: `src/PainelDed.Api/wwwroot/js/tema.js`
 - Create: `src/PainelDed.Api/wwwroot/js/api.js`
 - Create: `src/PainelDed.Api/wwwroot/js/app.js`
 
@@ -1442,7 +1443,10 @@ git commit -m "feat: endpoints da API + testes de integração"
 <body>
   <div class="layout">
     <nav class="barra-lateral">
-      <h1>Costa da Travessia</h1>
+      <div class="cabecalho-barra-lateral">
+        <h1>Costa da Travessia</h1>
+        <button id="botao-tema" class="botao-tema" title="Alternar modo claro/escuro">🌙</button>
+      </div>
       <div id="arvore-navegacao"></div>
       <h2>Últimas Rolagens</h2>
       <ul id="historico-rolagens"></ul>
@@ -1451,6 +1455,7 @@ git commit -m "feat: endpoints da API + testes de integração"
       <p>Selecione uma nota na barra lateral.</p>
     </main>
   </div>
+  <script src="js/tema.js"></script>
   <script src="js/api.js"></script>
   <script src="js/rolador.js"></script>
   <script src="js/app.js"></script>
@@ -1463,12 +1468,25 @@ git commit -m "feat: endpoints da API + testes de integração"
 `src/PainelDed.Api/wwwroot/css/estilo.css`:
 ```css
 :root {
+  color-scheme: light;
+  --cor-fundo: #f5f5f2;
+  --cor-texto: #1b1b1f;
+  --cor-destaque: #b5651d;
+  --cor-painel: #ffffff;
+  --cor-borda: #dcdcd6;
+  --cor-resultado-fundo: #ececea;
+  --cor-historico-texto: #55555c;
+}
+
+html[data-tema="escuro"] {
   color-scheme: dark;
   --cor-fundo: #1b1b1f;
   --cor-texto: #f0f0f0;
   --cor-destaque: #e0a458;
   --cor-painel: #26262c;
   --cor-borda: #3a3a42;
+  --cor-resultado-fundo: #33333c;
+  --cor-historico-texto: #b8b8c0;
 }
 
 * { box-sizing: border-box; }
@@ -1494,8 +1512,29 @@ body {
   border-right: 1px solid var(--cor-borda);
 }
 
+.cabecalho-barra-lateral {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .barra-lateral h1 {
   font-size: 1.2rem;
+  margin: 0;
+}
+
+.botao-tema {
+  background: transparent;
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  font-size: 1.1rem;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  color: var(--cor-texto);
+}
+
+.botao-tema:hover {
+  border-color: var(--cor-destaque);
 }
 
 .grupo-secao h3 {
@@ -1546,7 +1585,7 @@ body {
   font-size: 1.1rem;
   padding: 0.5rem 1rem;
   background: var(--cor-destaque);
-  color: #1b1b1f;
+  color: #ffffff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -1560,7 +1599,7 @@ body {
 .resultado-rolagem {
   margin-top: 1rem;
   padding: 1rem;
-  background: #33333c;
+  background: var(--cor-resultado-fundo);
   border-radius: 6px;
   font-size: 1.3rem;
 }
@@ -1576,11 +1615,61 @@ body {
   list-style: none;
   padding-left: 0;
   font-size: 0.9rem;
-  color: #b8b8c0;
+  color: var(--cor-historico-texto);
 }
 ```
 
-- [ ] **Step 3: Criar `js/api.js`**
+- [ ] **Step 3: Criar `js/tema.js` (alternância claro/escuro com persistência)**
+
+`src/PainelDed.Api/wwwroot/js/tema.js`:
+```javascript
+const Tema = {
+  chaveArmazenamento: 'painel-ded-tema',
+
+  inicializar() {
+    const temaSalvo = this.obterTemaSalvo();
+    const temaInicial = temaSalvo ?? (this.prefereTemaEscuro() ? 'escuro' : 'claro');
+    this.aplicar(temaInicial);
+
+    const botao = document.getElementById('botao-tema');
+    botao.addEventListener('click', () => this.alternar());
+  },
+
+  obterTemaSalvo() {
+    try {
+      return localStorage.getItem(this.chaveArmazenamento);
+    } catch {
+      return null;
+    }
+  },
+
+  prefereTemaEscuro() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  },
+
+  aplicar(tema) {
+    document.documentElement.setAttribute('data-tema', tema);
+    const botao = document.getElementById('botao-tema');
+    if (botao) {
+      botao.textContent = tema === 'escuro' ? '☀️' : '🌙';
+    }
+    try {
+      localStorage.setItem(this.chaveArmazenamento, tema);
+    } catch {
+      // localStorage indisponível (ex: navegação privada) — segue sem persistir
+    }
+  },
+
+  alternar() {
+    const atual = document.documentElement.getAttribute('data-tema');
+    this.aplicar(atual === 'escuro' ? 'claro' : 'escuro');
+  },
+};
+
+document.addEventListener('DOMContentLoaded', () => Tema.inicializar());
+```
+
+- [ ] **Step 4: Criar `js/api.js`**
 
 `src/PainelDed.Api/wwwroot/js/api.js`:
 ```javascript
@@ -1606,7 +1695,7 @@ const Api = {
 };
 ```
 
-- [ ] **Step 4: Criar `js/app.js`**
+- [ ] **Step 5: Criar `js/app.js`**
 
 `src/PainelDed.Api/wwwroot/js/app.js`:
 ```javascript
@@ -1673,11 +1762,19 @@ async function exibirNota(nomeSecao, idNota) {
 document.addEventListener('DOMContentLoaded', carregarArvoreNavegacao);
 ```
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 6: Testar manualmente a alternância de tema**
+
+Run: `dotnet run --project src/PainelDed.Api`, abrir a URL no navegador.
+Expected:
+1. O painel abre respeitando o tema do sistema operacional (claro ou escuro).
+2. Clicar no botão 🌙/☀️ no topo da barra lateral alterna entre os dois temas instantaneamente.
+3. Recarregar a página (F5) mantém o tema escolhido (persistido via `localStorage`).
+
+- [ ] **Step 7: Commit**
 
 ```bash
 git add -A
-git commit -m "feat: esqueleto do frontend + navegação"
+git commit -m "feat: esqueleto do frontend + navegação + alternância de tema"
 ```
 
 ---
@@ -1830,5 +1927,6 @@ git commit -m "docs: README com instruções de uso"
 - Ingestão das 63+ notas → Tasks 6, 7.
 - Navegação em árvore → Task 11.
 - Roladores inline com link resolvido → Tasks 9, 10, 12.
+- Modo claro/escuro com persistência → Task 11.
 - Stack C# + JS local → Tasks 1–13 (ASP.NET Minimal API + JS puro).
 - Fora do escopo (livros brutos, quests, personagens) → não tocado neste plano, conforme spec.
