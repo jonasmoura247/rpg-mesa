@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel D&D — Costa da Travessia</title>
+  <link rel="stylesheet" href="css/estilo.css" />
+</head>
+<body>
+  <div class="layout">
+    <nav class="barra-lateral">
+      <div class="cabecalho-barra-lateral">
+        <h1>Costa da Travessia</h1>
+        <button id="botao-tema" class="botao-tema" title="Alternar modo claro/escuro">🌙</button>
+      </div>
+      <div id="arvore-navegacao"></div>
+      <h2>Últimas Rolagens</h2>
+      <ul id="historico-rolagens"></ul>
+    </nav>
+    <main id="conteudo-principal" class="conteudo-principal">
+      <p>Selecione uma nota na barra lateral.</p>
+    </main>
+  </div>
+  <script src="js/tema.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/rolador.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
