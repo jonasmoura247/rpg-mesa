@@ -5,7 +5,7 @@ namespace PainelDed.Nucleo.Parsing;
 
 public static class ParserTabela
 {
-    private const string MarcadorPipeEscapado = "";
+    private static readonly string MarcadorPipeEscapado = char.ConvertFromUtf32(0x0001);
 
     // O dado pode ter texto extra depois (ex: "1d20 (apenas se rolar 20)"), então
     // não ancoramos o fim da linha logo após o padrão NdM.
