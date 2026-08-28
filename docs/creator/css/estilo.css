@@ -7,8 +7,11 @@
   --cor-destaque: #c9a24b;
   --cor-destaque-forte: #e0b95c;
   --cor-erro: #d16a5a;
+  --cor-fundo-destaque: #1c1610;
+  --cor-texto-sobre-destaque: #1a1409;
   --fonte-titulo: 'Cinzel', Georgia, 'Times New Roman', serif;
   --fonte-corpo: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: dark;
 }
 
 * {
@@ -19,7 +22,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(ellipse at top, #1c1610 0%, var(--cor-fundo) 60%);
+    radial-gradient(ellipse at top, var(--cor-fundo-destaque) 0%, var(--cor-fundo) 60%);
   color: var(--cor-texto);
   font-family: var(--fonte-corpo);
   line-height: 1.5;
@@ -118,6 +121,10 @@ input[type="text"], select {
   font-size: 1rem;
 }
 
+input[type="checkbox"] {
+  accent-color: var(--cor-destaque);
+}
+
 .linha-atributo {
   display: flex;
   align-items: center;
@@ -154,6 +161,26 @@ input[type="text"], select {
 
 .pontos-restantes {
   color: var(--cor-destaque-forte);
+}
+
+.bonus-raca {
+  color: var(--cor-destaque-forte);
+  font-size: 0.9rem;
+}
+
+.escolhas-livres {
+  margin-top: 0.75rem;
+}
+
+.escolhas-livres p {
+  color: var(--cor-texto-fraco);
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+
+.dado-vida {
+  color: var(--cor-texto-fraco);
+  font-size: 0.9rem;
 }
 
 .lista-pericias {
@@ -209,7 +236,7 @@ input[type="text"], select {
 .botao-primario {
   background: var(--cor-destaque);
   border: 1px solid var(--cor-destaque);
-  color: #1a1409;
+  color: var(--cor-texto-sobre-destaque);
 }
 
 .botao-secundario {
