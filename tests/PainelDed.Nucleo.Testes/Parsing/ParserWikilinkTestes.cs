@@ -56,4 +56,31 @@ public class ParserWikilinkTestes
 
         Assert.Empty(links);
     }
+
+    [Fact]
+    public void ExtrairLinks_ComAncoraDeSecao_RemoveAncoraDoAlvo()
+    {
+        // Padrão comum no vault real (ex: 11-Alarme-Falso.md): link aponta para uma seção
+        // específica dentro de outra nota. O alvo deve resolver para o ID da nota (sem a âncora),
+        // já que a resolução de conteúdo (Task 8) navega por nota inteira, não por seção.
+        var texto = "Um [[../monstros/01-Humanoides#Goblin\\|goblin]] se aproxima.";
+
+        var links = ParserWikilink.ExtrairLinks(texto);
+
+        Assert.Single(links);
+        Assert.Equal("goblin", links[0].Rotulo);
+        Assert.Equal("monstros/01-Humanoides", links[0].Alvo);
+    }
+
+    [Fact]
+    public void ExtrairLinks_ComAncoraSemRotulo_UsaAlvoSemAncoraComoRotulo()
+    {
+        var texto = "Ver [[Costa da Travessia#Alguma Seção]] para mais.";
+
+        var links = ParserWikilink.ExtrairLinks(texto);
+
+        Assert.Single(links);
+        Assert.Equal("Costa da Travessia", links[0].Rotulo);
+        Assert.Equal("Costa da Travessia", links[0].Alvo);
+    }
 }

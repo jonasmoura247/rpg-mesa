@@ -5,8 +5,11 @@ namespace PainelDed.Nucleo.Parsing;
 
 public static class ParserWikilink
 {
+    // O alvo para no '#' quando o link aponta pra uma seção específica de outra nota
+    // (ex: [[../monstros/01-Humanoides#Goblin|goblin]]) — a âncora é descartada porque
+    // a resolução de conteúdo (RepositorioConteudo) navega por nota inteira, não por seção.
     private static readonly Regex RegexLink = new(
-        @"\[\[(?<alvo>[^\]|\\]+)(?:\\?\|(?<rotulo>[^\]]+))?\]\]",
+        @"\[\[(?<alvo>[^\]|\\#]+)(?:#[^\]|\\]*)?(?:\\?\|(?<rotulo>[^\]]+))?\]\]",
         RegexOptions.Compiled);
 
     public static List<LinkReferencia> ExtrairLinks(string texto)
