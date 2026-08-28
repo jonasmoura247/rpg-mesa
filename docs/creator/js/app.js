@@ -62,6 +62,18 @@ function podeAvancar() {
     }
     return true;
   }
+  if (etapaAtual === 2) {
+    const classe = classeSelecionada();
+    if (!classe) {
+      mostrarErro('Selecione uma classe.');
+      return false;
+    }
+    if (ficha.periciasEscolhidas.length !== classe.escolhas) {
+      mostrarErro(`Escolha exatamente ${classe.escolhas} perícia(s).`);
+      return false;
+    }
+    return true;
+  }
   return true; // etapas seguintes validadas nas próximas tasks
 }
 
@@ -177,11 +189,78 @@ function renderEtapaRaca() {
   });
 }
 
+function classeSelecionada() {
+  return DADOS.CLASSES.find(c => c.nome === ficha.classe) || null;
+}
+
+function renderEtapaClasse() {
+  limparErro();
+
+  const opcoes = DADOS.CLASSES.map(classe =>
+    `<option value="${classe.nome}" ${ficha.classe === classe.nome ? 'selected' : ''}>${classe.nome}</option>`
+  ).join('');
+
+  const classe = classeSelecionada();
+  let blocoPericias = '';
+
+  if (classe) {
+    const listaPericias = classe.todasPericias ? DADOS.PERICIAS.map(p => p.nome) : classe.periciasElegiveis;
+    const itens = listaPericias.map(nomePericia => {
+      const marcado = ficha.periciasEscolhidas.includes(nomePericia);
+      return `
+        <label class="item-pericia">
+          <input type="checkbox" class="checkbox-pericia" value="${nomePericia}" ${marcado ? 'checked' : ''}>
+          ${nomePericia}
+        </label>`;
+    }).join('');
+
+    blocoPericias = `
+      <p>Escolha exatamente ${classe.escolhas} perícia(s) — selecionadas: ${ficha.periciasEscolhidas.length}/${classe.escolhas}</p>
+      <div class="lista-pericias">${itens}</div>
+    `;
+  }
+
+  elementoConteudo.innerHTML = `
+    <h2>Classe</h2>
+    <select id="campoClasse">
+      <option value="">Selecione uma classe</option>
+      ${opcoes}
+    </select>
+    <p class="dado-vida">${classe ? `Dado de Vida: d${classe.dadoDeVida}` : ''}</p>
+    ${blocoPericias}
+  `;
+
+  document.getElementById('campoClasse').addEventListener('change', evento => {
+    ficha.classe = evento.target.value || null;
+    ficha.periciasEscolhidas = [];
+    renderEtapaClasse();
+  });
+
+  document.querySelectorAll('.checkbox-pericia').forEach(checkbox => {
+    checkbox.addEventListener('change', evento => {
+      const nomePericia = evento.target.value;
+      const limite = classeSelecionada().escolhas;
+      if (evento.target.checked) {
+        if (ficha.periciasEscolhidas.length >= limite) {
+          evento.target.checked = false;
+          mostrarErro(`Você só pode escolher ${limite} perícia(s) para esta classe.`);
+          return;
+        }
+        ficha.periciasEscolhidas.push(nomePericia);
+      } else {
+        ficha.periciasEscolhidas = ficha.periciasEscolhidas.filter(p => p !== nomePericia);
+      }
+      limparErro();
+      renderEtapaClasse();
+    });
+  });
+}
+
 function renderEtapaAtual() {
   limparErro();
   if (etapaAtual === 0) renderEtapaAtributos();
   if (etapaAtual === 1) renderEtapaRaca();
-  if (etapaAtual === 2) elementoConteudo.innerHTML = '<p>Etapa de Classe (em construção)</p>';
+  if (etapaAtual === 2) renderEtapaClasse();
   if (etapaAtual === 3) elementoConteudo.innerHTML = '<p>Etapa de Resumo (em construção)</p>';
 
   botaoVoltar.disabled = etapaAtual === 0;
