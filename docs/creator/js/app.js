@@ -256,12 +256,96 @@ function renderEtapaClasse() {
   });
 }
 
+function atributosFinais() {
+  const raca = racaSelecionada();
+  const resultado = { ...ficha.atributosBase };
+  Object.entries(raca.bonus).forEach(([atributo, valor]) => {
+    resultado[atributo] += valor;
+  });
+  ficha.bonusEscolhidoMeioElfo.filter(Boolean).forEach(atributo => {
+    resultado[atributo] += 1;
+  });
+  return resultado;
+}
+
+function construirFichaFinal() {
+  const atributos = atributosFinais();
+  const classe = classeSelecionada();
+  const modConstituicao = Calculo.modificador(atributos.constituicao);
+  const modDestreza = Calculo.modificador(atributos.destreza);
+
+  const pericias = ficha.periciasEscolhidas.map(nomePericia => {
+    const pericia = DADOS.PERICIAS.find(p => p.nome === nomePericia);
+    const modAtributo = Calculo.modificador(atributos[pericia.atributo]);
+    return {
+      nome: pericia.nome,
+      atributo: pericia.atributo,
+      proficiente: true,
+      bonus: Calculo.bonusPericia(modAtributo, true, 2)
+    };
+  });
+
+  return {
+    nome: ficha.nome.trim(),
+    raca: ficha.raca,
+    classe: ficha.classe,
+    nivel: 1,
+    atributos,
+    pv: Calculo.pvInicial(classe.dadoDeVida, modConstituicao),
+    ca: Calculo.caBase(modDestreza),
+    pericias
+  };
+}
+
+function renderEtapaResumo() {
+  const dadosFicha = construirFichaFinal();
+
+  const linhasAtributos = Object.keys(NOMES_ATRIBUTOS).map(chave => {
+    const valor = dadosFicha.atributos[chave];
+    const mod = Calculo.modificador(valor);
+    return `<li>${NOMES_ATRIBUTOS[chave]}: ${valor} (${mod >= 0 ? '+' : ''}${mod})</li>`;
+  }).join('');
+
+  const linhasPericias = dadosFicha.pericias.map(p =>
+    `<li>${p.nome}: ${p.bonus >= 0 ? '+' : ''}${p.bonus}</li>`
+  ).join('');
+
+  elementoConteudo.innerHTML = `
+    <h2>Resumo — ${dadosFicha.nome}</h2>
+    <p>${dadosFicha.raca} · ${dadosFicha.classe} · Nível ${dadosFicha.nivel}</p>
+    <div class="destaques">
+      <span class="destaque">PV ${dadosFicha.pv}</span>
+      <span class="destaque">CA ${dadosFicha.ca}</span>
+    </div>
+    <h3>Atributos</h3>
+    <ul>${linhasAtributos}</ul>
+    <h3>Perícias com proficiência</h3>
+    <ul>${linhasPericias.length ? linhasPericias : '<li>Nenhuma</li>'}</ul>
+  `;
+}
+
+function baixarFicha() {
+  const dadosFicha = construirFichaFinal();
+  const conteudo = JSON.stringify(dadosFicha, null, 2);
+  const blob = new Blob([conteudo], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const nomeArquivo = `ficha-${dadosFicha.nome.toLowerCase().replace(/\s+/g, '-') || 'personagem'}.json`;
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = nomeArquivo;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
 function renderEtapaAtual() {
   limparErro();
   if (etapaAtual === 0) renderEtapaAtributos();
   if (etapaAtual === 1) renderEtapaRaca();
   if (etapaAtual === 2) renderEtapaClasse();
-  if (etapaAtual === 3) elementoConteudo.innerHTML = '<p>Etapa de Resumo (em construção)</p>';
+  if (etapaAtual === 3) renderEtapaResumo();
 
   botaoVoltar.disabled = etapaAtual === 0;
   botaoAvancar.textContent = etapaAtual === 3 ? 'Baixar minha ficha' : 'Avançar';
@@ -280,6 +364,8 @@ botaoAvancar.addEventListener('click', () => {
   if (etapaAtual < 3) {
     etapaAtual += 1;
     renderEtapaAtual();
+  } else {
+    baixarFicha();
   }
 });
 
