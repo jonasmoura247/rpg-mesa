@@ -34,4 +34,8 @@ assert.strictEqual(Calculo.pvInicial(6, -1), 5);
 assert.strictEqual(Calculo.caBase(3), 13);
 assert.strictEqual(Calculo.caBase(-1), 9);
 
+assert.strictEqual(Calculo.bonusPericia(3, true, 2), 5);
+assert.strictEqual(Calculo.bonusPericia(3, false, 2), 3);
+assert.strictEqual(Calculo.bonusPericia(-1, true, 2), 1);
+
 console.log('calculo.test.js: OK');

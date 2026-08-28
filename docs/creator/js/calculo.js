@@ -19,7 +19,11 @@
     return 10 + modDestreza;
   }
 
-  const api = { modificador, custoTotalPointBuy, pontosRestantes, pvInicial, caBase };
+  function bonusPericia(modAtributo, proficiente, bonusProficiencia) {
+    return proficiente ? modAtributo + bonusProficiencia : modAtributo;
+  }
+
+  const api = { modificador, custoTotalPointBuy, pontosRestantes, pvInicial, caBase, bonusPericia };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;
