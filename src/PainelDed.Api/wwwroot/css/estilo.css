@@ -283,6 +283,29 @@ body {
   opacity: 0.7;
 }
 
+.cabecalho-historico {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.cabecalho-historico h2 {
+  margin: 0;
+}
+
+.botao-limpar-historico {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.botao-limpar-historico:hover {
+  opacity: 1;
+}
+
 /* ---------- Conteúdo principal ---------- */
 
 .conteudo-principal {

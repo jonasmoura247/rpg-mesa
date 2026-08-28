@@ -76,4 +76,25 @@ const Api = {
     if (!resposta.ok) throw new Error('Falha ao gerar ideia de quest');
     return resposta.json();
   },
+
+  async listarHistorico(campanhaId) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/historico`);
+    if (!resposta.ok) throw new Error('Falha ao carregar histórico');
+    return resposta.json();
+  },
+
+  async registrarHistorico(campanhaId, descricao) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/historico`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ descricao }),
+    });
+    if (!resposta.ok) throw new Error('Falha ao registrar rolagem no histórico');
+    return resposta.json();
+  },
+
+  async limparHistorico(campanhaId) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/historico`, { method: 'DELETE' });
+    if (!resposta.ok) throw new Error('Falha ao limpar histórico');
+  },
 };

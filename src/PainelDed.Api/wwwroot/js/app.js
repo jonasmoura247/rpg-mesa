@@ -192,6 +192,8 @@ async function exibirNota(nomeSecao, idNota) {
 document.addEventListener('DOMContentLoaded', async () => {
   await Campanha.inicializar();
   carregarArvoreNavegacao();
+  Rolador.configurarBotaoLimpar();
+  await Rolador.recarregarHistorico();
 
   document.getElementById('botao-quadro-quests').addEventListener('click', () => Quests.exibir());
 
@@ -200,5 +202,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (mural) {
       Quests.recarregar();
     }
+    Rolador.recarregarHistorico();
   });
 });

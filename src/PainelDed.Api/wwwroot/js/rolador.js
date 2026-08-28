@@ -1,6 +1,4 @@
 const Rolador = {
-  historico: [],
-
   async rolar(nomeSecao, idNota, tituloTabela, elementoResultado) {
     elementoResultado.textContent = '';
     const carregando = document.createElement('p');
@@ -21,7 +19,7 @@ const Rolador = {
     }
 
     this.exibirResultado(nomeSecao, resultado, elementoResultado);
-    this.registrarHistorico(tituloTabela, resultado.valorRolado);
+    this.registrarHistorico(`${tituloTabela}: ${resultado.valorRolado}`);
   },
 
   exibirResultado(nomeSecao, resultado, elementoResultado) {
@@ -80,16 +78,57 @@ const Rolador = {
     console.warn(`Link não resolvido em nenhuma seção: '${link.alvo}' (rótulo: '${link.rotulo}')`);
   },
 
-  registrarHistorico(tituloTabela, valor) {
-    this.historico.unshift(`${tituloTabela}: ${valor}`);
-    this.historico = this.historico.slice(0, 10);
+  async registrarHistorico(descricao) {
+    try {
+      await Api.registrarHistorico(Campanha.ativa.id, descricao);
+    } catch (erro) {
+      console.error(erro);
+    }
+    await this.recarregarHistorico();
+  },
 
+  async recarregarHistorico() {
     const lista = document.getElementById('historico-rolagens');
+    if (!lista) return;
+
+    let historico;
+    try {
+      historico = await Api.listarHistorico(Campanha.ativa.id);
+    } catch (erro) {
+      console.error(erro);
+      return;
+    }
+
     lista.textContent = '';
-    this.historico.forEach((item) => {
+
+    if (historico.length === 0) {
+      const vazio = document.createElement('li');
+      vazio.className = 'historico-vazio';
+      vazio.textContent = 'Nenhuma rolagem ainda.';
+      lista.appendChild(vazio);
+      return;
+    }
+
+    historico.slice(0, 15).forEach((entrada) => {
       const linha = document.createElement('li');
-      linha.textContent = item;
+      linha.textContent = entrada.descricao;
       lista.appendChild(linha);
+    });
+  },
+
+  configurarBotaoLimpar() {
+    document.getElementById('botao-limpar-historico').addEventListener('click', async () => {
+      if (!window.confirm('Limpar todo o histórico de rolagens desta campanha?')) {
+        return;
+      }
+      try {
+        await Api.limparHistorico(Campanha.ativa.id);
+      } catch (erro) {
+        console.error(erro);
+        window.alert('Falha ao limpar histórico.');
+        return;
+      }
+      await this.recarregarHistorico();
     });
   },
 };
