@@ -129,4 +129,31 @@ public class ParserTabelaTestes
         Assert.Equal("glossario/estruturas/cemiterio", entradaComDoisLinks.Links[0].Alvo);
         Assert.Equal("glossario/estruturas/catacumba", entradaComDoisLinks.Links[1].Alvo);
     }
+
+    // Trecho real de 03-Assentamento.md: "Especificações I — Povo" tem 3 colunas
+    // (Roll | Humanos | Povo Lagarto). Antes do fix, o parser juntava as colunas
+    // extras com "|", produzindo texto ilegível tipo "Coletores de especiarias
+    // raras. | —" quando a segunda coluna estava vazia/irrelevante.
+    private const string MarkdownComTabelaDeTresColunas = """
+        # Assentamento
+
+        ## Especificações I — Povo — 1d6
+
+        | Roll | Humanos | Povo Lagarto |
+        |------|---------|--------------|
+        | 1 | A maioria é composta por guerreiros tribais. | Líder xamã que prega a harmonia natural. |
+        | 6 | Coletores de especiarias raras. | — |
+        """;
+
+    [Fact]
+    public void ExtrairTabelas_ComMaisDeDuasColunas_UsaSoAPrimeiraColunaDeResultado()
+    {
+        var tabelas = ParserTabela.ExtrairTabelas(MarkdownComTabelaDeTresColunas);
+        var entradas = tabelas[0].Entradas;
+
+        Assert.Equal("A maioria é composta por guerreiros tribais.", entradas[0].Texto);
+        Assert.Equal("Coletores de especiarias raras.", entradas[1].Texto);
+        Assert.DoesNotContain("|", entradas[1].Texto);
+        Assert.DoesNotContain("Povo Lagarto", entradas[1].Texto);
+    }
 }

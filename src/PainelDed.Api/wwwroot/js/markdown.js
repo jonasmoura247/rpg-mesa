@@ -158,6 +158,11 @@ function construirTabela(linhasTabela) {
   return tabela;
 }
 
+// Exposto em Markdown.aplicarInline pra outras telas (ex: cartões de quest, cuja
+// descrição pode vir do "Gerar ideia" com **negrito**/*itálico* cru do vault)
+// poderem renderizar formatação inline básica sem duplicar a lógica.
+Markdown.aplicarInline = aplicarInline;
+
 // Aplica formatação inline básica (negrito, itálico, wikilinks limpos) a um elemento,
 // sempre construindo nós de texto/elemento — nunca innerHTML.
 function aplicarInline(elemento, texto) {

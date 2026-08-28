@@ -112,7 +112,10 @@ const Quests = {
     cartao.appendChild(titulo);
 
     const descricao = document.createElement('p');
-    descricao.textContent = quest.descricao;
+    // Descrições geradas por "Gerar ideia" podem trazer **negrito**/*itálico*
+    // cru do vault — renderiza como formatação de verdade em vez de mostrar
+    // os asteriscos literalmente (mesma lógica usada no corpo das notas).
+    Markdown.aplicarInline(descricao, quest.descricao);
     cartao.appendChild(descricao);
 
     const detalhes = document.createElement('p');

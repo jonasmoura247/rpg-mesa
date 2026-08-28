@@ -356,46 +356,42 @@
             {
               "FaixaInicio": 1,
               "FaixaFim": 1,
-              "Texto": "A maioria \u00E9 composta por guerreiros tribais. | L\u00EDder xam\u00E3 que prega a harmonia natural.",
+              "Texto": "A maioria \u00E9 composta por guerreiros tribais.",
               "Links": []
             },
             {
               "FaixaInicio": 2,
               "FaixaFim": 2,
-              "Texto": "Liderados por uma Naga Guardi\u00E3. | Rei/rainha tocado por Sess\u0027inek como l\u00EDder.",
+              "Texto": "Liderados por uma Naga Guardi\u00E3.",
               "Links": [
                 {
                   "Rotulo": "Naga Guardi\u00E3",
                   "Alvo": "glossario/criaturas/naga-guardia"
-                },
-                {
-                  "Rotulo": "Sess\u0027inek",
-                  "Alvo": "glossario/criaturas/sessinek"
                 }
               ]
             },
             {
               "FaixaInicio": 3,
               "FaixaFim": 3,
-              "Texto": "Ca\u00E7adores de criaturas marinhas. | \u2014",
+              "Texto": "Ca\u00E7adores de criaturas marinhas.",
               "Links": []
             },
             {
               "FaixaInicio": 4,
               "FaixaFim": 4,
-              "Texto": "Escravizados por cultistas. | \u2014",
+              "Texto": "Escravizados por cultistas.",
               "Links": []
             },
             {
               "FaixaInicio": 5,
               "FaixaFim": 5,
-              "Texto": "Adoradores de um deus ou criatura marinha. | \u2014",
+              "Texto": "Adoradores de um deus ou criatura marinha.",
               "Links": []
             },
             {
               "FaixaInicio": 6,
               "FaixaFim": 6,
-              "Texto": "Coletores de especiarias raras. | \u2014",
+              "Texto": "Coletores de especiarias raras.",
               "Links": []
             }
           ]
@@ -455,42 +451,37 @@
             {
               "FaixaInicio": 1,
               "FaixaFim": 1,
-              "Texto": "Vivem em tocas subterr\u00E2neas | Uma caverna com acesso subaqu\u00E1tico",
-              "Links": [
-                {
-                  "Rotulo": "caverna",
-                  "Alvo": "glossario/estruturas/caverna"
-                }
-              ]
+              "Texto": "Vivem em tocas subterr\u00E2neas",
+              "Links": []
             },
             {
               "FaixaInicio": 2,
               "FaixaFim": 2,
-              "Texto": "N\u00E3o t\u00EAm moradia fixa | Ru\u00EDnas de uma civiliza\u00E7\u00E3o submersa",
+              "Texto": "N\u00E3o t\u00EAm moradia fixa",
               "Links": []
             },
             {
               "FaixaInicio": 3,
               "FaixaFim": 3,
-              "Texto": "Ru\u00EDna abandonada *(role na tabela de Ru\u00EDnas)* | \u2014",
+              "Texto": "Ru\u00EDna abandonada *(role na tabela de Ru\u00EDnas)*",
               "Links": []
             },
             {
               "FaixaInicio": 4,
               "FaixaFim": 4,
-              "Texto": "Moradias sob palafitas | \u2014",
+              "Texto": "Moradias sob palafitas",
               "Links": []
             },
             {
               "FaixaInicio": 5,
               "FaixaFim": 5,
-              "Texto": "Fazenda de crust\u00E1ceos | \u2014",
+              "Texto": "Fazenda de crust\u00E1ceos",
               "Links": []
             },
             {
               "FaixaInicio": 6,
               "FaixaFim": 6,
-              "Texto": "Recebem aventureiros por conta de uma constru\u00E7\u00E3o | \u2014",
+              "Texto": "Recebem aventureiros por conta de uma constru\u00E7\u00E3o",
               "Links": []
             }
           ]
@@ -1266,19 +1257,19 @@
             {
               "FaixaInicio": 1,
               "FaixaFim": 4,
-              "Texto": "**Subida \u00EDngreme** | Terreno dif\u00EDcil \u2014 metade do deslocamento.",
+              "Texto": "**Subida \u00EDngreme**",
               "Links": []
             },
             {
               "FaixaInicio": 5,
               "FaixaFim": 8,
-              "Texto": "**Descida \u00EDngreme** | Terreno dif\u00EDcil \u2014 metade do deslocamento.",
+              "Texto": "**Descida \u00EDngreme**",
               "Links": []
             },
             {
               "FaixaInicio": 9,
               "FaixaFim": 9,
-              "Texto": "**Restinga com espinhos** | Atravessar causa 1d6\u002B1 de dano. Dar a volta acrescenta 1 hora de viagem.",
+              "Texto": "**Restinga com espinhos**",
               "Links": [
                 {
                   "Rotulo": "Restinga",
@@ -1289,25 +1280,25 @@
             {
               "FaixaInicio": 10,
               "FaixaFim": 11,
-              "Texto": "**Terreno rochoso e acidentado** | Terreno dif\u00EDcil \u2014 \u00BC do deslocamento.",
+              "Texto": "**Terreno rochoso e acidentado**",
               "Links": []
             },
             {
               "FaixaInicio": 12,
               "FaixaFim": 12,
-              "Texto": "**Desfiladeiro entre duas fal\u00E9sias** | ~12m abaixo. Dar a volta acrescenta 3 horas. Salto invi\u00E1vel. Para descer ou subir: Atletismo CD 14 a cada 3m \u2014 falha = queda.",
+              "Texto": "**Desfiladeiro entre duas fal\u00E9sias**",
               "Links": []
             },
             {
               "FaixaInicio": 13,
               "FaixaFim": 13,
-              "Texto": "**Terreno inst\u00E1vel por varia\u00E7\u00E3o da mar\u00E9** | Terreno dif\u00EDcil \u2014 \u00BC do deslocamento.",
+              "Texto": "**Terreno inst\u00E1vel por varia\u00E7\u00E3o da mar\u00E9**",
               "Links": []
             },
             {
               "FaixaInicio": 14,
               "FaixaFim": 15,
-              "Texto": "**Mangue com perigos escondidos** | Profundidade: 1m. Acrobacia CD 13 *ou* Sobreviv\u00EAncia CD 12 \u2014 falha: ferido por 1d6\u002B1 caranguejos (1 de dano cada). Se ferido, um cardume de piranhas \u00E9 atra\u00EDdo.",
+              "Texto": "**Mangue com perigos escondidos**",
               "Links": [
                 {
                   "Rotulo": "Mangue",
@@ -1318,7 +1309,7 @@
             {
               "FaixaInicio": 16,
               "FaixaFim": 16,
-              "Texto": "**Mangue com areia movedi\u00E7a** | Fossos de areia movedi\u00E7a camuflados pelo solo (Percep\u00E7\u00E3o CD 18). *Livro do Mestre p\u00E1g. 110.*",
+              "Texto": "**Mangue com areia movedi\u00E7a**",
               "Links": [
                 {
                   "Rotulo": "Mangue",
@@ -1329,13 +1320,13 @@
             {
               "FaixaInicio": 17,
               "FaixaFim": 19,
-              "Texto": "**Barranco \u00EDngreme** | Terreno dif\u00EDcil \u2014 metade do deslocamento.",
+              "Texto": "**Barranco \u00EDngreme**",
               "Links": []
             },
             {
               "FaixaInicio": 20,
               "FaixaFim": 20,
-              "Texto": "**Cemit\u00E9rio de animais** | Animais morrem aqui naturalmente. Contato direto/indireto pode causar doen\u00E7as \u2014 Resist\u00EAncia de Constitui\u00E7\u00E3o CD 12 ou \u0022Envenenado\u0022 \u002B1 exaust\u00E3o por 1d4\u002B4 dias *(ou at\u00E9 ser curado)*. Role um encontro com mortos-vivos.",
+              "Texto": "**Cemit\u00E9rio de animais**",
               "Links": [
                 {
                   "Rotulo": "Cemit\u00E9rio",
@@ -2305,19 +2296,19 @@
             {
               "FaixaInicio": 1,
               "FaixaFim": 1,
-              "Texto": "Um grande rugido seguido de um enorme bater de asas anuncia a chegada de um drag\u00E3o | S\u00F3 o barulho das ondas e o vento forte",
+              "Texto": "Um grande rugido seguido de um enorme bater de asas anuncia a chegada de um drag\u00E3o",
               "Links": []
             },
             {
               "FaixaInicio": 2,
               "FaixaFim": 2,
-              "Texto": "Um navio fantasma se aproxima da costa | S\u00F3 uma grande pedra e um pouco de n\u00E9voa",
+              "Texto": "Um navio fantasma se aproxima da costa",
               "Links": []
             },
             {
               "FaixaInicio": 3,
               "FaixaFim": 3,
-              "Texto": "Um goblin montado em um worg se aproxima pelo mar | S\u00F3 um tronco com um musgo em um formato estranhamente espec\u00EDfico",
+              "Texto": "Um goblin montado em um worg se aproxima pelo mar",
               "Links": [
                 {
                   "Rotulo": "goblin",
@@ -2328,31 +2319,31 @@
             {
               "FaixaInicio": 4,
               "FaixaFim": 4,
-              "Texto": "Um ba\u00FA enterrado | S\u00F3 uma caixa quebrada",
+              "Texto": "Um ba\u00FA enterrado",
               "Links": []
             },
             {
               "FaixaInicio": 5,
               "FaixaFim": 5,
-              "Texto": "O grupo est\u00E1 sendo seguido | S\u00F3 uma sensa\u00E7\u00E3o \u2014 nem est\u00E3o sendo seguidos",
+              "Texto": "O grupo est\u00E1 sendo seguido",
               "Links": []
             },
             {
               "FaixaInicio": 6,
               "FaixaFim": 6,
-              "Texto": "\u00C9 poss\u00EDvel ouvir uma voz sinistra e perturbadora | S\u00F3 um papagaio sem dono",
+              "Texto": "\u00C9 poss\u00EDvel ouvir uma voz sinistra e perturbadora",
               "Links": []
             },
             {
               "FaixaInicio": 7,
               "FaixaFim": 7,
-              "Texto": "Dentro de uma garrafa h\u00E1 um mapa do tesouro | S\u00F3 o esbo\u00E7o de algum alfaiate em um pano rasgado",
+              "Texto": "Dentro de uma garrafa h\u00E1 um mapa do tesouro",
               "Links": []
             },
             {
               "FaixaInicio": 8,
               "FaixaFim": 8,
-              "Texto": "Um ogro atira pedras na dire\u00E7\u00E3o do grupo | Foi s\u00F3 um deslizamento \u2014 e nem foi t\u00E3o perto assim",
+              "Texto": "Um ogro atira pedras na dire\u00E7\u00E3o do grupo",
               "Links": [
                 {
                   "Rotulo": "ogro",
@@ -2363,42 +2354,37 @@
             {
               "FaixaInicio": 9,
               "FaixaFim": 9,
-              "Texto": "O grupo se depara com um \u0022grande abismo\u0022 | H\u00E1 um caminho pela lateral da costa",
+              "Texto": "O grupo se depara com um \u0022grande abismo\u0022",
               "Links": []
             },
             {
               "FaixaInicio": 10,
               "FaixaFim": 10,
-              "Texto": "H\u00E1 um rosto observando escondido | \u00C9 apenas uma pintura tribal de olhos e uma boca",
+              "Texto": "H\u00E1 um rosto observando escondido",
               "Links": []
             },
             {
               "FaixaInicio": 11,
               "FaixaFim": 11,
-              "Texto": "Runas antigas descrevem magias perdidas | S\u00E3o s\u00F3 picha\u00E7\u00F5es de alguns gigantes brincalh\u00F5es",
-              "Links": [
-                {
-                  "Rotulo": "gigantes",
-                  "Alvo": "glossario/racas/gigantes"
-                }
-              ]
+              "Texto": "Runas antigas descrevem magias perdidas",
+              "Links": []
             },
             {
               "FaixaInicio": 12,
               "FaixaFim": 12,
-              "Texto": "Um barulho de algu\u00E9m que quebrou um galho e caiu de uma \u00E1rvore | Foi apenas um coco maduro caindo",
+              "Texto": "Um barulho de algu\u00E9m que quebrou um galho e caiu de uma \u00E1rvore",
               "Links": []
             },
             {
               "FaixaInicio": 13,
               "FaixaFim": 13,
-              "Texto": "Uma monstruosidade repousa sobre a costa | S\u00F3 um amontoado de galhos e algas trazidas pelo mar",
+              "Texto": "Uma monstruosidade repousa sobre a costa",
               "Links": []
             },
             {
               "FaixaInicio": 14,
               "FaixaFim": 14,
-              "Texto": "2d6\u002B1 hobgoblins avan\u00E7am para um ataque mortal | S\u00E3o s\u00F3 guardas perdidos com elmos estranhos",
+              "Texto": "2d6\u002B1 hobgoblins avan\u00E7am para um ataque mortal",
               "Links": [
                 {
                   "Rotulo": "hobgoblins",
@@ -2409,14 +2395,10 @@
             {
               "FaixaInicio": 15,
               "FaixaFim": 15,
-              "Texto": "2 bugbears acenam para o grupo \u2014 parece uma armadilha | S\u00E3o 2 guerreiros tribais muito peludos assando uma carne",
+              "Texto": "2 bugbears acenam para o grupo \u2014 parece uma armadilha",
               "Links": [
                 {
                   "Rotulo": "bugbears",
-                  "Alvo": "monstros/01-Humanoides"
-                },
-                {
-                  "Rotulo": "guerreiros tribais",
                   "Alvo": "monstros/01-Humanoides"
                 }
               ]
@@ -2424,19 +2406,19 @@
             {
               "FaixaInicio": 16,
               "FaixaFim": 16,
-              "Texto": "Algu\u00E9m ativa uma armadilha de flechas | Ela \u00E9 t\u00E3o antiga que se quebra antes de disparar",
+              "Texto": "Algu\u00E9m ativa uma armadilha de flechas",
               "Links": []
             },
             {
               "FaixaInicio": 17,
               "FaixaFim": 17,
-              "Texto": "Um cajado m\u00E1gico reluz sobre o ch\u00E3o | S\u00F3 um remo velho com algumas algas refletindo a luz",
+              "Texto": "Um cajado m\u00E1gico reluz sobre o ch\u00E3o",
               "Links": []
             },
             {
               "FaixaInicio": 18,
               "FaixaFim": 18,
-              "Texto": "O bra\u00E7o de um esqueleto emerge da areia e segura o p\u00E9 da criatura | S\u00F3 um emaranhado de cordas e algas",
+              "Texto": "O bra\u00E7o de um esqueleto emerge da areia e segura o p\u00E9 da criatura",
               "Links": [
                 {
                   "Rotulo": "esqueleto",
@@ -2447,13 +2429,13 @@
             {
               "FaixaInicio": 19,
               "FaixaFim": 19,
-              "Texto": "Um som estrondante ecoa pelos ouvidos | Apenas o est\u00F4mago vazio de um humanoide deitado no ch\u00E3o",
+              "Texto": "Um som estrondante ecoa pelos ouvidos",
               "Links": []
             },
             {
               "FaixaInicio": 20,
               "FaixaFim": 20,
-              "Texto": "Um necromante caminha com dificuldade, cheiro de podrid\u00E3o o precede | S\u00F3 um andarilho que n\u00E3o toma banho h\u00E1 muitos meses",
+              "Texto": "Um necromante caminha com dificuldade, cheiro de podrid\u00E3o o precede",
               "Links": []
             }
           ]

@@ -82,7 +82,12 @@ public static class ParserTabela
         }
 
         var faixaTexto = celulas[0].Trim();
-        var textoResultado = string.Join("|", celulas[1..]).Trim().Replace(MarcadorPipeEscapado, "|");
+        // Algumas tabelas do vault têm mais de 2 colunas (ex: "Especificações I — Povo"
+        // em 03-Assentamento.md, com colunas "Humanos" e "Povo Lagarto" lado a lado).
+        // Usamos só a primeira coluna de resultado — juntar todas com "|" produzia um
+        // texto ilegível tipo "Coletores de especiarias raras. | —" quando a segunda
+        // coluna estava vazia/irrelevante pra faixa rolada.
+        var textoResultado = celulas[1].Trim().Replace(MarcadorPipeEscapado, "|");
 
         var matchFaixa = RegexFaixa.Match(faixaTexto);
         if (!matchFaixa.Success)
