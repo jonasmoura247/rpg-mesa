@@ -559,6 +559,12 @@ body {
   padding: 0.9rem;
 }
 
+.coluna-quests.coluna-destacada {
+  outline: 2px dashed var(--cor-destaque);
+  outline-offset: -2px;
+  background: var(--cor-destaque-suave);
+}
+
 .coluna-quests h3 {
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -573,6 +579,11 @@ body {
   padding: 0.8rem;
   margin-bottom: 0.75rem;
   box-shadow: var(--sombra);
+  cursor: grab;
+}
+
+.cartao-quest.cartao-sendo-arrastado {
+  opacity: 0.4;
 }
 
 .cartao-quest h4 {
@@ -583,6 +594,7 @@ body {
 .cartao-quest p {
   margin: 0 0 0.4rem;
   font-size: 0.85rem;
+  white-space: pre-line;
 }
 
 .detalhes-quest {

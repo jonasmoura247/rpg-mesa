@@ -59,6 +59,36 @@ const Quests = {
         .filter((quest) => quest.status === status.valor)
         .forEach((quest) => coluna.appendChild(this.criarCartao(quest)));
 
+      coluna.addEventListener('dragover', (evento) => {
+        evento.preventDefault();
+        coluna.classList.add('coluna-destacada');
+      });
+
+      coluna.addEventListener('dragleave', () => {
+        coluna.classList.remove('coluna-destacada');
+      });
+
+      coluna.addEventListener('drop', async (evento) => {
+        evento.preventDefault();
+        coluna.classList.remove('coluna-destacada');
+
+        const questId = evento.dataTransfer.getData('text/plain');
+        const quest = quests.find((q) => q.id === questId);
+        if (!quest || quest.status === status.valor) {
+          return;
+        }
+
+        try {
+          await Api.atualizarQuest(Campanha.ativa.id, questId, { ...quest, status: status.valor });
+        } catch (erro) {
+          console.error(erro);
+          window.alert('Falha ao mover a quest.');
+          return;
+        }
+
+        await this.recarregar();
+      });
+
       mural.appendChild(coluna);
     });
   },
@@ -66,6 +96,16 @@ const Quests = {
   criarCartao(quest) {
     const cartao = document.createElement('div');
     cartao.className = 'cartao-quest';
+
+    cartao.draggable = true;
+    cartao.addEventListener('dragstart', (evento) => {
+      evento.dataTransfer.setData('text/plain', quest.id);
+      evento.dataTransfer.effectAllowed = 'move';
+      cartao.classList.add('cartao-sendo-arrastado');
+    });
+    cartao.addEventListener('dragend', () => {
+      cartao.classList.remove('cartao-sendo-arrastado');
+    });
 
     const titulo = document.createElement('h4');
     titulo.textContent = quest.titulo;
