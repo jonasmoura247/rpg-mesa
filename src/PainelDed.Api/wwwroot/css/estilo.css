@@ -169,6 +169,29 @@ body {
   font-size: 1.6rem;
 }
 
+.texto-resultado {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.links-resolvidos {
+  margin-top: 1rem;
+}
+
+.link-expandido {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--cor-destaque);
+  background: var(--cor-fundo);
+  border-radius: 0 6px 6px 0;
+}
+
+.link-expandido p {
+  margin: 0.3rem 0 0;
+  font-size: 0.95rem;
+  color: var(--cor-historico-texto);
+}
+
 #historico-rolagens {
   list-style: none;
   padding-left: 0;

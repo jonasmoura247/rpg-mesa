@@ -76,6 +76,8 @@ const Rolador = {
         continue;
       }
     }
+
+    console.warn(`Link não resolvido em nenhuma seção: '${link.alvo}' (rótulo: '${link.rotulo}')`);
   },
 
   registrarHistorico(tituloTabela, valor) {
@@ -92,6 +94,10 @@ const Rolador = {
   },
 };
 
+// Heurística simples, não um parser de markdown: pega a primeira linha não-vazia
+// que não seja um cabeçalho (#). Não trata citações (>), listas (-) nem tabelas (|) —
+// se a nota linkada começar com um desses, a sintaxe crua aparece no resumo. Aceitável
+// para um resumo rápido de "o que é isso", não para leitura formatada.
 function resumo(markdown) {
   const linhas = (markdown || '').split('\n').filter((linha) => linha.trim() && !linha.startsWith('#'));
   return (linhas[0] || '').slice(0, 200);
