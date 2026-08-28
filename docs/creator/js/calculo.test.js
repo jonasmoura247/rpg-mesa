@@ -29,4 +29,9 @@ assert.strictEqual(
   0
 );
 
+assert.strictEqual(Calculo.pvInicial(10, 2), 12);
+assert.strictEqual(Calculo.pvInicial(6, -1), 5);
+assert.strictEqual(Calculo.caBase(3), 13);
+assert.strictEqual(Calculo.caBase(-1), 9);
+
 console.log('calculo.test.js: OK');

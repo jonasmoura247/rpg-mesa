@@ -11,7 +11,15 @@
     return orcamento - custoTotalPointBuy(atributos, tabelaCusto);
   }
 
-  const api = { modificador, custoTotalPointBuy, pontosRestantes };
+  function pvInicial(dadoDeVida, modConstituicao) {
+    return dadoDeVida + modConstituicao;
+  }
+
+  function caBase(modDestreza) {
+    return 10 + modDestreza;
+  }
+
+  const api = { modificador, custoTotalPointBuy, pontosRestantes, pvInicial, caBase };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;
