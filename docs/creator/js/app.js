@@ -55,6 +55,7 @@ const NOMES_ATRIBUTOS = {
 };
 
 function renderEtapaAtributos() {
+  limparErro();
   const pontosRestantes = Calculo.pontosRestantes(ficha.atributosBase, DADOS.CUSTO_POINT_BUY, DADOS.ORCAMENTO_PONTOS);
 
   const linhasAtributos = Object.keys(NOMES_ATRIBUTOS).map(chave => {
@@ -71,15 +72,18 @@ function renderEtapaAtributos() {
   elementoConteudo.innerHTML = `
     <label class="campo-nome">
       Nome do personagem
-      <input type="text" id="campoNome" value="${ficha.nome}" placeholder="Ex: Kess Bramo">
+      <input type="text" id="campoNome" placeholder="Ex: Kess Bramo">
     </label>
     <h2>Atributos — Point Buy</h2>
     <p class="pontos-restantes">Pontos restantes: <strong>${pontosRestantes}</strong></p>
     ${linhasAtributos}
   `;
 
-  document.getElementById('campoNome').addEventListener('input', evento => {
+  const campoNome = document.getElementById('campoNome');
+  campoNome.value = ficha.nome;
+  campoNome.addEventListener('input', evento => {
     ficha.nome = evento.target.value;
+    limparErro();
   });
 
   document.querySelectorAll('.botao-passo').forEach(botao => {
