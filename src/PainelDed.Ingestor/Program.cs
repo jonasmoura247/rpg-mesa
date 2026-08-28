@@ -1,5 +1,6 @@
 using System.Text.Json;
 using PainelDed.Nucleo.Ingestao;
+using PainelDed.Nucleo.Modelos;
 
 if (args.Length < 2)
 {
@@ -27,7 +28,7 @@ foreach (var nome in nomesDeSecao)
     {
         arquivos = ArquivosDaSecao(nome, caminhoVault);
     }
-    catch (DirectoryNotFoundException erro)
+    catch (Exception erro) when (erro is DirectoryNotFoundException or FileNotFoundException)
     {
         Console.Error.WriteLine($"ERRO: {erro.Message}");
         return 1;
@@ -39,7 +40,17 @@ foreach (var nome in nomesDeSecao)
         return 1;
     }
 
-    var secaoConvertida = ConversorSecao.Converter(nome, caminhoVault, arquivos);
+    SecaoConteudo secaoConvertida;
+    try
+    {
+        secaoConvertida = ConversorSecao.Converter(nome, caminhoVault, arquivos);
+    }
+    catch (Exception erro)
+    {
+        Console.Error.WriteLine($"ERRO: falha ao converter a seção '{nome}': {erro.Message}");
+        return 1;
+    }
+
     var caminhoJson = Path.Combine(pastaSaida, $"{nome}.json");
     File.WriteAllText(caminhoJson, JsonSerializer.Serialize(secaoConvertida, opcoesJson));
 
@@ -61,9 +72,18 @@ List<string> ArquivosDaSecao(string nome, string vault)
         return caminho;
     }
 
+    string ExigirArquivo(string caminho)
+    {
+        if (!File.Exists(caminho))
+        {
+            throw new FileNotFoundException($"arquivo não encontrado para a seção '{nome}': {caminho}");
+        }
+        return caminho;
+    }
+
     return nome switch
     {
-        "mundo" => new[] { Path.Combine(vault, "Costa da Travessia.md") }
+        "mundo" => new[] { ExigirArquivo(Path.Combine(vault, "Costa da Travessia.md")) }
             .Concat(Directory.GetFiles(
                 ExigirPasta(Path.Combine(vault, "Costa da Travessia")), "*.md", SearchOption.TopDirectoryOnly))
             .ToList(),
