@@ -7,6 +7,7 @@
   --cor-borda: #dcdcd6;
   --cor-resultado-fundo: #ececea;
   --cor-historico-texto: #55555c;
+  --cor-erro: #c0392b;
 }
 
 html[data-tema="escuro"] {
@@ -18,6 +19,7 @@ html[data-tema="escuro"] {
   --cor-borda: #3a3a42;
   --cor-resultado-fundo: #33333c;
   --cor-historico-texto: #b8b8c0;
+  --cor-erro: #e57368;
 }
 
 * { box-sizing: border-box; }
@@ -108,7 +110,7 @@ body {
 }
 
 .mensagem-erro {
-  color: #c0392b;
+  color: var(--cor-erro);
   font-size: 0.9rem;
 }
 
