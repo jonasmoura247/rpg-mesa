@@ -1,17 +1,36 @@
+const ICONE_SECAO = {
+  mundo: '🗺️',
+  glossario: '📚',
+  regras: '⚔️',
+  monstros: '👹',
+};
+
 async function carregarArvoreNavegacao() {
   const secoes = ['mundo', 'glossario', 'regras', 'monstros'];
   const container = document.getElementById('arvore-navegacao');
   container.innerHTML = '';
 
   for (const nomeSecao of secoes) {
-    const grupo = document.createElement('div');
+    const grupo = document.createElement('details');
     grupo.className = 'grupo-secao';
+    grupo.open = true;
+    grupo.dataset.secao = nomeSecao;
 
     try {
       const secao = await Api.obterSecao(nomeSecao);
 
-      const titulo = document.createElement('h3');
-      titulo.textContent = secao.nome ?? nomeSecao;
+      const titulo = document.createElement('summary');
+      const icone = document.createElement('span');
+      icone.className = 'icone-secao';
+      icone.textContent = ICONE_SECAO[nomeSecao] || '📄';
+      titulo.appendChild(icone);
+      titulo.appendChild(document.createTextNode(secao.nome ?? nomeSecao));
+
+      const contagem = document.createElement('span');
+      contagem.className = 'contagem-secao';
+      contagem.textContent = secao.notas.length;
+      titulo.appendChild(contagem);
+
       grupo.appendChild(titulo);
 
       const lista = document.createElement('ul');
@@ -20,6 +39,7 @@ async function carregarArvoreNavegacao() {
         const link = document.createElement('a');
         link.textContent = nota.titulo;
         link.href = '#';
+        link.dataset.textoBusca = nota.titulo.toLowerCase();
         link.addEventListener('click', (evento) => {
           evento.preventDefault();
           document.querySelectorAll('#arvore-navegacao a.ativo').forEach((a) => a.classList.remove('ativo'));
@@ -32,7 +52,7 @@ async function carregarArvoreNavegacao() {
 
       grupo.appendChild(lista);
     } catch (erro) {
-      const titulo = document.createElement('h3');
+      const titulo = document.createElement('summary');
       titulo.textContent = nomeSecao;
       grupo.appendChild(titulo);
 
@@ -46,11 +66,38 @@ async function carregarArvoreNavegacao() {
 
     container.appendChild(grupo);
   }
+
+  configurarBusca();
+}
+
+function configurarBusca() {
+  const campoBusca = document.getElementById('campo-busca');
+  campoBusca.addEventListener('input', () => {
+    const termo = campoBusca.value.trim().toLowerCase();
+
+    document.querySelectorAll('.grupo-secao').forEach((grupo) => {
+      let algumVisivelNesseGrupo = false;
+
+      grupo.querySelectorAll('li').forEach((item) => {
+        const link = item.querySelector('a');
+        const corresponde = !termo || link.dataset.textoBusca.includes(termo);
+        item.hidden = !corresponde;
+        if (corresponde) {
+          algumVisivelNesseGrupo = true;
+        }
+      });
+
+      grupo.hidden = !algumVisivelNesseGrupo;
+      if (termo) {
+        grupo.open = true;
+      }
+    });
+  });
 }
 
 async function exibirNota(nomeSecao, idNota) {
   const principal = document.getElementById('conteudo-principal');
-  principal.innerHTML = '<p>Carregando…</p>';
+  principal.innerHTML = '<p class="carregando">Carregando…</p>';
 
   let nota;
   try {
@@ -63,42 +110,54 @@ async function exibirNota(nomeSecao, idNota) {
 
   principal.innerHTML = '';
 
-  const cabecalho = document.createElement('h2');
-  cabecalho.textContent = nota.titulo;
+  const cabecalho = document.createElement('div');
+  cabecalho.className = 'cabecalho-nota';
+
+  const tituloIcone = document.createElement('span');
+  tituloIcone.className = 'icone-secao';
+  tituloIcone.textContent = ICONE_SECAO[nomeSecao] || '📄';
+  cabecalho.appendChild(tituloIcone);
+
+  const titulo = document.createElement('h2');
+  titulo.textContent = nota.titulo;
+  cabecalho.appendChild(titulo);
+
   principal.appendChild(cabecalho);
 
   if (nota.corpoMarkdown) {
     const corpo = document.createElement('div');
     corpo.className = 'corpo-nota';
-    corpo.textContent = nota.corpoMarkdown;
+    const titulosTabelasRolaveis = (nota.tabelas || []).map((tabela) => tabela.titulo);
+    corpo.appendChild(Markdown.renderizar(nota.corpoMarkdown, titulosTabelasRolaveis));
     principal.appendChild(corpo);
   }
 
   if (!nota.tabelas || nota.tabelas.length === 0) {
-    const semTabelas = document.createElement('p');
-    semTabelas.textContent = 'Esta nota não tem tabelas roláveis.';
-    principal.appendChild(semTabelas);
     return;
   }
+
+  const secaoTabelas = document.createElement('div');
+  secaoTabelas.className = 'secao-tabelas-rolaveis';
 
   nota.tabelas.forEach((tabela) => {
     const bloco = document.createElement('section');
     bloco.className = 'bloco-tabela';
 
-    const titulo = document.createElement('h3');
+    const tituloTabela = document.createElement('h3');
 
     const textoTitulo = document.createElement('span');
     textoTitulo.textContent = tabela.titulo;
-    titulo.appendChild(textoTitulo);
+    tituloTabela.appendChild(textoTitulo);
 
-    const dado = document.createElement('small');
-    dado.textContent = `(${tabela.dado})`;
-    titulo.appendChild(dado);
+    const dado = document.createElement('span');
+    dado.className = 'etiqueta-dado';
+    dado.textContent = tabela.dado;
+    tituloTabela.appendChild(dado);
 
     const botao = document.createElement('button');
     botao.className = 'botao-rolar';
     botao.textContent = '🎲 Rolar';
-    titulo.appendChild(botao);
+    tituloTabela.appendChild(botao);
 
     const resultadoContainer = document.createElement('div');
     resultadoContainer.className = 'resultado-rolagem-container';
@@ -107,10 +166,12 @@ async function exibirNota(nomeSecao, idNota) {
       Rolador.rolar(nomeSecao, idNota, tabela.titulo, resultadoContainer);
     });
 
-    bloco.appendChild(titulo);
+    bloco.appendChild(tituloTabela);
     bloco.appendChild(resultadoContainer);
-    principal.appendChild(bloco);
+    secaoTabelas.appendChild(bloco);
   });
+
+  principal.appendChild(secaoTabelas);
 }
 
 document.addEventListener('DOMContentLoaded', carregarArvoreNavegacao);
