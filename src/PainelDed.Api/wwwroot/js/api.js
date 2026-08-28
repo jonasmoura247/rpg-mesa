@@ -23,4 +23,20 @@ const Api = {
     if (!resposta.ok) throw new Error('Falha ao rolar tabela');
     return resposta.json();
   },
+
+  async listarCampanhas() {
+    const resposta = await fetch('/api/campanhas');
+    if (!resposta.ok) throw new Error('Falha ao listar campanhas');
+    return resposta.json();
+  },
+
+  async criarCampanha(nome) {
+    const resposta = await fetch('/api/campanhas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome }),
+    });
+    if (!resposta.ok) throw new Error('Falha ao criar campanha');
+    return resposta.json();
+  },
 };

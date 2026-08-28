@@ -189,4 +189,7 @@ async function exibirNota(nomeSecao, idNota) {
   principal.appendChild(secaoTabelas);
 }
 
-document.addEventListener('DOMContentLoaded', carregarArvoreNavegacao);
+document.addEventListener('DOMContentLoaded', async () => {
+  await Campanha.inicializar();
+  carregarArvoreNavegacao();
+});
