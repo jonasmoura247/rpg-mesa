@@ -31,9 +31,21 @@ public class RepositorioConteudo
     public SecaoConteudo? ObterSecao(string nome) =>
         _secoes.TryGetValue(nome, out var secao) ? secao : null;
 
+    // Comparação exata (case-sensitive): idNota vem de rotas HTTP geradas a partir
+    // dos próprios Ids indexados (ex: link da árvore de navegação no frontend), então
+    // já chega no formato canônico.
     public NotaConteudo? ObterNota(string nomeSecao, string idNota) =>
         ObterSecao(nomeSecao)?.Notas.FirstOrDefault(n => n.Id == idNota);
 
+    // Comparação case-insensitive: alvo vem de wikilinks escritos à mão no vault,
+    // onde maiúsculas/minúsculas podem variar sem intenção.
+    //
+    // Nota: se duas notas em seções diferentes compartilharem o mesmo slug final
+    // (ex: glossario/index, monstros/index e regras-do-jogo/index — caso real no vault),
+    // o fallback por slug retorna a primeira encontrada na ordem de _secoes.Values,
+    // não necessariamente a pretendida. Isso não afeta nenhum wikilink real hoje
+    // (todos usam caminho completo, que bate no match exato antes de cair no fallback),
+    // mas fica documentado como limitação conhecida.
     public NotaConteudo? ResolverLink(string alvo)
     {
         var slug = alvo.Split('/').Last();
