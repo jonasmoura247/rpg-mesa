@@ -54,6 +54,9 @@ public class ServicoGeradorIdeiaQuest
             }
         }
 
-        return new RascunhoQuest(nota.Titulo, string.Join("\n", linhas));
+        var xpSugerido = _dado.Rolar("1d10") * 50;
+        var recompensaSugerida = $"{_dado.Rolar("1d20") * 10} PO";
+
+        return new RascunhoQuest(nota.Titulo, string.Join("\n", linhas), xpSugerido, recompensaSugerida);
     }
 }

@@ -176,6 +176,8 @@ const Quests = {
       }
       campoTitulo.entrada.value = rascunho.tituloSugerido;
       campoDescricao.entrada.value = rascunho.descricaoSugerida;
+      campoXp.entrada.value = rascunho.xpSugerido;
+      campoRecompensa.entrada.value = rascunho.recompensaSugerida;
     });
     modal.appendChild(botaoGerarIdeia);
 

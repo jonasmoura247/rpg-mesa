@@ -63,6 +63,20 @@ public class ServicoGeradorIdeiaQuestTestes
     }
 
     [Fact]
+    public void GerarRascunho_ComDadoFixoEm1_PreencheXpERecompensaSugeridos()
+    {
+        var repositorio = CriarRepositorioComAsQuatroNotas();
+        var servicoRolagem = new ServicoRolagem(repositorio, new DadoFixo(1));
+        var servico = new ServicoGeradorIdeiaQuest(repositorio, servicoRolagem, new DadoFixo(1));
+
+        var rascunho = servico.GerarRascunho();
+
+        Assert.NotNull(rascunho);
+        Assert.Equal(50, rascunho!.XpSugerido);
+        Assert.Equal("10 PO", rascunho.RecompensaSugerida);
+    }
+
+    [Fact]
     public void GerarRascunho_ComSecaoMundoAusente_RetornaNulo()
     {
         var repositorioVazio = new RepositorioConteudo(Array.Empty<SecaoConteudo>());

@@ -37,4 +37,4 @@ public record AtualizarQuestRequisicao(
 
 public record NovaEntradaHistoricoRequisicao(string Descricao);
 
-public record RascunhoQuest(string TituloSugerido, string DescricaoSugerida);
+public record RascunhoQuest(string TituloSugerido, string DescricaoSugerida, int XpSugerido, string RecompensaSugerida);
