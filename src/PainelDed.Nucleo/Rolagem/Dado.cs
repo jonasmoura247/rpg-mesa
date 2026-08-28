@@ -26,6 +26,11 @@ public class Dado : IDado
 
     public static (int Quantidade, int Lados) ParsearNotacao(string notacao)
     {
+        if (string.IsNullOrWhiteSpace(notacao))
+        {
+            throw new ArgumentException("Notação de dado não pode ser vazia.");
+        }
+
         var match = RegexNotacao.Match(notacao.Trim().ToLowerInvariant());
         if (!match.Success)
         {

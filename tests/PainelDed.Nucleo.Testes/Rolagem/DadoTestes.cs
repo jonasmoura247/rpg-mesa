@@ -11,6 +11,8 @@ public class DadoTestes
     [InlineData("1d6", 1, 6)]
     [InlineData("2d6", 2, 12)]
     [InlineData("1d100", 1, 100)]
+    [InlineData("1D20", 1, 20)]
+    [InlineData(" 1d20 ", 1, 20)]
     public void Rolar_ComNotacaoValida_RetornaValorDentroDaFaixa(string notacao, int minimo, int maximo)
     {
         var dado = new Dado(new Random(42));
@@ -27,6 +29,8 @@ public class DadoTestes
     [InlineData("1d")]
     [InlineData("0d20")]
     [InlineData("1d1")]
+    [InlineData("")]
+    [InlineData("   ")]
     public void Rolar_ComNotacaoInvalida_LancaArgumentException(string notacaoInvalida)
     {
         var dado = new Dado(new Random(1));
