@@ -68,6 +68,21 @@ async function carregarArvoreNavegacao() {
   }
 
   configurarBusca();
+  configurarExpandirRecolherTudo();
+}
+
+function configurarExpandirRecolherTudo() {
+  document.getElementById('botao-expandir-tudo').addEventListener('click', () => {
+    document.querySelectorAll('.grupo-secao').forEach((grupo) => {
+      grupo.open = true;
+    });
+  });
+
+  document.getElementById('botao-recolher-tudo').addEventListener('click', () => {
+    document.querySelectorAll('.grupo-secao').forEach((grupo) => {
+      grupo.open = false;
+    });
+  });
 }
 
 function configurarBusca() {
