@@ -74,4 +74,12 @@ public class LocalizadorConteudoTestes : IDisposable
 
         Assert.Throws<DirectoryNotFoundException>(() => LocalizadorConteudo.Localizar(diretorioSemContent));
     }
+
+    [Fact]
+    public void Localizar_ComDiretorioInicialInexistente_LancaDirectoryNotFoundException()
+    {
+        var caminhoInexistente = Path.Combine(_raizTemporaria, "este-caminho-nao-existe", "nem-este");
+
+        Assert.Throws<DirectoryNotFoundException>(() => LocalizadorConteudo.Localizar(caminhoInexistente));
+    }
 }

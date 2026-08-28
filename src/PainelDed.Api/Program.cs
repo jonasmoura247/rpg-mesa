@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using PainelDed.Api.Conteudo;
 using PainelDed.Api.Rolagem;
 using PainelDed.Nucleo.Rolagem;
@@ -27,7 +28,7 @@ app.MapGet("/api/conteudo/{secao}/{*idNota}", (string secao, string idNota, Repo
     return nota is null ? Results.NotFound() : Results.Ok(nota);
 });
 
-app.MapPost("/api/rolar/{secao}/{*idNota}", (string secao, string idNota, string tabela, ServicoRolagem servico) =>
+app.MapPost("/api/rolar/{secao}/{*idNota}", (string secao, string idNota, [FromQuery] string tabela, ServicoRolagem servico) =>
 {
     var resultado = servico.Rolar(secao, idNota, tabela);
     return resultado is null ? Results.NotFound() : Results.Ok(resultado);
