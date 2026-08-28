@@ -99,7 +99,14 @@ const Quests = {
       seletorStatus.appendChild(opcao);
     });
     seletorStatus.addEventListener('change', async () => {
-      await Api.atualizarQuest(Campanha.ativa.id, quest.id, { ...quest, status: seletorStatus.value });
+      try {
+        await Api.atualizarQuest(Campanha.ativa.id, quest.id, { ...quest, status: seletorStatus.value });
+      } catch (erro) {
+        console.error(erro);
+        window.alert('Falha ao atualizar o status da quest.');
+        seletorStatus.value = quest.status;
+        return;
+      }
       await this.recarregar();
     });
     acoes.appendChild(seletorStatus);
@@ -114,10 +121,17 @@ const Quests = {
     botaoRemover.className = 'botao-secundario';
     botaoRemover.textContent = 'Remover';
     botaoRemover.addEventListener('click', async () => {
-      if (window.confirm(`Remover a quest "${quest.titulo}"?`)) {
-        await Api.removerQuest(Campanha.ativa.id, quest.id);
-        await this.recarregar();
+      if (!window.confirm(`Remover a quest "${quest.titulo}"?`)) {
+        return;
       }
+      try {
+        await Api.removerQuest(Campanha.ativa.id, quest.id);
+      } catch (erro) {
+        console.error(erro);
+        window.alert('Falha ao remover a quest.');
+        return;
+      }
+      await this.recarregar();
     });
     acoes.appendChild(botaoRemover);
 
@@ -152,7 +166,14 @@ const Quests = {
     botaoGerarIdeia.type = 'button';
     botaoGerarIdeia.textContent = '🎲 Gerar ideia';
     botaoGerarIdeia.addEventListener('click', async () => {
-      const rascunho = await Api.gerarIdeiaDeQuest(Campanha.ativa.id);
+      let rascunho;
+      try {
+        rascunho = await Api.gerarIdeiaDeQuest(Campanha.ativa.id);
+      } catch (erro) {
+        console.error(erro);
+        window.alert('Falha ao gerar ideia de quest.');
+        return;
+      }
       campoTitulo.entrada.value = rascunho.tituloSugerido;
       campoDescricao.entrada.value = rascunho.descricaoSugerida;
     });
@@ -179,10 +200,16 @@ const Quests = {
         return;
       }
 
-      if (questExistente) {
-        await Api.atualizarQuest(Campanha.ativa.id, questExistente.id, { ...dados, status: questExistente.status });
-      } else {
-        await Api.criarQuest(Campanha.ativa.id, dados);
+      try {
+        if (questExistente) {
+          await Api.atualizarQuest(Campanha.ativa.id, questExistente.id, { ...dados, status: questExistente.status });
+        } else {
+          await Api.criarQuest(Campanha.ativa.id, dados);
+        }
+      } catch (erro) {
+        console.error(erro);
+        window.alert('Falha ao salvar a quest.');
+        return;
       }
 
       document.body.removeChild(fundo);
