@@ -1,0 +1,30 @@
+{
+  "nome": "Sael Marévalis",
+  "raca": "Humano",
+  "classe": "Druida",
+  "nivel": 1,
+  "atributos": {
+    "forca": 9,
+    "destreza": 14,
+    "constituicao": 16,
+    "inteligencia": 11,
+    "sabedoria": 16,
+    "carisma": 11
+  },
+  "pv": 11,
+  "ca": 12,
+  "pericias": [
+    {
+      "nome": "Natureza",
+      "atributo": "inteligencia",
+      "proficiente": true,
+      "bonus": 2
+    },
+    {
+      "nome": "Religiao",
+      "atributo": "inteligencia",
+      "proficiente": true,
+      "bonus": 2
+    }
+  ]
+}

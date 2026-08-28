@@ -1,0 +1,42 @@
+{
+  "nome": "Kess Bramo",
+  "raca": "Humano",
+  "classe": "Ladino",
+  "nivel": 1,
+  "atributos": {
+    "forca": 9,
+    "destreza": 16,
+    "constituicao": 15,
+    "inteligencia": 14,
+    "sabedoria": 13,
+    "carisma": 11
+  },
+  "pv": 10,
+  "ca": 13,
+  "pericias": [
+    {
+      "nome": "Furtividade",
+      "atributo": "destreza",
+      "proficiente": true,
+      "bonus": 5
+    },
+    {
+      "nome": "Investigacao",
+      "atributo": "inteligencia",
+      "proficiente": true,
+      "bonus": 4
+    },
+    {
+      "nome": "Percepcao",
+      "atributo": "sabedoria",
+      "proficiente": true,
+      "bonus": 3
+    },
+    {
+      "nome": "Intuicao",
+      "atributo": "sabedoria",
+      "proficiente": true,
+      "bonus": 3
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "nome": "Bran Ferronaz",
+  "raca": "Anão da Montanha",
+  "classe": "Guerreiro",
+  "nivel": 1,
+  "atributos": {
+    "forca": 17,
+    "destreza": 12,
+    "constituicao": 17,
+    "inteligencia": 8,
+    "sabedoria": 12,
+    "carisma": 9
+  },
+  "pv": 13,
+  "ca": 11,
+  "pericias": [
+    {
+      "nome": "Atletismo",
+      "atributo": "forca",
+      "proficiente": true,
+      "bonus": 5
+    },
+    {
+      "nome": "Intimidacao",
+      "atributo": "carisma",
+      "proficiente": true,
+      "bonus": 1
+    }
+  ]
+}
