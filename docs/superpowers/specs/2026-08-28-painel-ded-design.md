@@ -37,6 +37,10 @@ Construir uma aplicação web local (C# + JavaScript) que:
 - Ficha de personagem completa (talentos, equipamento inicial detalhado, magias, multiclasse) — o criador cobre o essencial para nível 1 jogável.
 - Geração automática de conteúdo de quests da guilda (fica manual + atalho de sorteio nas tabelas existentes, sem tabela dedicada de "quests da guilda").
 
+## Convenção de Código
+
+Nomes de classes, métodos, variáveis e endpoints (tanto no backend C# quanto no frontend JavaScript) devem ser em **português** (ex: `RolarTabela`, `CalcularNivel`, `ImportarPersonagem`, `/api/personagens`), mantendo consistência com o domínio (D&D, Costa da Travessia) e as notas do vault. Nomes de bibliotecas/frameworks e palavras-chave da linguagem permanecem no idioma original.
+
 ## Stack Técnica
 
 - **Backend:** C# / ASP.NET Core (Minimal API). Serve a API REST local e os arquivos estáticos do frontend. Executado via `dotnet run`.
