@@ -42,7 +42,33 @@
     { nome: 'Tiefling', bonus: { carisma: 2, inteligencia: 1 } }
   ];
 
-  const api = { PERICIAS, CUSTO_POINT_BUY, ORCAMENTO_PONTOS, ATRIBUTO_MINIMO, ATRIBUTO_MAXIMO, RACAS };
+  const CLASSES = [
+    { nome: 'Bárbaro', dadoDeVida: 12, escolhas: 2,
+      periciasElegiveis: ['Adestramento', 'Atletismo', 'Intimidacao', 'Natureza', 'Percepcao', 'Sobrevivencia'] },
+    { nome: 'Bardo', dadoDeVida: 8, escolhas: 3, todasPericias: true, periciasElegiveis: [] },
+    { nome: 'Bruxo', dadoDeVida: 8, escolhas: 2,
+      periciasElegiveis: ['Arcanismo', 'Engano', 'Historia', 'Intimidacao', 'Investigacao', 'Natureza', 'Religiao'] },
+    { nome: 'Clérigo', dadoDeVida: 8, escolhas: 2,
+      periciasElegiveis: ['Historia', 'Intuicao', 'Medicina', 'Persuasao', 'Religiao'] },
+    { nome: 'Druida', dadoDeVida: 8, escolhas: 2,
+      periciasElegiveis: ['Arcanismo', 'Adestramento', 'Intuicao', 'Medicina', 'Natureza', 'Percepcao', 'Religiao', 'Sobrevivencia'] },
+    { nome: 'Feiticeiro', dadoDeVida: 6, escolhas: 2,
+      periciasElegiveis: ['Arcanismo', 'Engano', 'Intuicao', 'Intimidacao', 'Persuasao', 'Religiao'] },
+    { nome: 'Guerreiro', dadoDeVida: 10, escolhas: 2,
+      periciasElegiveis: ['Acrobacia', 'Adestramento', 'Atletismo', 'Historia', 'Intuicao', 'Intimidacao', 'Percepcao', 'Sobrevivencia'] },
+    { nome: 'Ladino', dadoDeVida: 8, escolhas: 4,
+      periciasElegiveis: ['Acrobacia', 'Atletismo', 'Engano', 'Intuicao', 'Intimidacao', 'Investigacao', 'Percepcao', 'Persuasao', 'Prestidigitacao', 'Furtividade'] },
+    { nome: 'Magista', dadoDeVida: 6, escolhas: 2,
+      periciasElegiveis: ['Arcanismo', 'Historia', 'Intuicao', 'Investigacao', 'Medicina', 'Religiao'] },
+    { nome: 'Monge', dadoDeVida: 8, escolhas: 2,
+      periciasElegiveis: ['Acrobacia', 'Atletismo', 'Historia', 'Intuicao', 'Religiao', 'Furtividade'] },
+    { nome: 'Paladino', dadoDeVida: 10, escolhas: 2,
+      periciasElegiveis: ['Atletismo', 'Intuicao', 'Intimidacao', 'Medicina', 'Persuasao', 'Religiao'] },
+    { nome: 'Patrulheiro', dadoDeVida: 8, escolhas: 3,
+      periciasElegiveis: ['Adestramento', 'Atletismo', 'Intuicao', 'Investigacao', 'Natureza', 'Percepcao', 'Furtividade', 'Sobrevivencia'] }
+  ];
+
+  const api = { PERICIAS, CUSTO_POINT_BUY, ORCAMENTO_PONTOS, ATRIBUTO_MINIMO, ATRIBUTO_MAXIMO, RACAS, CLASSES };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;

@@ -31,4 +31,20 @@ const meioElfo = DADOS.RACAS.find(r => r.nome === 'Meio-Elfo');
 assert.deepStrictEqual(meioElfo.bonus, { carisma: 2 });
 assert.strictEqual(meioElfo.escolhaLivre, 2);
 
+assert.strictEqual(DADOS.CLASSES.length, 12, 'devem existir as 12 classes do 5e');
+const guerreiro = DADOS.CLASSES.find(c => c.nome === 'Guerreiro');
+assert.strictEqual(guerreiro.dadoDeVida, 10);
+assert.strictEqual(guerreiro.escolhas, 2);
+assert.ok(guerreiro.periciasElegiveis.includes('Atletismo'));
+
+const ladino = DADOS.CLASSES.find(c => c.nome === 'Ladino');
+assert.strictEqual(ladino.escolhas, 4);
+
+const bardo = DADOS.CLASSES.find(c => c.nome === 'Bardo');
+assert.strictEqual(bardo.todasPericias, true);
+assert.strictEqual(bardo.escolhas, 3);
+
+const barbaro = DADOS.CLASSES.find(c => c.nome === 'Bárbaro');
+assert.strictEqual(barbaro.dadoDeVida, 12);
+
 console.log('dados.test.js (perícias/point buy): OK');
