@@ -234,6 +234,24 @@ const Personagens = {
       detalhe.appendChild(listaTracos);
     }
 
+    if (personagem.habilidadesClasse && personagem.habilidadesClasse.length > 0) {
+      const tituloHabilidades = document.createElement('h4');
+      tituloHabilidades.textContent = 'Habilidades de Classe';
+      detalhe.appendChild(tituloHabilidades);
+
+      const listaHabilidades = document.createElement('ul');
+      listaHabilidades.className = 'lista-pericias-ficha';
+      personagem.habilidadesClasse.forEach((habilidade) => {
+        const item = document.createElement('li');
+        const negrito = document.createElement('strong');
+        negrito.textContent = `${habilidade.nome}: `;
+        item.appendChild(negrito);
+        item.appendChild(document.createTextNode(habilidade.descricao));
+        listaHabilidades.appendChild(item);
+      });
+      detalhe.appendChild(listaHabilidades);
+    }
+
     if (personagem.historia) {
       const tituloHistoria = document.createElement('h4');
       tituloHistoria.textContent = 'História';
