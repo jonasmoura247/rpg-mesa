@@ -44,4 +44,42 @@ public class ModelosTestes
 
         Assert.Equal(original, restaurado);
     }
+
+    [Fact]
+    public void Personagem_SerializaEDesserializaMantendoOsDados()
+    {
+        var original = new Personagem(
+            "p1",
+            "Kess Bramo",
+            "Humano",
+            "Ladino",
+            1,
+            new AtributosPersonagem(9, 16, 16, 14, 9, 13),
+            11,
+            13,
+            new List<PericiaPersonagem> { new("Furtividade", "destreza", true, 5) });
+
+        var json = JsonSerializer.Serialize(original, Opcoes);
+        var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Equal("Kess Bramo", restaurado!.Nome);
+        Assert.Equal(16, restaurado.Atributos.Destreza);
+        Assert.Single(restaurado.Pericias);
+    }
+
+    [Fact]
+    public void EstadoCampanha_SemPersonagens_DesserializaComListaNula()
+    {
+        // Regressão: arquivos de campanha salvos antes desta feature não têm a
+        // propriedade "Personagens" — o ServicoPersonagens trata esse null como
+        // lista vazia (ver ServicoPersonagensTestes), mas a desserialização em si
+        // precisa continuar funcionando sem lançar exceção.
+        var json = "{\"Quests\":[],\"HistoricoRolagens\":[]}";
+
+        var restaurado = JsonSerializer.Deserialize<EstadoCampanha>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Null(restaurado!.Personagens);
+    }
 }
