@@ -216,6 +216,24 @@ const Personagens = {
       detalhe.appendChild(listaResistencias);
     }
 
+    if (personagem.tracosRaciais && personagem.tracosRaciais.length > 0) {
+      const tituloTracos = document.createElement('h4');
+      tituloTracos.textContent = 'Traços Raciais';
+      detalhe.appendChild(tituloTracos);
+
+      const listaTracos = document.createElement('ul');
+      listaTracos.className = 'lista-pericias-ficha';
+      personagem.tracosRaciais.forEach((traco) => {
+        const item = document.createElement('li');
+        const negrito = document.createElement('strong');
+        negrito.textContent = `${traco.nome}: `;
+        item.appendChild(negrito);
+        item.appendChild(document.createTextNode(traco.descricao));
+        listaTracos.appendChild(item);
+      });
+      detalhe.appendChild(listaTracos);
+    }
+
     if (personagem.historia) {
       const tituloHistoria = document.createElement('h4');
       tituloHistoria.textContent = 'História';
