@@ -69,4 +69,14 @@ assert.ok(
   'toda classe deve ter exatamente 2 resistências'
 );
 
+assert.ok(
+  DADOS.RACAS.every(r => Array.isArray(r.tracos) && r.tracos.length > 0),
+  'toda raça deve ter pelo menos 1 traço racial'
+);
+const humanoTracos = DADOS.RACAS.find(r => r.nome === 'Humano');
+assert.strictEqual(humanoTracos.tracos.length, 1);
+const anaoColinaTracos = DADOS.RACAS.find(r => r.nome === 'Anão da Colina');
+assert.strictEqual(anaoColinaTracos.tracos.length, 4);
+assert.ok(anaoColinaTracos.tracos.every(t => typeof t.nome === 'string' && typeof t.descricao === 'string' && t.nome && t.descricao));
+
 console.log('dados.test.js (perícias/point buy): OK');
