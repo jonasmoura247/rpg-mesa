@@ -118,7 +118,9 @@ public record Personagem(
     AtributosPersonagem Atributos,
     int Pv,
     int Ca,
-    List<PericiaPersonagem> Pericias);
+    List<PericiaPersonagem> Pericias,
+    string Historia = "",
+    string CaracteristicasFisicas = "");
 
 public record ImportarPersonagemRequisicao(
     string Nome,
@@ -128,8 +130,11 @@ public record ImportarPersonagemRequisicao(
     AtributosPersonagem Atributos,
     int Pv,
     int Ca,
-    List<PericiaPersonagem> Pericias);
+    List<PericiaPersonagem> Pericias,
+    string Historia = "",
+    string CaracteristicasFisicas = "");
 ```
+(`Historia`/`CaracteristicasFisicas` têm default `""` pelo mesmo motivo do `Personagens = null` em `EstadoCampanha` na Task 1: o `/creator` só passou a exportar esses dois campos numa atualização feita depois deste plano ser escrito — sem o default, fichas antigas sem essas chaves no JSON, ou chamadas de construtor já escritas nos testes abaixo sem esses 2 argumentos, deixariam de compilar/desserializar.)
 
 E troque a linha existente:
 ```csharp
@@ -205,7 +210,9 @@ public class ServicoPersonagensTestes : IDisposable
         {
             new("Furtividade", "destreza", true, 5),
             new("Investigacao", "inteligencia", true, 4),
-        });
+        },
+        "Foge de uma dívida de jogo em outra cidade.",
+        "Baixa, cabelo raspado dos lados.");
 
     [Fact]
     public void Importar_ComCampanhaExistente_CriaPersonagemNovo()
@@ -215,6 +222,7 @@ public class ServicoPersonagensTestes : IDisposable
         Assert.NotNull(personagem);
         Assert.NotEmpty(personagem!.Id);
         Assert.Equal("Kess Bramo", personagem.Nome);
+        Assert.Equal("Baixa, cabelo raspado dos lados.", personagem.CaracteristicasFisicas);
         Assert.Single(_servico.Listar(_campanhaId)!);
     }
 
@@ -729,6 +737,26 @@ const Personagens = {
       });
     }
     detalhe.appendChild(listaPericias);
+
+    if (personagem.historia) {
+      const tituloHistoria = document.createElement('h4');
+      tituloHistoria.textContent = 'História';
+      detalhe.appendChild(tituloHistoria);
+      const textoHistoria = document.createElement('p');
+      textoHistoria.className = 'texto-livre-ficha';
+      textoHistoria.textContent = personagem.historia;
+      detalhe.appendChild(textoHistoria);
+    }
+
+    if (personagem.caracteristicasFisicas) {
+      const tituloCaracteristicas = document.createElement('h4');
+      tituloCaracteristicas.textContent = 'Características Físicas';
+      detalhe.appendChild(tituloCaracteristicas);
+      const textoCaracteristicas = document.createElement('p');
+      textoCaracteristicas.className = 'texto-livre-ficha';
+      textoCaracteristicas.textContent = personagem.caracteristicasFisicas;
+      detalhe.appendChild(textoCaracteristicas);
+    }
   },
 
   async importarArquivo(arquivo) {
@@ -962,6 +990,12 @@ Em `src/PainelDed.Api/wwwroot/css/estilo.css`, adicione ao final:
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 0.35rem;
   font-size: 0.85rem;
+}
+
+.texto-livre-ficha {
+  white-space: pre-line;
+  font-size: 0.88rem;
+  color: var(--cor-texto);
 }
 
 @media (max-width: 720px) {

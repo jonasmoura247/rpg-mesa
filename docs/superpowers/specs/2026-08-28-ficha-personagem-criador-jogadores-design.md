@@ -56,11 +56,19 @@ O spec original já previa um criador de ficha standalone e importação no pain
   "pericias": [
     { "nome": "Furtividade", "atributo": "destreza", "proficiente": true, "bonus": 4 },
     { "nome": "Investigacao", "atributo": "inteligencia", "proficiente": true, "bonus": 3 }
-  ]
+  ],
+  "historia": "Foge de uma dívida de jogo em outra cidade...",
+  "caracteristicasFisicas": "Baixa, cabelo raspado dos lados, uma cicatriz fina na sobrancelha esquerda..."
 }
 ```
 
 `bonus` já vem calculado (modificador de atributo + bônus de proficiência de +2, se `proficiente`). O painel confia no JSON recebido (uso solo/local, sem preocupação de adversário) — não recalcula no backend.
+
+`historia` e `caracteristicasFisicas` são campos de texto livre, opcionais, até 1000 caracteres cada, preenchidos pelo jogador na etapa de Resumo do `/creator` (história breve do personagem e aparência física). Ficam disponíveis pro mestre consultar na aba Jogadores, mas não entram em nenhum cálculo.
+
+### Resumo de raça e classe ao selecionar
+
+Cada raça e classe em `dados.js` (`DADOS.RACAS`/`DADOS.CLASSES`) ganha um campo `descricao` — 1 frase de sabor sobre a raça/classe, exibida logo abaixo do dropdown assim que o jogador seleciona uma opção, pra ajudar quem nunca jogou 5e a escolher com mais contexto.
 
 ## Modelo de Dados (SQLite — expande o spec original)
 
