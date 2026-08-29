@@ -23,7 +23,11 @@
     return proficiente ? modAtributo + bonusProficiencia : modAtributo;
   }
 
-  const api = { modificador, custoTotalPointBuy, pontosRestantes, pvInicial, caBase, bonusPericia };
+  function cdMagia(modAtributoConjuracao, bonusProficiencia) {
+    return 8 + bonusProficiencia + modAtributoConjuracao;
+  }
+
+  const api = { modificador, custoTotalPointBuy, pontosRestantes, pvInicial, caBase, bonusPericia, cdMagia };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;

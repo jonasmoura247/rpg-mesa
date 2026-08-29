@@ -38,4 +38,8 @@ assert.strictEqual(Calculo.bonusPericia(3, true, 2), 5);
 assert.strictEqual(Calculo.bonusPericia(3, false, 2), 3);
 assert.strictEqual(Calculo.bonusPericia(-1, true, 2), 1);
 
+assert.strictEqual(Calculo.cdMagia(3, 2), 13);
+assert.strictEqual(Calculo.cdMagia(-1, 2), 9);
+assert.strictEqual(Calculo.cdMagia(0, 2), 10);
+
 console.log('calculo.test.js: OK');
