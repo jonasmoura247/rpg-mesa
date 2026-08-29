@@ -47,4 +47,13 @@ assert.strictEqual(bardo.escolhas, 3);
 const barbaro = DADOS.CLASSES.find(c => c.nome === 'Bárbaro');
 assert.strictEqual(barbaro.dadoDeVida, 12);
 
+assert.ok(
+  DADOS.RACAS.every(r => typeof r.descricao === 'string' && r.descricao.length > 0),
+  'toda raça deve ter descricao não vazia'
+);
+assert.ok(
+  DADOS.CLASSES.every(c => typeof c.descricao === 'string' && c.descricao.length > 0),
+  'toda classe deve ter descricao não vazia'
+);
+
 console.log('dados.test.js (perícias/point buy): OK');
