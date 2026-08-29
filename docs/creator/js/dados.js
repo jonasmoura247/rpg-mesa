@@ -165,13 +165,13 @@
       habilidades: [
         { nome: 'Conjuração', nivel: 1, descricao: 'Conjurador completo (Carisma); conhece um número limitado de magias, todas fixas (não precisa preparar).' },
         { nome: 'Inspiração de Bardo', nivel: 1, descricao: 'Ação bônus: concede 1d6 a um aliado para somar num teste, ataque ou resistência. Usos = modificador de Carisma, recarrega em descanso longo.' },
-        { nome: 'Truque Mágico de Descanso', nivel: 2, descricao: 'Durante um descanso curto, aliados que gastarem Dados de Vida recuperam pontos de vida extras.' },
-        { nome: 'Especialização', nivel: 2, descricao: 'Dobra o bônus de proficiência em duas perícias proficientes à escolha.' },
+        { nome: 'Canção de Descanso', nivel: 2, descricao: 'Durante um descanso curto, aliados que gastarem Dados de Vida recuperam pontos de vida extras.' },
+        { nome: 'Perícia Versátil', nivel: 2, descricao: 'Soma metade do seu bônus de proficiência (arredondado para baixo) a qualquer teste de habilidade que já não tenha proficiência.' },
         { nome: 'Colégio de Bardo', nivel: 3, descricao: 'Escolhe uma subclasse que concede habilidades extras.' },
-        { nome: 'Perícia Adicional', nivel: 3, descricao: 'Ganha proficiência em mais três perícias à escolha.' },
+        { nome: 'Especialização', nivel: 3, descricao: 'Dobra o bônus de proficiência em duas perícias proficientes à escolha.' },
         { nome: 'Melhoria de Atributo', nivel: 4, descricao: '+2 em um atributo, ou +1 em dois atributos, ou uma Façanha.' },
         { nome: 'Inspiração de Bardo (d8)', nivel: 5, descricao: 'O dado de Inspiração de Bardo aumenta de 1d6 para 1d8.' },
-        { nome: 'Fonte Inesgotável', nivel: 5, descricao: 'Recupera todos os usos de Inspiração de Bardo ao terminar um descanso curto.' }
+        { nome: 'Fonte Inesgotável', nivel: 5, descricao: 'Recupera todos os usos de Inspiração de Bardo ao terminar um descanso curto ou longo.' }
       ] },
     { nome: 'Bruxo', dadoDeVida: 8, escolhas: 2,
       descricao: 'Conjurador que obtém poder através de um pacto com uma entidade sobrenatural.',
@@ -181,7 +181,7 @@
         { nome: 'Patrono Sobrenatural', nivel: 1, descricao: 'Escolhe a entidade que concede seu poder (subclasse), definindo magias e habilidades extras.' },
         { nome: 'Magia de Pacto', nivel: 1, descricao: 'Conjurador (Carisma) com poucos espaços de magia, mas que recarregam completamente num descanso curto.' },
         { nome: 'Invocações Místicas', nivel: 2, descricao: 'Aprende invocações que concedem benefícios mágicos variados.' },
-        { nome: 'Ofício do Pacto', nivel: 3, descricao: 'Escolhe um pacto (arma, corrente, lâmina ou tomo) que concede um benefício especial.' },
+        { nome: 'Ofício do Pacto', nivel: 3, descricao: 'Escolhe um pacto (Lâmina, Corrente ou Tomo) que concede um benefício especial.' },
         { nome: 'Melhoria de Atributo', nivel: 4, descricao: '+2 em um atributo, ou +1 em dois atributos, ou uma Façanha.' }
       ] },
     { nome: 'Clérigo', dadoDeVida: 8, escolhas: 2,
@@ -190,7 +190,7 @@
       periciasElegiveis: ['Historia', 'Intuicao', 'Medicina', 'Persuasao', 'Religiao'],
       habilidades: [
         { nome: 'Conjuração', nivel: 1, descricao: 'Conjurador completo (Sabedoria); prepara magias diariamente a partir de toda a lista de Clérigo.' },
-        { nome: 'Domínio Divino', nivel: 1, descricao: 'Escolhe um domínio (Vida, Luz, Guerra, Natureza, Tempestade ou Morte) que concede magias e habilidades extras.' },
+        { nome: 'Domínio Divino', nivel: 1, descricao: 'Escolhe um domínio (Conhecimento, Vida, Luz, Natureza, Tempestade, Enganação ou Guerra) que concede magias e habilidades extras.' },
         { nome: 'Canalizar Divindade', nivel: 2, descricao: '1x por descanso curto ou longo, usa um efeito sobrenatural da sua divindade, incluindo Expulsar Mortos-Vivos.' },
         { nome: 'Melhoria de Atributo', nivel: 4, descricao: '+2 em um atributo, ou +1 em dois atributos, ou uma Façanha.' },
         { nome: 'Destruir Mortos-Vivos', nivel: 5, descricao: 'Ao expulsar mortos-vivos, criaturas com desafio baixo o suficiente são destruídas em vez de apenas expulsas.' }
@@ -205,7 +205,7 @@
         { nome: 'Forma Selvagem', nivel: 2, descricao: 'Pode se transformar em uma besta conhecida, um número de vezes por descanso curto/longo limitado pelo nível e pelo desafio da besta.' },
         { nome: 'Círculo Druídico', nivel: 2, descricao: 'Escolhe uma subclasse que concede magias e habilidades extras.' },
         { nome: 'Melhoria de Atributo', nivel: 4, descricao: '+2 em um atributo, ou +1 em dois atributos, ou uma Façanha.' },
-        { nome: 'Forma Selvagem Melhorada', nivel: 4, descricao: 'Pode assumir formas de besta com desafio e restrições maiores.' }
+        { nome: 'Forma Selvagem (Melhorias)', nivel: 4, descricao: 'Pode assumir formas de besta com desafio e restrições maiores.' }
       ] },
     { nome: 'Feiticeiro', dadoDeVida: 6, escolhas: 2,
       descricao: 'Conjurador cujo poder mágico vem de uma origem inata, no sangue ou na alma.',
@@ -240,6 +240,7 @@
         { nome: 'Argot de Ladrão', nivel: 1, descricao: 'Conhece uma linguagem secreta de sinais e códigos usada por criminosos.' },
         { nome: 'Ação Ardilosa', nivel: 2, descricao: 'Ação bônus: pode usar Disparada, Desengajar ou Esconder-se.' },
         { nome: 'Arquétipo de Ladrão', nivel: 3, descricao: 'Escolhe uma subclasse que concede habilidades extras.' },
+        { nome: 'Melhoria de Atributo', nivel: 4, descricao: '+2 em um atributo, ou +1 em dois atributos, ou uma Façanha.' },
         { nome: 'Esquiva Sobrenatural', nivel: 5, descricao: 'Quando atingido por um ataque que consegue ver, sofre metade do dano em vez de dano total.' }
       ] },
     { nome: 'Magista', dadoDeVida: 6, escolhas: 2,
@@ -247,7 +248,7 @@
       atributoConjuracao: 'inteligencia', resistencias: ['inteligencia', 'sabedoria'],
       periciasElegiveis: ['Arcanismo', 'Historia', 'Intuicao', 'Investigacao', 'Medicina', 'Religiao'],
       habilidades: [
-        { nome: 'Livro de Magias', nivel: 1, descricao: 'Conjurador completo (Inteligência); guarda magias conhecidas num grimório e prepara um número delas por dia.' },
+        { nome: 'Conjuração', nivel: 1, descricao: 'Conjurador completo (Inteligência); guarda magias conhecidas num grimório e prepara um número delas por dia.' },
         { nome: 'Recuperação Arcana', nivel: 1, descricao: '1x por dia, num descanso curto, recupera espaços de magia gastos (total igual à metade do nível, arredondado para cima).' },
         { nome: 'Tradição Arcana', nivel: 2, descricao: 'Escolhe uma escola de magia como subclasse, concedendo benefícios extras.' },
         { nome: 'Melhoria de Atributo', nivel: 4, descricao: '+2 em um atributo, ou +1 em dois atributos, ou uma Façanha.' }
@@ -293,6 +294,7 @@
         { nome: 'Estilo de Combate', nivel: 2, descricao: 'Escolhe uma especialização de combate que concede um bônus permanente.' },
         { nome: 'Conjuração', nivel: 2, descricao: 'Conjurador (Sabedoria) com meia progressão de espaços de magia.' },
         { nome: 'Arquétipo de Patrulheiro', nivel: 3, descricao: 'Escolhe uma subclasse que concede magias e habilidades extras.' },
+        { nome: 'Consciência Primeva', nivel: 3, descricao: 'Pode gastar 1 minuto em sintonia com a natureza para sentir a presença de aberrações, celestiais, corruptores, elementais, fadas e mortos-vivos numa grande área ao redor, sem revelar localização exata nem quantidade.' },
         { nome: 'Melhoria de Atributo', nivel: 4, descricao: '+2 em um atributo, ou +1 em dois atributos, ou uma Façanha.' },
         { nome: 'Ataque Extra', nivel: 5, descricao: 'Pode atacar duas vezes ao usar a ação Atacar.' }
       ] }
