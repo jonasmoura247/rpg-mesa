@@ -85,4 +85,17 @@ assert.ok(tieflingTracos.tracos.some(t => t.descricao.includes('Repreensão Infe
 const drowTracos = DADOS.RACAS.find(r => r.nome === 'Elfo Negro (Drow)');
 assert.ok(drowTracos.tracos.some(t => t.descricao.includes('Fogo Feérico')), 'Drow deve conhecer Fogo Feérico, não um nome inventado');
 
+assert.ok(
+  DADOS.CLASSES.every(c => Array.isArray(c.habilidades) && c.habilidades.length > 0),
+  'toda classe deve ter pelo menos 1 habilidade'
+);
+assert.ok(
+  DADOS.CLASSES.every(c => c.habilidades.every(h => h.nivel >= 1 && h.nivel <= 5)),
+  'toda habilidade deve ser de nível entre 1 e 5'
+);
+const guerreiroHabilidades = DADOS.CLASSES.find(c => c.nome === 'Guerreiro');
+assert.ok(guerreiroHabilidades.habilidades.some(h => h.nome === 'Ataque Extra' && h.nivel === 5));
+const barbaroHabilidades = DADOS.CLASSES.find(c => c.nome === 'Bárbaro');
+assert.ok(barbaroHabilidades.habilidades.some(h => h.nome === 'Fúria' && h.nivel === 1));
+
 console.log('dados.test.js (perícias/point buy): OK');
