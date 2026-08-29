@@ -259,3 +259,40 @@ input[type="checkbox"] {
     font-size: 2rem;
   }
 }
+
+.descricao-opcao {
+  color: var(--cor-texto-fraco);
+  font-size: 0.85rem;
+  font-style: italic;
+  margin: 0.4rem 0 0.75rem;
+}
+
+.campo-texto-livre {
+  margin-top: 1.25rem;
+}
+
+.campo-texto-livre label {
+  display: block;
+  color: var(--cor-texto-fraco);
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.campo-texto-livre textarea {
+  width: 100%;
+  padding: 0.6rem;
+  background: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.4rem;
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+.contador-caracteres {
+  text-align: right;
+  color: var(--cor-texto-fraco);
+  font-size: 0.75rem;
+  margin: 0.25rem 0 0;
+}
