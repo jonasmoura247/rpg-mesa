@@ -40,7 +40,13 @@ public class ServicoPersonagens
             requisicao.Ca,
             requisicao.Pericias,
             requisicao.Historia,
-            requisicao.CaracteristicasFisicas);
+            requisicao.CaracteristicasFisicas,
+            requisicao.Iniciativa,
+            requisicao.BonusAtaqueForca,
+            requisicao.BonusAtaqueDestreza,
+            requisicao.CdMagia,
+            requisicao.BonusAtaqueMagico,
+            requisicao.TestesResistencia);
 
         if (existente is not null)
         {

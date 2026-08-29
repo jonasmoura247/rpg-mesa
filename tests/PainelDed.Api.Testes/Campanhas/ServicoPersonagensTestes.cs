@@ -121,4 +121,25 @@ public class ServicoPersonagensTestes : IDisposable
         Assert.NotNull(lista);
         Assert.Empty(lista!);
     }
+
+    [Fact]
+    public void Importar_ComCamposDeCombate_PersisteTodosOsValores()
+    {
+        var requisicao = RequisicaoDeExemplo() with
+        {
+            Iniciativa = 3,
+            BonusAtaqueForca = -1,
+            BonusAtaqueDestreza = 5,
+            CdMagia = 13,
+            BonusAtaqueMagico = 5,
+            TestesResistencia = new List<TesteResistencia> { new("destreza", true, 5), new("inteligencia", true, 2) }
+        };
+
+        var personagem = _servico.Importar(_campanhaId, requisicao);
+
+        Assert.NotNull(personagem);
+        Assert.Equal(3, personagem!.Iniciativa);
+        Assert.Equal(13, personagem.CdMagia);
+        Assert.Equal(2, personagem.TestesResistencia!.Count);
+    }
 }
