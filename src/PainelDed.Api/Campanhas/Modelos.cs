@@ -49,6 +49,8 @@ public record AtributosPersonagem(
 
 public record PericiaPersonagem(string Nome, string Atributo, bool Proficiente, int Bonus);
 
+public record TesteResistencia(string Atributo, bool Proficiente, int Bonus);
+
 public record Personagem(
     string Id,
     string Nome,
@@ -61,9 +63,9 @@ public record Personagem(
     List<PericiaPersonagem> Pericias,
     string Historia = "",
     string CaracteristicasFisicas = "",
-    int Iniciativa = 0,
-    int BonusAtaqueForca = 0,
-    int BonusAtaqueDestreza = 0,
+    int? Iniciativa = null,
+    int? BonusAtaqueForca = null,
+    int? BonusAtaqueDestreza = null,
     int? CdMagia = null,
     int? BonusAtaqueMagico = null,
     List<TesteResistencia>? TestesResistencia = null);
@@ -79,11 +81,9 @@ public record ImportarPersonagemRequisicao(
     List<PericiaPersonagem> Pericias,
     string Historia = "",
     string CaracteristicasFisicas = "",
-    int Iniciativa = 0,
-    int BonusAtaqueForca = 0,
-    int BonusAtaqueDestreza = 0,
+    int? Iniciativa = null,
+    int? BonusAtaqueForca = null,
+    int? BonusAtaqueDestreza = null,
     int? CdMagia = null,
     int? BonusAtaqueMagico = null,
     List<TesteResistencia>? TestesResistencia = null);
-
-public record TesteResistencia(string Atributo, bool Proficiente, int Bonus);

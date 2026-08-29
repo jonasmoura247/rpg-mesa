@@ -128,7 +128,7 @@ public class ModelosTestes
         var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
 
         Assert.NotNull(restaurado);
-        Assert.Equal(0, restaurado!.Iniciativa);
+        Assert.Null(restaurado!.Iniciativa);
         Assert.Null(restaurado.CdMagia);
         Assert.Null(restaurado.TestesResistencia);
     }
