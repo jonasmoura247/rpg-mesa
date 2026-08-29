@@ -174,4 +174,46 @@ public class ModelosTestes
         Assert.NotNull(restaurado);
         Assert.Null(restaurado!.TracosRaciais);
     }
+
+    [Fact]
+    public void Personagem_ComHabilidadesClasse_SerializaEDesserializaMantendoOsDados()
+    {
+        var original = new Personagem(
+            "p1",
+            "Bran Ferronaz",
+            "Anão da Montanha",
+            "Guerreiro",
+            1,
+            new AtributosPersonagem(17, 12, 17, 8, 12, 9),
+            13,
+            11,
+            new List<PericiaPersonagem>(),
+            HabilidadesClasse: new List<HabilidadeClasse>
+            {
+                new("Estilo de Combate", 1, "Escolhe uma especialização de combate."),
+                new("Segundo Fôlego", 1, "Cura 1d10 + nível."),
+            });
+
+        var json = JsonSerializer.Serialize(original, Opcoes);
+        var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Equal(2, restaurado!.HabilidadesClasse!.Count);
+        Assert.Equal(1, restaurado.HabilidadesClasse[0].Nivel);
+    }
+
+    [Fact]
+    public void Personagem_SemHabilidadesClasse_DesserializaComListaNula()
+    {
+        // Regressão: fichas exportadas antes desta feature (incluindo as 3 fixtures
+        // de exemplo já existentes) não têm habilidadesClasse no JSON.
+        var json = "{\"Id\":\"p1\",\"Nome\":\"Teste\",\"Raca\":\"Humano\",\"Classe\":\"Guerreiro\",\"Nivel\":1," +
+            "\"Atributos\":{\"Forca\":10,\"Destreza\":10,\"Constituicao\":10,\"Inteligencia\":10,\"Sabedoria\":10,\"Carisma\":10}," +
+            "\"Pv\":10,\"Ca\":10,\"Pericias\":[]}";
+
+        var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Null(restaurado!.HabilidadesClasse);
+    }
 }

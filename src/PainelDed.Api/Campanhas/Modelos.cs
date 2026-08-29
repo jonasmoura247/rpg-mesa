@@ -53,6 +53,8 @@ public record TesteResistencia(string Atributo, bool Proficiente, int Bonus);
 
 public record TracoPersonagem(string Nome, string Descricao);
 
+public record HabilidadeClasse(string Nome, int Nivel, string Descricao);
+
 public record Personagem(
     string Id,
     string Nome,
@@ -71,7 +73,8 @@ public record Personagem(
     int? CdMagia = null,
     int? BonusAtaqueMagico = null,
     List<TesteResistencia>? TestesResistencia = null,
-    List<TracoPersonagem>? TracosRaciais = null);
+    List<TracoPersonagem>? TracosRaciais = null,
+    List<HabilidadeClasse>? HabilidadesClasse = null);
 
 public record ImportarPersonagemRequisicao(
     string Nome,
@@ -90,4 +93,5 @@ public record ImportarPersonagemRequisicao(
     int? CdMagia = null,
     int? BonusAtaqueMagico = null,
     List<TesteResistencia>? TestesResistencia = null,
-    List<TracoPersonagem>? TracosRaciais = null);
+    List<TracoPersonagem>? TracosRaciais = null,
+    List<HabilidadeClasse>? HabilidadesClasse = null);
