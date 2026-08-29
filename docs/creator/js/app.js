@@ -4,7 +4,9 @@ const ficha = {
   bonusEscolhidoMeioElfo: [],
   classe: null,
   atributosBase: { forca: 8, destreza: 8, constituicao: 8, inteligencia: 8, sabedoria: 8, carisma: 8 },
-  periciasEscolhidas: []
+  periciasEscolhidas: [],
+  historia: '',
+  caracteristicasFisicas: ''
 };
 
 let etapaAtual = 0;
@@ -302,7 +304,9 @@ function construirFichaFinal() {
     atributos,
     pv: Calculo.pvInicial(classe.dadoDeVida, modConstituicao),
     ca: Calculo.caBase(modDestreza),
-    pericias
+    pericias,
+    historia: ficha.historia.trim(),
+    caracteristicasFisicas: ficha.caracteristicasFisicas.trim()
   };
 }
 
@@ -330,7 +334,31 @@ function renderEtapaResumo() {
     <ul>${linhasAtributos}</ul>
     <h3>Perícias com proficiência</h3>
     <ul>${linhasPericias.length ? linhasPericias : '<li>Nenhuma</li>'}</ul>
+    <div class="campo-texto-livre">
+      <label for="campoHistoria">História (opcional)</label>
+      <textarea id="campoHistoria" maxlength="1000" rows="4" placeholder="Uma breve história do personagem..."></textarea>
+      <p class="contador-caracteres" id="contadorHistoria">0/1000</p>
+    </div>
+    <div class="campo-texto-livre">
+      <label for="campoCaracteristicas">Características físicas (opcional)</label>
+      <textarea id="campoCaracteristicas" maxlength="1000" rows="4" placeholder="Altura, aparência, marcas..."></textarea>
+      <p class="contador-caracteres" id="contadorCaracteristicas">0/1000</p>
+    </div>
   `;
+
+  configurarCampoTextoLivre('campoHistoria', 'contadorHistoria', 'historia');
+  configurarCampoTextoLivre('campoCaracteristicas', 'contadorCaracteristicas', 'caracteristicasFisicas');
+}
+
+function configurarCampoTextoLivre(idCampo, idContador, chaveFicha) {
+  const campo = document.getElementById(idCampo);
+  const contador = document.getElementById(idContador);
+  campo.value = ficha[chaveFicha];
+  contador.textContent = `${campo.value.length}/1000`;
+  campo.addEventListener('input', () => {
+    ficha[chaveFicha] = campo.value;
+    contador.textContent = `${campo.value.length}/1000`;
+  });
 }
 
 function baixarFicha() {
