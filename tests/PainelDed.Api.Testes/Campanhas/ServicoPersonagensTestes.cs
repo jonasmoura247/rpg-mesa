@@ -142,4 +142,22 @@ public class ServicoPersonagensTestes : IDisposable
         Assert.Equal(13, personagem.CdMagia);
         Assert.Equal(2, personagem.TestesResistencia!.Count);
     }
+
+    [Fact]
+    public void Importar_ComTracosRaciais_PersisteOsTracos()
+    {
+        var requisicao = RequisicaoDeExemplo() with
+        {
+            TracosRaciais = new List<TracoPersonagem>
+            {
+                new("Versátil", "Fala, lê e escreve Comum e mais um idioma à escolha.")
+            }
+        };
+
+        var personagem = _servico.Importar(_campanhaId, requisicao);
+
+        Assert.NotNull(personagem);
+        Assert.Single(personagem!.TracosRaciais!);
+        Assert.Equal("Versátil", personagem.TracosRaciais![0].Nome);
+    }
 }
