@@ -56,4 +56,17 @@ assert.ok(
   'toda classe deve ter descricao não vazia'
 );
 
+const magista = DADOS.CLASSES.find(c => c.nome === 'Magista');
+assert.strictEqual(magista.atributoConjuracao, 'inteligencia');
+assert.deepStrictEqual(magista.resistencias, ['inteligencia', 'sabedoria']);
+
+const guerreiroCombate = DADOS.CLASSES.find(c => c.nome === 'Guerreiro');
+assert.strictEqual(guerreiroCombate.atributoConjuracao, null);
+assert.deepStrictEqual(guerreiroCombate.resistencias, ['forca', 'constituicao']);
+
+assert.ok(
+  DADOS.CLASSES.every(c => Array.isArray(c.resistencias) && c.resistencias.length === 2),
+  'toda classe deve ter exatamente 2 resistências'
+);
+
 console.log('dados.test.js (perícias/point buy): OK');
