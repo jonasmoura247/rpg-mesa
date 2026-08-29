@@ -60,7 +60,13 @@ public record Personagem(
     int Ca,
     List<PericiaPersonagem> Pericias,
     string Historia = "",
-    string CaracteristicasFisicas = "");
+    string CaracteristicasFisicas = "",
+    int Iniciativa = 0,
+    int BonusAtaqueForca = 0,
+    int BonusAtaqueDestreza = 0,
+    int? CdMagia = null,
+    int? BonusAtaqueMagico = null,
+    List<TesteResistencia>? TestesResistencia = null);
 
 public record ImportarPersonagemRequisicao(
     string Nome,
@@ -72,4 +78,12 @@ public record ImportarPersonagemRequisicao(
     int Ca,
     List<PericiaPersonagem> Pericias,
     string Historia = "",
-    string CaracteristicasFisicas = "");
+    string CaracteristicasFisicas = "",
+    int Iniciativa = 0,
+    int BonusAtaqueForca = 0,
+    int BonusAtaqueDestreza = 0,
+    int? CdMagia = null,
+    int? BonusAtaqueMagico = null,
+    List<TesteResistencia>? TestesResistencia = null);
+
+public record TesteResistencia(string Atributo, bool Proficiente, int Bonus);

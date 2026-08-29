@@ -82,4 +82,54 @@ public class ModelosTestes
         Assert.NotNull(restaurado);
         Assert.Null(restaurado!.Personagens);
     }
+
+    [Fact]
+    public void Personagem_ComCamposDeCombate_SerializaEDesserializaMantendoOsDados()
+    {
+        var original = new Personagem(
+            "p1",
+            "Sael Marévalis",
+            "Humano",
+            "Druida",
+            1,
+            new AtributosPersonagem(9, 14, 16, 11, 16, 11),
+            11,
+            12,
+            new List<PericiaPersonagem> { new("Natureza", "inteligencia", true, 2) },
+            "",
+            "",
+            2,
+            1,
+            2,
+            13,
+            5,
+            new List<TesteResistencia> { new("inteligencia", true, 2), new("sabedoria", true, 5) });
+
+        var json = JsonSerializer.Serialize(original, Opcoes);
+        var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Equal(13, restaurado!.CdMagia);
+        Assert.Equal(5, restaurado.BonusAtaqueMagico);
+        Assert.Equal(2, restaurado.Iniciativa);
+        Assert.Equal(2, restaurado.TestesResistencia!.Count);
+    }
+
+    [Fact]
+    public void Personagem_SemCamposDeCombate_DesserializaComPadroes()
+    {
+        // Regressão: fichas exportadas pelo /creator antes desta feature (incluindo as
+        // 3 fixtures de exemplo já existentes em docs/creator/exemplos/) não têm
+        // iniciativa/CD/resistências no JSON — precisa continuar carregando sem quebrar.
+        var json = "{\"Id\":\"p1\",\"Nome\":\"Teste\",\"Raca\":\"Humano\",\"Classe\":\"Guerreiro\",\"Nivel\":1," +
+            "\"Atributos\":{\"Forca\":10,\"Destreza\":10,\"Constituicao\":10,\"Inteligencia\":10,\"Sabedoria\":10,\"Carisma\":10}," +
+            "\"Pv\":10,\"Ca\":10,\"Pericias\":[]}";
+
+        var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Equal(0, restaurado!.Iniciativa);
+        Assert.Null(restaurado.CdMagia);
+        Assert.Null(restaurado.TestesResistencia);
+    }
 }
