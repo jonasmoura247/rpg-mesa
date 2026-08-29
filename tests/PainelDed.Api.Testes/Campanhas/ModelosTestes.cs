@@ -132,4 +132,46 @@ public class ModelosTestes
         Assert.Null(restaurado.CdMagia);
         Assert.Null(restaurado.TestesResistencia);
     }
+
+    [Fact]
+    public void Personagem_ComTracosRaciais_SerializaEDesserializaMantendoOsDados()
+    {
+        var original = new Personagem(
+            "p1",
+            "Bran Ferronaz",
+            "Anão da Montanha",
+            "Guerreiro",
+            1,
+            new AtributosPersonagem(17, 12, 17, 8, 12, 9),
+            13,
+            11,
+            new List<PericiaPersonagem>(),
+            TracosRaciais: new List<TracoPersonagem>
+            {
+                new("Visão no Escuro", "Enxerga no escuro até 18m."),
+                new("Resiliência Anã", "Vantagem contra veneno."),
+            });
+
+        var json = JsonSerializer.Serialize(original, Opcoes);
+        var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Equal(2, restaurado!.TracosRaciais!.Count);
+        Assert.Equal("Visão no Escuro", restaurado.TracosRaciais[0].Nome);
+    }
+
+    [Fact]
+    public void Personagem_SemTracosRaciais_DesserializaComListaNula()
+    {
+        // Regressão: fichas exportadas antes desta feature (incluindo as 3 fixtures
+        // de exemplo já existentes) não têm tracosRaciais no JSON.
+        var json = "{\"Id\":\"p1\",\"Nome\":\"Teste\",\"Raca\":\"Humano\",\"Classe\":\"Guerreiro\",\"Nivel\":1," +
+            "\"Atributos\":{\"Forca\":10,\"Destreza\":10,\"Constituicao\":10,\"Inteligencia\":10,\"Sabedoria\":10,\"Carisma\":10}," +
+            "\"Pv\":10,\"Ca\":10,\"Pericias\":[]}";
+
+        var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Null(restaurado!.TracosRaciais);
+    }
 }
