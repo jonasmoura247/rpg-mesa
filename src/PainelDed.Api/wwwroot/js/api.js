@@ -97,4 +97,26 @@ const Api = {
     const resposta = await fetch(`/api/campanhas/${campanhaId}/historico`, { method: 'DELETE' });
     if (!resposta.ok) throw new Error('Falha ao limpar histórico');
   },
+
+  async listarPersonagens(campanhaId) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/personagens`);
+    if (!resposta.ok) throw new Error('Falha ao listar personagens');
+    return resposta.json();
+  },
+
+  async obterPersonagem(campanhaId, personagemId) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/personagens/${personagemId}`);
+    if (!resposta.ok) throw new Error('Falha ao carregar personagem');
+    return resposta.json();
+  },
+
+  async importarPersonagem(campanhaId, dados) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/personagens/importar`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dados),
+    });
+    if (!resposta.ok) throw new Error('Falha ao importar personagem');
+    return resposta.json();
+  },
 };
