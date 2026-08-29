@@ -296,6 +296,22 @@ function construirFichaFinal() {
     };
   });
 
+  const bonusProficiencia = 2;
+  const iniciativa = modDestreza;
+  const bonusAtaqueForca = Calculo.bonusPericia(Calculo.modificador(atributos.forca), true, bonusProficiencia);
+  const bonusAtaqueDestreza = Calculo.bonusPericia(modDestreza, true, bonusProficiencia);
+
+  const temConjuracao = Boolean(classe.atributoConjuracao);
+  const modConjuracao = temConjuracao ? Calculo.modificador(atributos[classe.atributoConjuracao]) : null;
+  const cdMagia = temConjuracao ? Calculo.cdMagia(modConjuracao, bonusProficiencia) : null;
+  const bonusAtaqueMagico = temConjuracao ? Calculo.bonusPericia(modConjuracao, true, bonusProficiencia) : null;
+
+  const testesResistencia = Object.keys(NOMES_ATRIBUTOS).map(chave => {
+    const mod = Calculo.modificador(atributos[chave]);
+    const proficiente = classe.resistencias.includes(chave);
+    return { atributo: chave, proficiente, bonus: Calculo.bonusPericia(mod, proficiente, bonusProficiencia) };
+  });
+
   return {
     nome: ficha.nome.trim(),
     raca: ficha.raca,
@@ -305,6 +321,12 @@ function construirFichaFinal() {
     pv: Calculo.pvInicial(classe.dadoDeVida, modConstituicao),
     ca: Calculo.caBase(modDestreza),
     pericias,
+    iniciativa,
+    bonusAtaqueForca,
+    bonusAtaqueDestreza,
+    cdMagia,
+    bonusAtaqueMagico,
+    testesResistencia,
     historia: ficha.historia.trim(),
     caracteristicasFisicas: ficha.caracteristicasFisicas.trim()
   };
@@ -323,6 +345,20 @@ function renderEtapaResumo() {
     `<li>${p.nome}: ${p.bonus >= 0 ? '+' : ''}${p.bonus}</li>`
   ).join('');
 
+  const destaquesCombate = [
+    `<span class="destaque">Iniciativa ${dadosFicha.iniciativa >= 0 ? '+' : ''}${dadosFicha.iniciativa}</span>`,
+    `<span class="destaque">Ataque For ${dadosFicha.bonusAtaqueForca >= 0 ? '+' : ''}${dadosFicha.bonusAtaqueForca}</span>`,
+    `<span class="destaque">Ataque Des ${dadosFicha.bonusAtaqueDestreza >= 0 ? '+' : ''}${dadosFicha.bonusAtaqueDestreza}</span>`
+  ];
+  if (dadosFicha.cdMagia !== null) {
+    destaquesCombate.push(`<span class="destaque">CD Magia ${dadosFicha.cdMagia}</span>`);
+    destaquesCombate.push(`<span class="destaque">Ataque Mágico ${dadosFicha.bonusAtaqueMagico >= 0 ? '+' : ''}${dadosFicha.bonusAtaqueMagico}</span>`);
+  }
+
+  const linhasResistencia = dadosFicha.testesResistencia.map(t =>
+    `<li>${NOMES_ATRIBUTOS[t.atributo]}${t.proficiente ? ' (proficiente)' : ''}: ${t.bonus >= 0 ? '+' : ''}${t.bonus}</li>`
+  ).join('');
+
   elementoConteudo.innerHTML = `
     <h2>Resumo — ${escaparHtml(dadosFicha.nome)}</h2>
     <p>${dadosFicha.raca} · ${dadosFicha.classe} · Nível ${dadosFicha.nivel}</p>
@@ -334,6 +370,10 @@ function renderEtapaResumo() {
     <ul>${linhasAtributos}</ul>
     <h3>Perícias com proficiência</h3>
     <ul>${linhasPericias.length ? linhasPericias : '<li>Nenhuma</li>'}</ul>
+    <h3>Combate</h3>
+    <div class="destaques">${destaquesCombate.join('')}</div>
+    <h3>Testes de Resistência</h3>
+    <ul>${linhasResistencia}</ul>
     <div class="campo-texto-livre">
       <label for="campoHistoria">História (opcional)</label>
       <textarea id="campoHistoria" maxlength="1000" rows="4" placeholder="Uma breve história do personagem..."></textarea>
