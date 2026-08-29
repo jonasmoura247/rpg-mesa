@@ -154,9 +154,12 @@ function renderEtapaRaca() {
   let blocoEscolhaLivre = '';
 
   if (raca) {
+    const tracosTexto = raca.tracos.map(t => `<li><strong>${t.nome}:</strong> ${t.descricao}</li>`).join('');
     blocoBonus = `
       <p class="descricao-opcao">${raca.descricao}</p>
-      <p class="bonus-raca">Bônus fixo: ${textoBonus(raca.bonus)}</p>`;
+      <p class="bonus-raca">Bônus fixo: ${textoBonus(raca.bonus)}</p>
+      <h3>Traços Raciais</h3>
+      <ul>${tracosTexto}</ul>`;
 
     if (raca.escolhaLivre) {
       const atributosDisponiveis = Object.keys(NOMES_ATRIBUTOS).filter(a => !(a in raca.bonus));
@@ -280,6 +283,7 @@ function atributosFinais() {
 }
 
 function construirFichaFinal() {
+  const raca = racaSelecionada();
   const atributos = atributosFinais();
   const classe = classeSelecionada();
   const modConstituicao = Calculo.modificador(atributos.constituicao);
@@ -327,6 +331,7 @@ function construirFichaFinal() {
     cdMagia,
     bonusAtaqueMagico,
     testesResistencia,
+    tracosRaciais: raca.tracos,
     historia: ficha.historia.trim(),
     caracteristicasFisicas: ficha.caracteristicasFisicas.trim()
   };
