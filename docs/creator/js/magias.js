@@ -71,7 +71,7 @@
       tempoConjuracao: '1 minuto (ritual)', alcance: 'Toque', duracao: 'Instantânea', componentes: 'V, S, M',
       descricao: 'Revela as propriedades mágicas de um objeto ou criatura tocada.',
       dano: null, testeResistencia: null },
-    { nome: 'Encantar Pessoa', circulo: 1, escola: 'Encantamento', classes: ['Bardo', 'Bruxo', 'Feiticeiro', 'Magista'],
+    { nome: 'Encantar Pessoa', circulo: 1, escola: 'Encantamento', classes: ['Bardo', 'Bruxo', 'Druida', 'Feiticeiro', 'Magista'],
       tempoConjuracao: '1 ação', alcance: '9 metros', duracao: '1 hora', componentes: 'V, S',
       descricao: 'Tenta enfeitiçar um humanoide que você consegue ver, fazendo-o te ver como um amigo confiável.',
       dano: null, testeResistencia: 'Sabedoria' },
