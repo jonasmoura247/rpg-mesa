@@ -98,4 +98,25 @@ assert.ok(guerreiroHabilidades.habilidades.some(h => h.nome === 'Ataque Extra' &
 const barbaroHabilidades = DADOS.CLASSES.find(c => c.nome === 'Bárbaro');
 assert.ok(barbaroHabilidades.habilidades.some(h => h.nome === 'Fúria' && h.nivel === 1));
 
+const CLASSES_CONJURADORAS_NIVEL1 = ['Bardo', 'Bruxo', 'Clérigo', 'Druida', 'Feiticeiro', 'Magista'];
+DADOS.CLASSES.forEach(c => {
+  if (CLASSES_CONJURADORAS_NIVEL1.includes(c.nome)) {
+    assert.ok(c.magias, `${c.nome} deve ter o campo magias (é conjuradora de nível 1)`);
+    assert.ok(c.magias.cantripsConhecidos >= 1, `${c.nome}.magias.cantripsConhecidos deve ser >= 1`);
+    assert.ok(c.magias.tipo === 'fixo' || c.magias.tipo === 'preparado', `${c.nome}.magias.tipo deve ser 'fixo' ou 'preparado'`);
+    if (c.magias.tipo === 'fixo') {
+      assert.ok(c.magias.magiasConhecidasFixo >= 1, `${c.nome}.magias.magiasConhecidasFixo deve ser >= 1 quando tipo é fixo`);
+    }
+  } else {
+    assert.ok(!c.magias, `${c.nome} não deve ter o campo magias (não conjura no nível 1)`);
+  }
+});
+assert.strictEqual(bardo.magias.cantripsConhecidos, 2);
+assert.strictEqual(bardo.magias.tipo, 'fixo');
+assert.strictEqual(bardo.magias.magiasConhecidasFixo, 4);
+const clerigo = DADOS.CLASSES.find(c => c.nome === 'Clérigo');
+assert.strictEqual(clerigo.magias.tipo, 'preparado');
+const paladino = DADOS.CLASSES.find(c => c.nome === 'Paladino');
+assert.ok(!paladino.magias, 'Paladino não conjura no nível 1, não deve ter magias');
+
 console.log('dados.test.js (perícias/point buy): OK');

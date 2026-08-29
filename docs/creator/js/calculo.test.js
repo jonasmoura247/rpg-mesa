@@ -42,4 +42,9 @@ assert.strictEqual(Calculo.cdMagia(3, 2), 13);
 assert.strictEqual(Calculo.cdMagia(-1, 2), 9);
 assert.strictEqual(Calculo.cdMagia(0, 2), 10);
 
+assert.strictEqual(Calculo.quantidadeMagiasNivel1({ tipo: 'fixo', magiasConhecidasFixo: 4 }, 3), 4);
+assert.strictEqual(Calculo.quantidadeMagiasNivel1({ tipo: 'preparado' }, 3), 4);
+assert.strictEqual(Calculo.quantidadeMagiasNivel1({ tipo: 'preparado' }, -1), 1);
+assert.strictEqual(Calculo.quantidadeMagiasNivel1({ tipo: 'preparado' }, 0), 1);
+
 console.log('calculo.test.js: OK');

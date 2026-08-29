@@ -162,6 +162,7 @@
     { nome: 'Bardo', dadoDeVida: 8, escolhas: 3, todasPericias: true, periciasElegiveis: [],
       descricao: 'Conjurador versátil que inspira aliados e desarma inimigos através de música, palavras e magia.',
       atributoConjuracao: 'carisma', resistencias: ['destreza', 'carisma'],
+      magias: { cantripsConhecidos: 2, tipo: 'fixo', magiasConhecidasFixo: 4 },
       habilidades: [
         { nome: 'Conjuração', nivel: 1, descricao: 'Conjurador completo (Carisma); conhece um número limitado de magias, todas fixas (não precisa preparar).' },
         { nome: 'Inspiração de Bardo', nivel: 1, descricao: 'Ação bônus: concede 1d6 a um aliado para somar num teste, ataque ou resistência. Usos = modificador de Carisma, recarrega em descanso longo.' },
@@ -177,6 +178,7 @@
       descricao: 'Conjurador que obtém poder através de um pacto com uma entidade sobrenatural.',
       atributoConjuracao: 'carisma', resistencias: ['sabedoria', 'carisma'],
       periciasElegiveis: ['Arcanismo', 'Engano', 'Historia', 'Intimidacao', 'Investigacao', 'Natureza', 'Religiao'],
+      magias: { cantripsConhecidos: 2, tipo: 'fixo', magiasConhecidasFixo: 2 },
       habilidades: [
         { nome: 'Patrono Sobrenatural', nivel: 1, descricao: 'Escolhe a entidade que concede seu poder (subclasse), definindo magias e habilidades extras.' },
         { nome: 'Magia de Pacto', nivel: 1, descricao: 'Conjurador (Carisma) com poucos espaços de magia, mas que recarregam completamente num descanso curto.' },
@@ -188,6 +190,7 @@
       descricao: 'Conjurador divino que cura, protege e combate em nome de uma divindade ou ideal.',
       atributoConjuracao: 'sabedoria', resistencias: ['sabedoria', 'carisma'],
       periciasElegiveis: ['Historia', 'Intuicao', 'Medicina', 'Persuasao', 'Religiao'],
+      magias: { cantripsConhecidos: 3, tipo: 'preparado' },
       habilidades: [
         { nome: 'Conjuração', nivel: 1, descricao: 'Conjurador completo (Sabedoria); prepara magias diariamente a partir de toda a lista de Clérigo.' },
         { nome: 'Domínio Divino', nivel: 1, descricao: 'Escolhe um domínio (Conhecimento, Vida, Luz, Natureza, Tempestade, Enganação ou Guerra) que concede magias e habilidades extras.' },
@@ -199,6 +202,7 @@
       descricao: 'Conjurador ligado à natureza, capaz de assumir formas animais e comandar os elementos.',
       atributoConjuracao: 'sabedoria', resistencias: ['inteligencia', 'sabedoria'],
       periciasElegiveis: ['Arcanismo', 'Adestramento', 'Intuicao', 'Medicina', 'Natureza', 'Percepcao', 'Religiao', 'Sobrevivencia'],
+      magias: { cantripsConhecidos: 2, tipo: 'preparado' },
       habilidades: [
         { nome: 'Druídico', nivel: 1, descricao: 'Conhece o idioma secreto dos druidas.' },
         { nome: 'Conjuração', nivel: 1, descricao: 'Conjurador completo (Sabedoria); prepara magias diariamente a partir de toda a lista de Druida.' },
@@ -211,6 +215,7 @@
       descricao: 'Conjurador cujo poder mágico vem de uma origem inata, no sangue ou na alma.',
       atributoConjuracao: 'carisma', resistencias: ['constituicao', 'carisma'],
       periciasElegiveis: ['Arcanismo', 'Engano', 'Intuicao', 'Intimidacao', 'Persuasao', 'Religiao'],
+      magias: { cantripsConhecidos: 4, tipo: 'fixo', magiasConhecidasFixo: 2 },
       habilidades: [
         { nome: 'Origem Mágica', nivel: 1, descricao: 'Escolhe a fonte do seu poder inato (subclasse), concedendo magias e habilidades extras.' },
         { nome: 'Conjuração', nivel: 1, descricao: 'Conjurador completo (Carisma); conhece um número limitado de magias.' },
@@ -247,6 +252,7 @@
       descricao: 'Conjurador erudito que domina a magia arcana através de estudo e um grimório pessoal.',
       atributoConjuracao: 'inteligencia', resistencias: ['inteligencia', 'sabedoria'],
       periciasElegiveis: ['Arcanismo', 'Historia', 'Intuicao', 'Investigacao', 'Medicina', 'Religiao'],
+      magias: { cantripsConhecidos: 3, tipo: 'preparado' },
       habilidades: [
         { nome: 'Conjuração', nivel: 1, descricao: 'Conjurador completo (Inteligência); guarda magias conhecidas num grimório e prepara um número delas por dia.' },
         { nome: 'Recuperação Arcana', nivel: 1, descricao: '1x por dia, num descanso curto, recupera espaços de magia gastos (total igual à metade do nível, arredondado para cima).' },

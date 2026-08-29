@@ -27,7 +27,14 @@
     return 8 + bonusProficiencia + modAtributoConjuracao;
   }
 
-  const api = { modificador, custoTotalPointBuy, pontosRestantes, pvInicial, caBase, bonusPericia, cdMagia };
+  function quantidadeMagiasNivel1(infoMagiasClasse, modAtributoConjuracao) {
+    if (infoMagiasClasse.tipo === 'fixo') {
+      return infoMagiasClasse.magiasConhecidasFixo;
+    }
+    return Math.max(1, modAtributoConjuracao + 1);
+  }
+
+  const api = { modificador, custoTotalPointBuy, pontosRestantes, pvInicial, caBase, bonusPericia, cdMagia, quantidadeMagiasNivel1 };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;
