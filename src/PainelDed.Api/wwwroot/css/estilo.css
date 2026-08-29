@@ -669,3 +669,103 @@ body {
   justify-content: flex-end;
   margin-top: 1rem;
 }
+
+.layout-jogadores {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.lista-personagens {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.lista-personagens-vazia {
+  color: var(--cor-texto-suave);
+}
+
+.cartao-personagem {
+  text-align: left;
+  background: var(--cor-fundo-elevado);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+}
+
+.cartao-personagem h4 {
+  margin: 0 0 0.3rem;
+  font-size: 0.95rem;
+}
+
+.cartao-personagem.selecionado {
+  border-color: var(--cor-destaque);
+}
+
+.ficha-personagem {
+  background: var(--cor-fundo-elevado);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+}
+
+.ficha-personagem-vazia {
+  color: var(--cor-texto-suave);
+}
+
+.destaques-ficha {
+  display: flex;
+  gap: 0.6rem;
+  margin: 0.6rem 0 1rem;
+}
+
+.destaque-ficha {
+  background: var(--cor-fundo);
+  border: 1px solid var(--cor-destaque);
+  color: var(--cor-destaque);
+  padding: 0.35rem 0.8rem;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.grade-atributos-ficha {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.item-atributo-ficha {
+  display: flex;
+  justify-content: space-between;
+  background: var(--cor-fundo);
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+.lista-pericias-ficha {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.35rem;
+  font-size: 0.85rem;
+}
+
+.texto-livre-ficha {
+  white-space: pre-line;
+  font-size: 0.88rem;
+  color: var(--cor-texto);
+}
+
+@media (max-width: 720px) {
+  .layout-jogadores {
+    grid-template-columns: 1fr;
+  }
+}
