@@ -17,6 +17,7 @@ builder.Services.AddSingleton(new RepositorioCampanhas(pastaCampanhas));
 builder.Services.AddSingleton<ServicoQuests>();
 builder.Services.AddSingleton<ServicoHistorico>();
 builder.Services.AddSingleton<ServicoGeradorIdeiaQuest>();
+builder.Services.AddSingleton<ServicoPersonagens>();
 
 var app = builder.Build();
 
@@ -98,6 +99,28 @@ app.MapPost("/api/campanhas/{campanhaId}/historico", (string campanhaId, NovaEnt
 
 app.MapDelete("/api/campanhas/{campanhaId}/historico", (string campanhaId, ServicoHistorico servico) =>
     servico.Limpar(campanhaId) ? Results.NoContent() : Results.NotFound());
+
+app.MapGet("/api/campanhas/{campanhaId}/personagens", (string campanhaId, ServicoPersonagens servico) =>
+{
+    var personagens = servico.Listar(campanhaId);
+    return personagens is null ? Results.NotFound() : Results.Ok(personagens);
+});
+
+app.MapGet("/api/campanhas/{campanhaId}/personagens/{personagemId}", (string campanhaId, string personagemId, ServicoPersonagens servico) =>
+{
+    var personagem = servico.Obter(campanhaId, personagemId);
+    return personagem is null ? Results.NotFound() : Results.Ok(personagem);
+});
+
+app.MapPost("/api/campanhas/{campanhaId}/personagens/importar", (string campanhaId, ImportarPersonagemRequisicao requisicao, ServicoPersonagens servico) =>
+{
+    if (string.IsNullOrWhiteSpace(requisicao.Nome))
+    {
+        return Results.BadRequest("Nome do personagem é obrigatório.");
+    }
+    var personagem = servico.Importar(campanhaId, requisicao);
+    return personagem is null ? Results.NotFound() : Results.Ok(personagem);
+});
 
 app.Run();
 

@@ -106,4 +106,66 @@ public class EndpointsCampanhasTestes : IClassFixture<WebApplicationFactory<Prog
 
         Assert.Equal(HttpStatusCode.NotFound, resposta.StatusCode);
     }
+
+    [Fact]
+    public async Task ImportarPersonagem_DepoisListarEObter_RetornaFichaCompleta()
+    {
+        var cliente = _fabrica.CreateClient();
+        var campanhaId = await CriarCampanhaDeTesteAsync(cliente);
+
+        var requisicao = new ImportarPersonagemRequisicao(
+            "Kess Bramo",
+            "Humano",
+            "Ladino",
+            1,
+            new AtributosPersonagem(9, 16, 16, 14, 9, 13),
+            11,
+            13,
+            new List<PericiaPersonagem> { new("Furtividade", "destreza", true, 5) });
+
+        var importarResposta = await cliente.PostAsJsonAsync($"/api/campanhas/{campanhaId}/personagens/importar", requisicao);
+        importarResposta.EnsureSuccessStatusCode();
+        var personagem = await importarResposta.Content.ReadFromJsonAsync<Personagem>();
+        Assert.Equal("Kess Bramo", personagem!.Nome);
+
+        var listaResposta = await cliente.GetAsync($"/api/campanhas/{campanhaId}/personagens");
+        var lista = await listaResposta.Content.ReadFromJsonAsync<List<Personagem>>();
+        Assert.Single(lista!);
+
+        var obterResposta = await cliente.GetAsync($"/api/campanhas/{campanhaId}/personagens/{personagem.Id}");
+        obterResposta.EnsureSuccessStatusCode();
+        var obtido = await obterResposta.Content.ReadFromJsonAsync<Personagem>();
+        Assert.Equal(13, obtido!.Ca);
+    }
+
+    [Fact]
+    public async Task ImportarPersonagem_SemNome_Retorna400()
+    {
+        var cliente = _fabrica.CreateClient();
+        var campanhaId = await CriarCampanhaDeTesteAsync(cliente);
+
+        var requisicao = new ImportarPersonagemRequisicao(
+            "",
+            "Humano",
+            "Ladino",
+            1,
+            new AtributosPersonagem(8, 8, 8, 8, 8, 8),
+            8,
+            10,
+            new List<PericiaPersonagem>());
+
+        var resposta = await cliente.PostAsJsonAsync($"/api/campanhas/{campanhaId}/personagens/importar", requisicao);
+
+        Assert.Equal(HttpStatusCode.BadRequest, resposta.StatusCode);
+    }
+
+    [Fact]
+    public async Task Personagens_ComCampanhaInexistente_Retorna404()
+    {
+        var cliente = _fabrica.CreateClient();
+
+        var resposta = await cliente.GetAsync("/api/campanhas/nao-existe/personagens");
+
+        Assert.Equal(HttpStatusCode.NotFound, resposta.StatusCode);
+    }
 }
