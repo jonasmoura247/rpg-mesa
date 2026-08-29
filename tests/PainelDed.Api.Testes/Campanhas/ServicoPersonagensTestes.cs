@@ -160,4 +160,23 @@ public class ServicoPersonagensTestes : IDisposable
         Assert.Single(personagem!.TracosRaciais!);
         Assert.Equal("Versátil", personagem.TracosRaciais![0].Nome);
     }
+
+    [Fact]
+    public void Importar_ComHabilidadesClasse_PersisteAsHabilidades()
+    {
+        var requisicao = RequisicaoDeExemplo() with
+        {
+            HabilidadesClasse = new List<HabilidadeClasse>
+            {
+                new("Especialização", 1, "Dobra o bônus de proficiência em duas perícias."),
+                new("Ataque Furtivo", 1, "1d6 de dano extra com vantagem."),
+            }
+        };
+
+        var personagem = _servico.Importar(_campanhaId, requisicao);
+
+        Assert.NotNull(personagem);
+        Assert.Equal(2, personagem!.HabilidadesClasse!.Count);
+        Assert.Equal("Especialização", personagem.HabilidadesClasse![0].Nome);
+    }
 }
