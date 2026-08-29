@@ -37,7 +37,9 @@
         { nome: 'Visão no Escuro', descricao: 'Enxerga no escuro até 18m como se fosse penumbra, e na penumbra como luz plena (sem cor).' },
         { nome: 'Resiliência Anã', descricao: 'Vantagem em testes de resistência contra veneno, e resistência a dano de veneno.' },
         { nome: 'Treinamento de Combate Anão', descricao: 'Proficiência com machado de guerra, machadinha, martelo leve e malho.' },
-        { nome: 'Perspicácia Anã', descricao: '+1 ponto de vida máximo para cada nível do personagem.' }
+        { nome: 'Perspicácia Anã', descricao: '+1 ponto de vida máximo para cada nível do personagem.' },
+        { nome: 'Proficiência com Ferramentas', descricao: 'Proficiência com um tipo de ferramenta de artesão à escolha: ferreiro, cervejeiro ou pedreiro.' },
+        { nome: 'Afinidade com a Pedra', descricao: 'Soma o dobro do bônus de proficiência em testes de História relacionados à origem de trabalhos em pedra, mesmo sem proficiência.' }
       ] },
     { nome: 'Anão da Montanha', bonus: { constituicao: 2, forca: 2 },
       descricao: 'Anões fortes e habituados à armadura pesada, vindos de fortalezas talhadas na rocha.',
@@ -45,7 +47,9 @@
         { nome: 'Visão no Escuro', descricao: 'Enxerga no escuro até 18m como se fosse penumbra, e na penumbra como luz plena (sem cor).' },
         { nome: 'Resiliência Anã', descricao: 'Vantagem em testes de resistência contra veneno, e resistência a dano de veneno.' },
         { nome: 'Treinamento de Combate Anão', descricao: 'Proficiência com machado de guerra, machadinha, martelo leve e malho.' },
-        { nome: 'Treinamento com Armadura', descricao: 'Proficiência com armaduras leves e médias.' }
+        { nome: 'Treinamento com Armadura', descricao: 'Proficiência com armaduras leves e médias.' },
+        { nome: 'Proficiência com Ferramentas', descricao: 'Proficiência com um tipo de ferramenta de artesão à escolha: ferreiro, cervejeiro ou pedreiro.' },
+        { nome: 'Afinidade com a Pedra', descricao: 'Soma o dobro do bônus de proficiência em testes de História relacionados à origem de trabalhos em pedra, mesmo sem proficiência.' }
       ] },
     { nome: 'Elfo Alto', bonus: { destreza: 2, inteligencia: 1 },
       descricao: 'Elfos graciosos com afinidade natural pela magia arcana e memória precisa.',
@@ -54,7 +58,8 @@
         { nome: 'Sentidos Aguçados', descricao: 'Proficiência em Percepção.' },
         { nome: 'Ancestral Feérico', descricao: 'Vantagem em testes de resistência contra ser enfeitiçado, e magia não pode colocá-lo para dormir.' },
         { nome: 'Transe', descricao: 'Não precisa dormir; medita profundamente por 4 horas ao dia para obter o mesmo benefício de um descanso longo.' },
-        { nome: 'Truque Élfico', descricao: 'Conhece um truque (cantrip) de Magista à escolha.' }
+        { nome: 'Truque Élfico', descricao: 'Conhece um truque (cantrip) de Magista à escolha.' },
+        { nome: 'Treinamento com Armas Élficas', descricao: 'Proficiência com espada longa, espada curta, arco curto e arco longo.' }
       ] },
     { nome: 'Elfo da Floresta', bonus: { destreza: 2, sabedoria: 1 },
       descricao: 'Elfos ágeis e furtivos, criados entre as árvores, com sentidos aguçados para a natureza.',
@@ -64,7 +69,8 @@
         { nome: 'Ancestral Feérico', descricao: 'Vantagem em testes de resistência contra ser enfeitiçado, e magia não pode colocá-lo para dormir.' },
         { nome: 'Transe', descricao: 'Não precisa dormir; medita profundamente por 4 horas ao dia para obter o mesmo benefício de um descanso longo.' },
         { nome: 'Passo Élfico', descricao: 'Deslocamento base de 10,5 metros.' },
-        { nome: 'Máscara da Natureza', descricao: 'Pode tentar se esconder mesmo levemente obscurecido por folhagem, chuva forte, neve, névoa ou outro fenômeno natural.' }
+        { nome: 'Máscara da Natureza', descricao: 'Pode tentar se esconder mesmo levemente obscurecido por folhagem, chuva forte, neve, névoa ou outro fenômeno natural.' },
+        { nome: 'Treinamento com Armas Élficas', descricao: 'Proficiência com espada longa, espada curta, arco curto e arco longo.' }
       ] },
     { nome: 'Elfo Negro (Drow)', bonus: { destreza: 2, carisma: 1 },
       descricao: 'Elfos de vida subterrânea, ágeis e carismáticos, acostumados à escuridão e à intriga.',
@@ -72,7 +78,8 @@
         { nome: 'Visão no Escuro Superior', descricao: 'Enxerga no escuro até 36 metros.' },
         { nome: 'Sensibilidade à Luz do Sol', descricao: 'Desvantagem em testes de ataque e de Percepção baseados em visão sob luz solar direta.' },
         { nome: 'Ancestral Feérico', descricao: 'Vantagem em testes de resistência contra ser enfeitiçado, e magia não pode colocá-lo para dormir.' },
-        { nome: 'Magia Drow', descricao: 'Conhece o truque Luzes Dançantes; a partir do nível 3 pode lançar Névoa Feérica 1x/dia, e a partir do nível 5, Escuridão 1x/dia (Carisma como atributo de conjuração).' }
+        { nome: 'Magia Drow', descricao: 'Conhece o truque Luzes Dançantes; a partir do nível 3 pode lançar Fogo Feérico 1x/dia, e a partir do nível 5, Escuridão 1x/dia (Carisma como atributo de conjuração).' },
+        { nome: 'Treinamento com Armas Drow', descricao: 'Proficiência com rapieira, espada curta e besta de mão.' }
       ] },
     { nome: 'Halfling Pés Leves', bonus: { destreza: 2, carisma: 1 },
       descricao: 'Pequenos e discretos, hábeis em passar despercebidos e fazer amizade com estranhos.',
@@ -133,7 +140,7 @@
       tracos: [
         { nome: 'Visão no Escuro', descricao: 'Enxerga no escuro até 18m como se fosse penumbra, e na penumbra como luz plena (sem cor).' },
         { nome: 'Resistência Infernal', descricao: 'Resistência a dano de fogo.' },
-        { nome: 'Legado Infernal', descricao: 'Conhece o truque Taumaturgia; a partir do nível 3 pode lançar Repulsa de Aflição 1x/dia, e a partir do nível 5, Escuridão 1x/dia (Carisma como atributo de conjuração).' }
+        { nome: 'Legado Infernal', descricao: 'Conhece o truque Taumaturgia; a partir do nível 3 pode lançar Repreensão Infernal 1x/dia, e a partir do nível 5, Escuridão 1x/dia (Carisma como atributo de conjuração).' }
       ] }
   ];
 

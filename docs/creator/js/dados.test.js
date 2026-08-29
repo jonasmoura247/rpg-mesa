@@ -76,7 +76,13 @@ assert.ok(
 const humanoTracos = DADOS.RACAS.find(r => r.nome === 'Humano');
 assert.strictEqual(humanoTracos.tracos.length, 1);
 const anaoColinaTracos = DADOS.RACAS.find(r => r.nome === 'Anão da Colina');
-assert.strictEqual(anaoColinaTracos.tracos.length, 4);
+assert.strictEqual(anaoColinaTracos.tracos.length, 6);
 assert.ok(anaoColinaTracos.tracos.every(t => typeof t.nome === 'string' && typeof t.descricao === 'string' && t.nome && t.descricao));
+
+const tieflingTracos = DADOS.RACAS.find(r => r.nome === 'Tiefling');
+assert.ok(tieflingTracos.tracos.some(t => t.descricao.includes('Repreensão Infernal')), 'Tiefling deve conhecer Repreensão Infernal, não um nome inventado');
+
+const drowTracos = DADOS.RACAS.find(r => r.nome === 'Elfo Negro (Drow)');
+assert.ok(drowTracos.tracos.some(t => t.descricao.includes('Fogo Feérico')), 'Drow deve conhecer Fogo Feérico, não um nome inventado');
 
 console.log('dados.test.js (perícias/point buy): OK');
