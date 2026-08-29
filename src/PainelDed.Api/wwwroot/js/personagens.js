@@ -177,6 +177,45 @@ const Personagens = {
     }
     detalhe.appendChild(listaPericias);
 
+    if (personagem.testesResistencia && personagem.testesResistencia.length > 0) {
+      const tituloCombate = document.createElement('h4');
+      tituloCombate.textContent = 'Combate';
+      detalhe.appendChild(tituloCombate);
+
+      const destaquesCombate = document.createElement('div');
+      destaquesCombate.className = 'destaques-ficha';
+      const statsCombate = [
+        ['Iniciativa', personagem.iniciativa],
+        ['Ataque For', personagem.bonusAtaqueForca],
+        ['Ataque Des', personagem.bonusAtaqueDestreza],
+      ];
+      if (personagem.cdMagia !== null && personagem.cdMagia !== undefined) {
+        statsCombate.push(['CD Magia', personagem.cdMagia]);
+        statsCombate.push(['Ataque Mágico', personagem.bonusAtaqueMagico]);
+      }
+      statsCombate.forEach(([rotulo, valor]) => {
+        const destaque = document.createElement('span');
+        destaque.className = 'destaque-ficha';
+        destaque.textContent = rotulo === 'CD Magia' ? `${rotulo} ${valor}` : `${rotulo} ${formatarComSinal(valor)}`;
+        destaquesCombate.appendChild(destaque);
+      });
+      detalhe.appendChild(destaquesCombate);
+
+      const tituloResistencias = document.createElement('h4');
+      tituloResistencias.textContent = 'Testes de Resistência';
+      detalhe.appendChild(tituloResistencias);
+
+      const listaResistencias = document.createElement('ul');
+      listaResistencias.className = 'lista-pericias-ficha';
+      personagem.testesResistencia.forEach((teste) => {
+        const item = document.createElement('li');
+        const rotulo = NOMES_ATRIBUTOS_PERSONAGEM[teste.atributo] || teste.atributo;
+        item.textContent = `${rotulo}${teste.proficiente ? ' (proficiente)' : ''}: ${formatarComSinal(teste.bonus)}`;
+        listaResistencias.appendChild(item);
+      });
+      detalhe.appendChild(listaResistencias);
+    }
+
     if (personagem.historia) {
       const tituloHistoria = document.createElement('h4');
       tituloHistoria.textContent = 'História';
