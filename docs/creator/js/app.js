@@ -152,7 +152,9 @@ function renderEtapaRaca() {
   let blocoEscolhaLivre = '';
 
   if (raca) {
-    blocoBonus = `<p class="bonus-raca">Bônus fixo: ${textoBonus(raca.bonus)}</p>`;
+    blocoBonus = `
+      <p class="descricao-opcao">${raca.descricao}</p>
+      <p class="bonus-raca">Bônus fixo: ${textoBonus(raca.bonus)}</p>`;
 
     if (raca.escolhaLivre) {
       const atributosDisponiveis = Object.keys(NOMES_ATRIBUTOS).filter(a => !(a in raca.bonus));
