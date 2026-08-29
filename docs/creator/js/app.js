@@ -234,6 +234,7 @@ function renderEtapaClasse() {
       <option value="">Selecione uma classe</option>
       ${opcoes}
     </select>
+    ${classe ? `<p class="descricao-opcao">${classe.descricao}</p>` : ''}
     <p class="dado-vida">${classe ? `Dado de Vida: d${classe.dadoDeVida}` : ''}</p>
     ${blocoPericias}
   `;
