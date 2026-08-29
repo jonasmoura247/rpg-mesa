@@ -27,6 +27,43 @@
       "bonus": 1
     }
   ],
+  "iniciativa": 1,
+  "bonusAtaqueForca": 5,
+  "bonusAtaqueDestreza": 3,
+  "cdMagia": null,
+  "bonusAtaqueMagico": null,
+  "testesResistencia": [
+    {
+      "atributo": "forca",
+      "proficiente": true,
+      "bonus": 5
+    },
+    {
+      "atributo": "destreza",
+      "proficiente": false,
+      "bonus": 1
+    },
+    {
+      "atributo": "constituicao",
+      "proficiente": true,
+      "bonus": 5
+    },
+    {
+      "atributo": "inteligencia",
+      "proficiente": false,
+      "bonus": -1
+    },
+    {
+      "atributo": "sabedoria",
+      "proficiente": false,
+      "bonus": 1
+    },
+    {
+      "atributo": "carisma",
+      "proficiente": false,
+      "bonus": -1
+    }
+  ],
   "historia": "Bran serviu por anos numa legião de mercenários que se dissolveu quando o comando parou de pagar o soldo. Sem unidade, sem bandeira e sem bolso cheio, veio até o porto tentar reconstruir o próprio nome — e a própria carteira — como espada de aluguel. Prefere trabalho honesto e claro: alvo definido, paga combinada, sem meias palavras. Costuma beber sozinho numa mesa de canto até algo interessante cruzar seu caminho.",
   "caracteristicasFisicas": "Anão de compleição maciça, ombros largos e braços grossos de quem carrega armadura pesada há anos. Barba ruiva trançada com pequenos anéis de metal, marcas de queimadura de forja nos antebraços. Rosto marcado por uma cicatriz que atravessa a sobrancelha direita, herança de uma escaramuça antiga. Veste couro reforçado gasto pelo uso e carrega um machado de batalha sempre à mão."
 }

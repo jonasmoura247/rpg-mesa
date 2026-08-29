@@ -27,6 +27,43 @@
       "bonus": 2
     }
   ],
+  "iniciativa": 2,
+  "bonusAtaqueForca": 1,
+  "bonusAtaqueDestreza": 4,
+  "cdMagia": 13,
+  "bonusAtaqueMagico": 5,
+  "testesResistencia": [
+    {
+      "atributo": "forca",
+      "proficiente": false,
+      "bonus": -1
+    },
+    {
+      "atributo": "destreza",
+      "proficiente": false,
+      "bonus": 2
+    },
+    {
+      "atributo": "constituicao",
+      "proficiente": false,
+      "bonus": 3
+    },
+    {
+      "atributo": "inteligencia",
+      "proficiente": true,
+      "bonus": 2
+    },
+    {
+      "atributo": "sabedoria",
+      "proficiente": true,
+      "bonus": 5
+    },
+    {
+      "atributo": "carisma",
+      "proficiente": false,
+      "bonus": 0
+    }
+  ],
   "historia": "Sael investiga o desaparecimento de vários pescadores que sumiram rumo à Costa da Travessia nas últimas semanas. Rumores na comunidade falam de criaturas antigas do litoral — nomes como Naga Guardiã e Sess'inek circulam baixinho entre quem ainda ousa sair para o mar. Ligado ao mar desde criança, sente o chamado das marés como um dever e busca respostas tanto por fé quanto por afeto pelos que se foram. É costume seu puxar assunto sobre o Quadro da Guilda, à procura de qualquer pista que leve à Costa.",
   "caracteristicasFisicas": "Pele curtida pelo sol e pelo sal, cabelos claros sempre úmidos e presos por um cordão trançado de fibra marinha. Traz conchas e pequenos ossos de peixe entrelaçados na roupa, um colar feito de dentes de tubarão pendurado no pescoço. Olhos verde-acinzentados, cor de maré revolta, e mãos calejadas de quem passa mais tempo nas redes de pesca do que em terra firme."
 }
