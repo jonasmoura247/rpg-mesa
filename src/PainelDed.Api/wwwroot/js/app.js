@@ -196,11 +196,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   await Rolador.recarregarHistorico();
 
   document.getElementById('botao-quadro-quests').addEventListener('click', () => Quests.exibir());
+  document.getElementById('botao-jogadores').addEventListener('click', () => Personagens.exibir());
 
   document.addEventListener('campanha-trocada', () => {
     const mural = document.getElementById('mural-quests');
     if (mural) {
       Quests.recarregar();
+    }
+    const listaPersonagens = document.getElementById('lista-personagens');
+    if (listaPersonagens) {
+      Personagens.recarregar();
     }
     Rolador.recarregarHistorico();
   });
