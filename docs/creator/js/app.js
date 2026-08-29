@@ -233,6 +233,10 @@ function renderEtapaClasse() {
     `;
   }
 
+  const habilidadesTexto = classe
+    ? classe.habilidades.map(h => `<li><strong>Nível ${h.nivel} — ${h.nome}:</strong> ${h.descricao}</li>`).join('')
+    : '';
+
   elementoConteudo.innerHTML = `
     <h2>Classe</h2>
     <select id="campoClasse">
@@ -241,6 +245,7 @@ function renderEtapaClasse() {
     </select>
     ${classe ? `<p class="descricao-opcao">${classe.descricao}</p>` : ''}
     <p class="dado-vida">${classe ? `Dado de Vida: d${classe.dadoDeVida}` : ''}</p>
+    ${classe ? `<h3>Habilidades (Níveis 1-5)</h3><ul>${habilidadesTexto}</ul>` : ''}
     ${blocoPericias}
   `;
 
@@ -332,6 +337,7 @@ function construirFichaFinal() {
     bonusAtaqueMagico,
     testesResistencia,
     tracosRaciais: raca.tracos,
+    habilidadesClasse: classe.habilidades.filter(h => h.nivel <= 1),
     historia: ficha.historia.trim(),
     caracteristicasFisicas: ficha.caracteristicasFisicas.trim()
   };
