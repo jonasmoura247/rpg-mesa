@@ -64,6 +64,12 @@
       "bonus": 0
     }
   ],
+  "tracosRaciais": [
+    {
+      "nome": "Versátil",
+      "descricao": "Fala, lê e escreve Comum e mais um idioma à escolha."
+    }
+  ],
   "historia": "Sael investiga o desaparecimento de vários pescadores que sumiram rumo à Costa da Travessia nas últimas semanas. Rumores na comunidade falam de criaturas antigas do litoral — nomes como Naga Guardiã e Sess'inek circulam baixinho entre quem ainda ousa sair para o mar. Ligado ao mar desde criança, sente o chamado das marés como um dever e busca respostas tanto por fé quanto por afeto pelos que se foram. É costume seu puxar assunto sobre o Quadro da Guilda, à procura de qualquer pista que leve à Costa.",
   "caracteristicasFisicas": "Pele curtida pelo sol e pelo sal, cabelos claros sempre úmidos e presos por um cordão trançado de fibra marinha. Traz conchas e pequenos ossos de peixe entrelaçados na roupa, um colar feito de dentes de tubarão pendurado no pescoço. Olhos verde-acinzentados, cor de maré revolta, e mãos calejadas de quem passa mais tempo nas redes de pesca do que em terra firme."
 }

@@ -64,6 +64,32 @@
       "bonus": -1
     }
   ],
+  "tracosRaciais": [
+    {
+      "nome": "Visão no Escuro",
+      "descricao": "Enxerga no escuro até 18m como se fosse penumbra, e na penumbra como luz plena (sem cor)."
+    },
+    {
+      "nome": "Resiliência Anã",
+      "descricao": "Vantagem em testes de resistência contra veneno, e resistência a dano de veneno."
+    },
+    {
+      "nome": "Treinamento de Combate Anão",
+      "descricao": "Proficiência com machado de guerra, machadinha, martelo leve e malho."
+    },
+    {
+      "nome": "Treinamento com Armadura",
+      "descricao": "Proficiência com armaduras leves e médias."
+    },
+    {
+      "nome": "Proficiência com Ferramentas",
+      "descricao": "Proficiência com um tipo de ferramenta de artesão à escolha: ferreiro, cervejeiro ou pedreiro."
+    },
+    {
+      "nome": "Afinidade com a Pedra",
+      "descricao": "Soma o dobro do bônus de proficiência em testes de História relacionados à origem de trabalhos em pedra, mesmo sem proficiência."
+    }
+  ],
   "historia": "Bran serviu por anos numa legião de mercenários que se dissolveu quando o comando parou de pagar o soldo. Sem unidade, sem bandeira e sem bolso cheio, veio até o porto tentar reconstruir o próprio nome — e a própria carteira — como espada de aluguel. Prefere trabalho honesto e claro: alvo definido, paga combinada, sem meias palavras. Costuma beber sozinho numa mesa de canto até algo interessante cruzar seu caminho.",
   "caracteristicasFisicas": "Anão de compleição maciça, ombros largos e braços grossos de quem carrega armadura pesada há anos. Barba ruiva trançada com pequenos anéis de metal, marcas de queimadura de forja nos antebraços. Rosto marcado por uma cicatriz que atravessa a sobrancelha direita, herança de uma escaramuça antiga. Veste couro reforçado gasto pelo uso e carrega um machado de batalha sempre à mão."
 }
