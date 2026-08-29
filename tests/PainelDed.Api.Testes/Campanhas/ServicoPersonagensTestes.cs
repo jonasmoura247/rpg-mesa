@@ -1,0 +1,124 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using PainelDed.Api.Campanhas;
+using Xunit;
+
+namespace PainelDed.Api.Testes.Campanhas;
+
+public class ServicoPersonagensTestes : IDisposable
+{
+    private readonly string _pastaTemporaria;
+    private readonly RepositorioCampanhas _repositorio;
+    private readonly ServicoPersonagens _servico;
+    private readonly string _campanhaId;
+
+    public ServicoPersonagensTestes()
+    {
+        _pastaTemporaria = Path.Combine(Path.GetTempPath(), "painel-ded-servico-personagens-" + Guid.NewGuid());
+        _repositorio = new RepositorioCampanhas(_pastaTemporaria);
+        _servico = new ServicoPersonagens(_repositorio);
+        _campanhaId = _repositorio.Criar("Campanha de Teste").Id;
+    }
+
+    public void Dispose()
+    {
+        Directory.Delete(_pastaTemporaria, recursive: true);
+    }
+
+    private static ImportarPersonagemRequisicao RequisicaoDeExemplo(string nome = "Kess Bramo") => new(
+        nome,
+        "Humano",
+        "Ladino",
+        1,
+        new AtributosPersonagem(9, 16, 16, 14, 9, 13),
+        11,
+        13,
+        new List<PericiaPersonagem>
+        {
+            new("Furtividade", "destreza", true, 5),
+            new("Investigacao", "inteligencia", true, 4),
+        },
+        "Foge de uma dívida de jogo em outra cidade.",
+        "Baixa, cabelo raspado dos lados.");
+
+    [Fact]
+    public void Importar_ComCampanhaExistente_CriaPersonagemNovo()
+    {
+        var personagem = _servico.Importar(_campanhaId, RequisicaoDeExemplo());
+
+        Assert.NotNull(personagem);
+        Assert.NotEmpty(personagem!.Id);
+        Assert.Equal("Kess Bramo", personagem.Nome);
+        Assert.Equal("Baixa, cabelo raspado dos lados.", personagem.CaracteristicasFisicas);
+        Assert.Single(_servico.Listar(_campanhaId)!);
+    }
+
+    [Fact]
+    public void Importar_ComCampanhaInexistente_RetornaNulo()
+    {
+        var personagem = _servico.Importar("nao-existe", RequisicaoDeExemplo());
+
+        Assert.Null(personagem);
+    }
+
+    [Fact]
+    public void Importar_ComMesmoNomeDeExistente_SubstituiMantendoOMesmoId()
+    {
+        var original = _servico.Importar(_campanhaId, RequisicaoDeExemplo())!;
+
+        var atualizado = _servico.Importar(_campanhaId, RequisicaoDeExemplo() with { Pv = 12 });
+
+        Assert.NotNull(atualizado);
+        Assert.Equal(original.Id, atualizado!.Id);
+        Assert.Equal(12, atualizado.Pv);
+        Assert.Single(_servico.Listar(_campanhaId)!);
+    }
+
+    [Fact]
+    public void Importar_ComNomeDiferente_AdicionaSegundoPersonagem()
+    {
+        _servico.Importar(_campanhaId, RequisicaoDeExemplo("Kess Bramo"));
+        _servico.Importar(_campanhaId, RequisicaoDeExemplo("Bran Ferronaz"));
+
+        Assert.Equal(2, _servico.Listar(_campanhaId)!.Count);
+    }
+
+    [Fact]
+    public void Obter_ComPersonagemExistente_RetornaFichaCompleta()
+    {
+        var criado = _servico.Importar(_campanhaId, RequisicaoDeExemplo())!;
+
+        var obtido = _servico.Obter(_campanhaId, criado.Id);
+
+        Assert.NotNull(obtido);
+        Assert.Equal("Kess Bramo", obtido!.Nome);
+        Assert.Equal(2, obtido.Pericias.Count);
+    }
+
+    [Fact]
+    public void Obter_ComPersonagemInexistente_RetornaNulo()
+    {
+        Assert.Null(_servico.Obter(_campanhaId, "nao-existe"));
+    }
+
+    [Fact]
+    public void Listar_ComCampanhaInexistente_RetornaNulo()
+    {
+        Assert.Null(_servico.Listar("nao-existe"));
+    }
+
+    [Fact]
+    public void Listar_ComCampanhaSemArquivoDeEstadoPersonagens_RetornaListaVazia()
+    {
+        // Simula um data/campanhas/{id}.json antigo, salvo antes desta feature existir,
+        // sem a propriedade "Personagens" — precisa continuar carregando sem quebrar.
+        var caminhoEstado = Path.Combine(_pastaTemporaria, $"{_campanhaId}.json");
+        File.WriteAllText(caminhoEstado, "{\"Quests\":[],\"HistoricoRolagens\":[]}");
+
+        var lista = _servico.Listar(_campanhaId);
+
+        Assert.NotNull(lista);
+        Assert.Empty(lista!);
+    }
+}
