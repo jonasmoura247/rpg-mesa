@@ -5,6 +5,7 @@ const ficha = {
   classe: null,
   atributosBase: { forca: 8, destreza: 8, constituicao: 8, inteligencia: 8, sabedoria: 8, carisma: 8 },
   periciasEscolhidas: [],
+  magiasEscolhidas: [],
   historia: '',
   caracteristicasFisicas: ''
 };
@@ -15,7 +16,27 @@ const elementoConteudo = document.getElementById('conteudo');
 const elementoErro = document.getElementById('mensagemErro');
 const botaoVoltar = document.getElementById('btnVoltar');
 const botaoAvancar = document.getElementById('btnAvancar');
-const itensProgresso = document.querySelectorAll('#progresso li');
+const elementoProgresso = document.getElementById('progresso');
+
+const NOMES_ETAPAS = { atributos: 'Atributos', raca: 'Raça', classe: 'Classe', magias: 'Magias', resumo: 'Resumo' };
+
+function classeTemMagias() {
+  const classe = classeSelecionada();
+  return Boolean(classe && classe.magias);
+}
+
+function etapas() {
+  const passos = ['atributos', 'raca', 'classe'];
+  if (classeTemMagias()) passos.push('magias');
+  passos.push('resumo');
+  return passos;
+}
+
+function renderizarListaProgresso() {
+  elementoProgresso.innerHTML = etapas().map((passo, indice) =>
+    `<li data-etapa="${indice}">${NOMES_ETAPAS[passo]}</li>`
+  ).join('');
+}
 
 function escaparHtml(texto) {
   const div = document.createElement('div');
@@ -34,7 +55,7 @@ function limparErro() {
 }
 
 function atualizarProgresso() {
-  itensProgresso.forEach(item => {
+  document.querySelectorAll('#progresso li').forEach(item => {
     const etapaDoItem = Number(item.dataset.etapa);
     item.classList.toggle('ativo', etapaDoItem === etapaAtual);
     item.classList.toggle('concluido', etapaDoItem < etapaAtual);
@@ -42,7 +63,8 @@ function atualizarProgresso() {
 }
 
 function podeAvancar() {
-  if (etapaAtual === 0) {
+  const passo = etapas()[etapaAtual];
+  if (passo === 'atributos') {
     if (!ficha.nome.trim()) {
       mostrarErro('Preencha o nome do personagem.');
       return false;
@@ -54,7 +76,7 @@ function podeAvancar() {
     }
     return true;
   }
-  if (etapaAtual === 1) {
+  if (passo === 'raca') {
     const raca = racaSelecionada();
     if (!raca) {
       mostrarErro('Selecione uma raça.');
@@ -70,7 +92,7 @@ function podeAvancar() {
     }
     return true;
   }
-  if (etapaAtual === 2) {
+  if (passo === 'classe') {
     const classe = classeSelecionada();
     if (!classe) {
       mostrarErro('Selecione uma classe.');
@@ -82,7 +104,15 @@ function podeAvancar() {
     }
     return true;
   }
-  return true; // etapas seguintes validadas nas próximas tasks
+  if (passo === 'magias') {
+    const { limiteCantrips, limiteNivel1, cantripsEscolhidos, nivel1Escolhidas } = infoEscolhaMagias();
+    if (cantripsEscolhidos.length !== limiteCantrips || nivel1Escolhidas.length !== limiteNivel1) {
+      mostrarErro(`Escolha exatamente ${limiteCantrips} cantrip(s) e ${limiteNivel1} magia(s) de 1º círculo.`);
+      return false;
+    }
+    return true;
+  }
+  return true; // etapa resumo não exige validação de avanço
 }
 
 const NOMES_ATRIBUTOS = {
@@ -275,6 +305,78 @@ function renderEtapaClasse() {
   });
 }
 
+function infoEscolhaMagias() {
+  const classe = classeSelecionada();
+  const infoMagias = classe.magias;
+  const atributos = atributosFinais();
+  const modConjuracao = Calculo.modificador(atributos[classe.atributoConjuracao]);
+
+  const limiteCantrips = infoMagias.cantripsConhecidos;
+  const limiteNivel1 = Calculo.quantidadeMagiasNivel1(infoMagias, modConjuracao);
+
+  const cantripsDisponiveis = DADOS_MAGIAS.MAGIAS.filter(m => m.circulo === 0 && m.classes.includes(ficha.classe));
+  const nivel1Disponiveis = DADOS_MAGIAS.MAGIAS.filter(m => m.circulo === 1 && m.classes.includes(ficha.classe));
+
+  const cantripsEscolhidos = ficha.magiasEscolhidas.filter(nome => cantripsDisponiveis.some(m => m.nome === nome));
+  const nivel1Escolhidas = ficha.magiasEscolhidas.filter(nome => nivel1Disponiveis.some(m => m.nome === nome));
+
+  return { limiteCantrips, limiteNivel1, cantripsDisponiveis, nivel1Disponiveis, cantripsEscolhidos, nivel1Escolhidas };
+}
+
+function renderEtapaMagias() {
+  limparErro();
+  const { limiteCantrips, limiteNivel1, cantripsDisponiveis, nivel1Disponiveis, cantripsEscolhidos, nivel1Escolhidas } = infoEscolhaMagias();
+
+  function renderizarLista(lista, escolhidas) {
+    return lista.map(magia => {
+      const marcado = escolhidas.includes(magia.nome) ? 'checked' : '';
+      const detalhes = [magia.escola, magia.tempoConjuracao, magia.alcance, magia.duracao].join(' · ');
+      return `
+        <label class="opcao-magia">
+          <input type="checkbox" class="checkbox-magia" data-magia="${magia.nome}" ${marcado}>
+          <strong>${magia.nome}</strong>
+          <span class="detalhes-magia">${detalhes}</span>
+          <span class="descricao-opcao">${magia.descricao}</span>
+        </label>
+      `;
+    }).join('');
+  }
+
+  elementoConteudo.innerHTML = `
+    <h2>Magias</h2>
+    <p class="dado-vida">Cantrips (${cantripsEscolhidos.length}/${limiteCantrips} escolhidos)</p>
+    <div id="listaCantrips">${renderizarLista(cantripsDisponiveis, cantripsEscolhidos)}</div>
+    <p class="dado-vida">Magias de 1º Círculo (${nivel1Escolhidas.length}/${limiteNivel1} escolhidas)</p>
+    <div id="listaMagiasNivel1">${renderizarLista(nivel1Disponiveis, nivel1Escolhidas)}</div>
+  `;
+
+  function configurarCheckbox(container, disponiveis, limite) {
+    container.querySelectorAll('.checkbox-magia').forEach(input => {
+      input.addEventListener('change', () => {
+        const nomeMagia = input.dataset.magia;
+        const jaEscolhida = ficha.magiasEscolhidas.includes(nomeMagia);
+        const escolhidasDesseGrupo = ficha.magiasEscolhidas.filter(nome => disponiveis.some(m => m.nome === nome));
+        if (input.checked && !jaEscolhida) {
+          if (escolhidasDesseGrupo.length >= limite) {
+            input.checked = false;
+            mostrarErro(`Você já escolheu o máximo de ${limite} para este grupo.`);
+            return;
+          }
+          ficha.magiasEscolhidas.push(nomeMagia);
+          limparErro();
+        } else if (!input.checked && jaEscolhida) {
+          ficha.magiasEscolhidas = ficha.magiasEscolhidas.filter(nome => nome !== nomeMagia);
+          limparErro();
+        }
+        renderEtapaMagias();
+      });
+    });
+  }
+
+  configurarCheckbox(document.getElementById('listaCantrips'), cantripsDisponiveis, limiteCantrips);
+  configurarCheckbox(document.getElementById('listaMagiasNivel1'), nivel1Disponiveis, limiteNivel1);
+}
+
 function atributosFinais() {
   const raca = racaSelecionada();
   const resultado = { ...ficha.atributosBase };
@@ -338,6 +440,7 @@ function construirFichaFinal() {
     testesResistencia,
     tracosRaciais: raca.tracos,
     habilidadesClasse: classe.habilidades.filter(h => h.nivel <= 1),
+    magiasConhecidas: ficha.magiasEscolhidas.map(nome => DADOS_MAGIAS.MAGIAS.find(m => m.nome === nome)),
     historia: ficha.historia.trim(),
     caracteristicasFisicas: ficha.caracteristicasFisicas.trim()
   };
@@ -430,13 +533,18 @@ function baixarFicha() {
 
 function renderEtapaAtual() {
   limparErro();
-  if (etapaAtual === 0) renderEtapaAtributos();
-  if (etapaAtual === 1) renderEtapaRaca();
-  if (etapaAtual === 2) renderEtapaClasse();
-  if (etapaAtual === 3) renderEtapaResumo();
+  renderizarListaProgresso();
 
+  const passo = etapas()[etapaAtual];
+  if (passo === 'atributos') renderEtapaAtributos();
+  if (passo === 'raca') renderEtapaRaca();
+  if (passo === 'classe') renderEtapaClasse();
+  if (passo === 'magias') renderEtapaMagias();
+  if (passo === 'resumo') renderEtapaResumo();
+
+  const ultimaEtapa = etapas().length - 1;
   botaoVoltar.disabled = etapaAtual === 0;
-  botaoAvancar.textContent = etapaAtual === 3 ? 'Baixar minha ficha' : 'Avançar';
+  botaoAvancar.textContent = etapaAtual === ultimaEtapa ? 'Baixar minha ficha' : 'Avançar';
   atualizarProgresso();
 }
 
@@ -449,7 +557,8 @@ botaoVoltar.addEventListener('click', () => {
 
 botaoAvancar.addEventListener('click', () => {
   if (!podeAvancar()) return;
-  if (etapaAtual < 3) {
+  const ultimaEtapa = etapas().length - 1;
+  if (etapaAtual < ultimaEtapa) {
     etapaAtual += 1;
     renderEtapaAtual();
   } else {
