@@ -113,6 +113,8 @@ public record ImportarPersonagemRequisicao(
     List<HabilidadeClasse>? HabilidadesClasse = null,
     List<MagiaPersonagem>? MagiasConhecidas = null);
 
+public record AtualizarStatusSideQuestRequisicao(string Status);
+
 public record AtributosMonstro(int Forca, int Destreza, int Constituicao, int Inteligencia, int Sabedoria, int Carisma);
 
 public record AcaoMonstro(

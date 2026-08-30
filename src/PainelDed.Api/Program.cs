@@ -141,6 +141,18 @@ app.MapPost("/api/campanhas/{campanhaId}/personagens/importar", (string campanha
     return personagem is null ? Results.NotFound() : Results.Ok(personagem);
 });
 
+app.MapPost("/api/campanhas/{campanhaId}/personagens/{personagemId}/side-quest/sortear", (string campanhaId, string personagemId, ServicoPersonagens servico) =>
+{
+    var personagem = servico.SortearSideQuest(campanhaId, personagemId);
+    return personagem is null ? Results.NotFound() : Results.Ok(personagem);
+});
+
+app.MapPut("/api/campanhas/{campanhaId}/personagens/{personagemId}/side-quest/status", (string campanhaId, string personagemId, AtualizarStatusSideQuestRequisicao requisicao, ServicoPersonagens servico) =>
+{
+    var personagem = servico.AtualizarStatusSideQuest(campanhaId, personagemId, requisicao.Status);
+    return personagem is null ? Results.NotFound() : Results.Ok(personagem);
+});
+
 app.Run();
 
 public partial class Program { }
