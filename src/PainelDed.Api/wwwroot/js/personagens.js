@@ -252,6 +252,39 @@ const Personagens = {
       detalhe.appendChild(listaHabilidades);
     }
 
+    if (personagem.magiasConhecidas && personagem.magiasConhecidas.length > 0) {
+      const tituloMagias = document.createElement('h4');
+      tituloMagias.textContent = 'Magias';
+      detalhe.appendChild(tituloMagias);
+
+      const criarListaMagias = (titulo, magias) => {
+        if (magias.length === 0) return;
+        const subtitulo = document.createElement('h5');
+        subtitulo.textContent = titulo;
+        detalhe.appendChild(subtitulo);
+
+        const lista = document.createElement('ul');
+        lista.className = 'lista-pericias-ficha';
+        magias.forEach((magia) => {
+          const item = document.createElement('li');
+          const negrito = document.createElement('strong');
+          negrito.textContent = `${magia.nome}: `;
+          item.appendChild(negrito);
+
+          const partesEfeito = [magia.escola, magia.alcance, magia.duracao];
+          if (magia.dano) partesEfeito.push(magia.dano);
+          if (magia.testeResistencia) partesEfeito.push(`Resistência: ${magia.testeResistencia}`);
+          item.appendChild(document.createTextNode(partesEfeito.join(' · ')));
+
+          lista.appendChild(item);
+        });
+        detalhe.appendChild(lista);
+      };
+
+      criarListaMagias('Cantrips', personagem.magiasConhecidas.filter((m) => m.circulo === 0));
+      criarListaMagias('Magias de 1º Círculo', personagem.magiasConhecidas.filter((m) => m.circulo === 1));
+    }
+
     if (personagem.historia) {
       const tituloHistoria = document.createElement('h4');
       tituloHistoria.textContent = 'História';
