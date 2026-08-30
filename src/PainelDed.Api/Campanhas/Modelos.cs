@@ -39,6 +39,8 @@ public record NovaEntradaHistoricoRequisicao(string Descricao);
 
 public record RascunhoQuest(string TituloSugerido, string DescricaoSugerida, int XpSugerido, string RecompensaSugerida);
 
+public record DesafioGuilda(string Titulo, string Descricao, string Dificuldade);
+
 public record AtributosPersonagem(
     int Forca,
     int Destreza,
