@@ -125,4 +125,10 @@ const Api = {
     if (!resposta.ok) throw new Error('Falha ao importar personagem');
     return resposta.json();
   },
+
+  async listarMonstrosCombate() {
+    const resposta = await fetch('/api/monstros-combate');
+    if (!resposta.ok) throw new Error('Falha ao listar monstros');
+    return resposta.json();
+  },
 };

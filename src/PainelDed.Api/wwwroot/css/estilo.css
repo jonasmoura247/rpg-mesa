@@ -694,6 +694,12 @@ body {
   align-items: start;
 }
 
+.setup-combate {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
 .lista-personagens {
   display: flex;
   flex-direction: column;

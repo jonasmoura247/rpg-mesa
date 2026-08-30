@@ -196,6 +196,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await Rolador.recarregarHistorico();
 
   document.getElementById('botao-quadro-quests').addEventListener('click', () => Quests.exibir());
+  document.getElementById('botao-combate').addEventListener('click', () => Combate.exibir());
   document.getElementById('botao-jogadores').addEventListener('click', () => Personagens.exibir());
 
   document.addEventListener('campanha-trocada', () => {
