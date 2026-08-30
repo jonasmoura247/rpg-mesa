@@ -287,6 +287,7 @@ const Combate = {
     });
 
     botaoAplicar.addEventListener('click', () => {
+      botaoAplicar.disabled = true; // evita aplicar o mesmo dano duas vezes num clique duplo
       const dano = Number(campoDano.value) || 0;
       this.aplicarDano(alvo, dano);
       this.estado.log.push(`${atacante.nome} acertou ${alvo.nome} com ${acao.nome} (${dano} dano)`);
@@ -343,6 +344,7 @@ const Combate = {
     });
 
     botaoAplicar.addEventListener('click', () => {
+      botaoAplicar.disabled = true; // evita aplicar o mesmo dano duas vezes num clique duplo
       const dano = Number(campoDano.value) || 0;
       if (dano > 0) {
         this.aplicarDano(alvo, dano);
