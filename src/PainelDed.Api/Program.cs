@@ -20,6 +20,8 @@ builder.Services.AddSingleton<ServicoGeradorIdeiaQuest>();
 builder.Services.AddSingleton(RepositorioDesafiosGuilda.CarregarDeArquivo(
     LocalizadorConteudoGuilda.Localizar(builder.Environment.ContentRootPath)));
 builder.Services.AddSingleton<ServicoGeradorDesafiosGuilda>();
+builder.Services.AddSingleton(RepositorioMonstrosCombate.CarregarDePasta(
+    LocalizadorConteudoMonstrosCombate.Localizar(builder.Environment.ContentRootPath)));
 builder.Services.AddSingleton<ServicoPersonagens>();
 
 var app = builder.Build();
@@ -38,6 +40,9 @@ app.MapGet("/api/conteudo/{secao}/{*idNota}", (string secao, string idNota, Repo
     var nota = repositorio.ObterNota(secao, idNota);
     return nota is null ? Results.NotFound() : Results.Ok(nota);
 });
+
+app.MapGet("/api/monstros-combate", (RepositorioMonstrosCombate repositorio) =>
+    Results.Ok(repositorio.Todos));
 
 app.MapPost("/api/rolar/{secao}/{*idNota}", (string secao, string idNota, [FromQuery] string tabela, ServicoRolagem servico) =>
 {
