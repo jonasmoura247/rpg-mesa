@@ -126,12 +126,14 @@ function renderEtapaAtributos() {
 
   const linhasAtributos = Object.keys(NOMES_ATRIBUTOS).map(chave => {
     const valor = ficha.atributosBase[chave];
+    const custoIncremento = valor < DADOS.ATRIBUTO_MAXIMO ? DADOS.CUSTO_POINT_BUY[valor + 1] - DADOS.CUSTO_POINT_BUY[valor] : Infinity;
+    const semPontosParaIncrementar = custoIncremento > pontosRestantes;
     return `
       <div class="linha-atributo">
         <span class="nome-atributo">${NOMES_ATRIBUTOS[chave]}</span>
         <button type="button" class="botao-passo" data-atributo="${chave}" data-delta="-1" ${valor <= DADOS.ATRIBUTO_MINIMO ? 'disabled' : ''}>−</button>
         <span class="valor-atributo">${valor}</span>
-        <button type="button" class="botao-passo" data-atributo="${chave}" data-delta="1" ${valor >= DADOS.ATRIBUTO_MAXIMO ? 'disabled' : ''}>+</button>
+        <button type="button" class="botao-passo" data-atributo="${chave}" data-delta="1" ${valor >= DADOS.ATRIBUTO_MAXIMO || semPontosParaIncrementar ? 'disabled' : ''}>+</button>
       </div>`;
   }).join('');
 
@@ -158,6 +160,11 @@ function renderEtapaAtributos() {
       const delta = Number(botao.dataset.delta);
       const novoValor = ficha.atributosBase[atributo] + delta;
       if (novoValor < DADOS.ATRIBUTO_MINIMO || novoValor > DADOS.ATRIBUTO_MAXIMO) return;
+      if (delta > 0) {
+        const restantesAtuais = Calculo.pontosRestantes(ficha.atributosBase, DADOS.CUSTO_POINT_BUY, DADOS.ORCAMENTO_PONTOS);
+        const custoIncremento = DADOS.CUSTO_POINT_BUY[novoValor] - DADOS.CUSTO_POINT_BUY[ficha.atributosBase[atributo]];
+        if (custoIncremento > restantesAtuais) return;
+      }
       ficha.atributosBase[atributo] = novoValor;
       renderEtapaAtributos();
     });
