@@ -1,12 +1,18 @@
+using PainelDed.Nucleo.Rolagem;
+
 namespace PainelDed.Api.Campanhas;
 
 public class ServicoPersonagens
 {
     private readonly RepositorioCampanhas _repositorio;
+    private readonly RepositorioSideQuests _repositorioSideQuests;
+    private readonly IDado _dado;
 
-    public ServicoPersonagens(RepositorioCampanhas repositorio)
+    public ServicoPersonagens(RepositorioCampanhas repositorio, RepositorioSideQuests repositorioSideQuests, IDado dado)
     {
         _repositorio = repositorio;
+        _repositorioSideQuests = repositorioSideQuests;
+        _dado = dado;
     }
 
     public List<Personagem>? Listar(string campanhaId)
@@ -63,5 +69,59 @@ public class ServicoPersonagens
 
         _repositorio.SalvarEstado(campanhaId, estado with { Personagens = personagens });
         return personagem;
+    }
+
+    public Personagem? SortearSideQuest(string campanhaId, string personagemId)
+    {
+        var estado = _repositorio.CarregarEstado(campanhaId);
+        if (estado is null)
+        {
+            return null;
+        }
+
+        var personagens = estado.Personagens ?? new List<Personagem>();
+        var existente = personagens.FirstOrDefault(p => p.Id == personagemId);
+        if (existente is null)
+        {
+            return null;
+        }
+
+        var itens = _repositorioSideQuests.Todos;
+        var escolhido = itens[_dado.Rolar($"1d{itens.Count}") - 1];
+        var xp = _dado.Rolar("1d6") * 5;
+
+        var atualizado = existente with
+        {
+            SideQuestAtual = new SideQuestPersonagem(escolhido.Titulo, escolhido.Descricao, xp, "pendente")
+        };
+
+        personagens[personagens.IndexOf(existente)] = atualizado;
+        _repositorio.SalvarEstado(campanhaId, estado with { Personagens = personagens });
+        return atualizado;
+    }
+
+    public Personagem? AtualizarStatusSideQuest(string campanhaId, string personagemId, string novoStatus)
+    {
+        var estado = _repositorio.CarregarEstado(campanhaId);
+        if (estado is null)
+        {
+            return null;
+        }
+
+        var personagens = estado.Personagens ?? new List<Personagem>();
+        var existente = personagens.FirstOrDefault(p => p.Id == personagemId);
+        if (existente is null || existente.SideQuestAtual is null)
+        {
+            return null;
+        }
+
+        var atualizado = existente with
+        {
+            SideQuestAtual = existente.SideQuestAtual with { Status = novoStatus }
+        };
+
+        personagens[personagens.IndexOf(existente)] = atualizado;
+        _repositorio.SalvarEstado(campanhaId, estado with { Personagens = personagens });
+        return atualizado;
     }
 }

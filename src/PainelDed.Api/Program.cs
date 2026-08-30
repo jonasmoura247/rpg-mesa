@@ -22,6 +22,8 @@ builder.Services.AddSingleton(RepositorioDesafiosGuilda.CarregarDeArquivo(
 builder.Services.AddSingleton<ServicoGeradorDesafiosGuilda>();
 builder.Services.AddSingleton(RepositorioMonstrosCombate.CarregarDePasta(
     LocalizadorConteudoMonstrosCombate.Localizar(builder.Environment.ContentRootPath)));
+builder.Services.AddSingleton(RepositorioSideQuests.CarregarDeArquivo(
+    LocalizadorConteudoSideQuests.Localizar(builder.Environment.ContentRootPath)));
 builder.Services.AddSingleton<ServicoPersonagens>();
 
 var app = builder.Build();

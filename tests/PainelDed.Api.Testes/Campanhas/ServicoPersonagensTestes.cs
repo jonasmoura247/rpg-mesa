@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using PainelDed.Api.Campanhas;
+using PainelDed.Api.Testes.Rolagem;
+using PainelDed.Nucleo.Rolagem;
 using Xunit;
 
 namespace PainelDed.Api.Testes.Campanhas;
@@ -10,6 +12,8 @@ public class ServicoPersonagensTestes : IDisposable
 {
     private readonly string _pastaTemporaria;
     private readonly RepositorioCampanhas _repositorio;
+    private readonly RepositorioSideQuests _repositorioSideQuests;
+    private readonly IDado _dado;
     private readonly ServicoPersonagens _servico;
     private readonly string _campanhaId;
 
@@ -17,7 +21,16 @@ public class ServicoPersonagensTestes : IDisposable
     {
         _pastaTemporaria = Path.Combine(Path.GetTempPath(), "painel-ded-servico-personagens-" + Guid.NewGuid());
         _repositorio = new RepositorioCampanhas(_pastaTemporaria);
-        _servico = new ServicoPersonagens(_repositorio);
+
+        var arquivoSideQuests = Path.Combine(_pastaTemporaria, "side-quests.json");
+        Directory.CreateDirectory(_pastaTemporaria);
+        File.WriteAllText(arquivoSideQuests,
+            "[{\"titulo\":\"Pescar um peixe\",\"descricao\":\"Pesque um peixe fresco.\"}," +
+            "{\"titulo\":\"Enviar uma carta\",\"descricao\":\"Envie uma carta a alguem.\"}]");
+        _repositorioSideQuests = RepositorioSideQuests.CarregarDeArquivo(arquivoSideQuests);
+
+        _dado = new DadoFixo(1);
+        _servico = new ServicoPersonagens(_repositorio, _repositorioSideQuests, _dado);
         _campanhaId = _repositorio.Criar("Campanha de Teste").Id;
     }
 
@@ -226,5 +239,59 @@ public class ServicoPersonagensTestes : IDisposable
         Assert.Equal("Pescar um peixe", reimportado.SideQuestAtual!.Titulo);
         Assert.Equal("pendente", reimportado.SideQuestAtual.Status);
         Assert.Equal(12, reimportado.Pv);
+    }
+
+    [Fact]
+    public void SortearSideQuest_ComPersonagemExistente_AtribuiItemDoCatalogoComStatusPendente()
+    {
+        var criado = _servico.Importar(_campanhaId, RequisicaoDeExemplo())!;
+
+        var atualizado = _servico.SortearSideQuest(_campanhaId, criado.Id);
+
+        Assert.NotNull(atualizado);
+        Assert.NotNull(atualizado!.SideQuestAtual);
+        Assert.Equal("Pescar um peixe", atualizado.SideQuestAtual!.Titulo); // DadoFixo(1) -> índice 0
+        Assert.Equal("Pesque um peixe fresco.", atualizado.SideQuestAtual.Descricao);
+        Assert.Equal("pendente", atualizado.SideQuestAtual.Status);
+        Assert.True(atualizado.SideQuestAtual.XpSugerido > 0);
+    }
+
+    [Fact]
+    public void SortearSideQuest_ComCampanhaInexistente_RetornaNulo()
+    {
+        Assert.Null(_servico.SortearSideQuest("nao-existe", "qualquer-id"));
+    }
+
+    [Fact]
+    public void SortearSideQuest_ComPersonagemInexistente_RetornaNulo()
+    {
+        Assert.Null(_servico.SortearSideQuest(_campanhaId, "nao-existe"));
+    }
+
+    [Fact]
+    public void AtualizarStatusSideQuest_ComSideQuestPendente_MudaSoOStatus()
+    {
+        var criado = _servico.Importar(_campanhaId, RequisicaoDeExemplo())!;
+        _servico.SortearSideQuest(_campanhaId, criado.Id);
+
+        var atualizado = _servico.AtualizarStatusSideQuest(_campanhaId, criado.Id, "concluida");
+
+        Assert.NotNull(atualizado);
+        Assert.Equal("concluida", atualizado!.SideQuestAtual!.Status);
+        Assert.Equal("Pescar um peixe", atualizado.SideQuestAtual.Titulo); // título/descrição/XP preservados
+    }
+
+    [Fact]
+    public void AtualizarStatusSideQuest_SemSideQuestAtiva_RetornaNulo()
+    {
+        var criado = _servico.Importar(_campanhaId, RequisicaoDeExemplo())!;
+
+        Assert.Null(_servico.AtualizarStatusSideQuest(_campanhaId, criado.Id, "concluida"));
+    }
+
+    [Fact]
+    public void AtualizarStatusSideQuest_ComPersonagemInexistente_RetornaNulo()
+    {
+        Assert.Null(_servico.AtualizarStatusSideQuest(_campanhaId, "nao-existe", "concluida"));
     }
 }
