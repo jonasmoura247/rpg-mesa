@@ -1,0 +1,446 @@
+[
+  {
+    "nome": "Cocatriz",
+    "cd": "1/2",
+    "ca": 11,
+    "pv": 27,
+    "dadoDeVida": "6d6+6",
+    "deslocamento": "6 m, voo 12 m",
+    "atributos": { "forca": -2, "destreza": 1, "constituicao": 1, "inteligencia": -4, "sabedoria": 1, "carisma": -3 },
+    "acoes": [
+      { "nome": "Bicada", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+1 perfurante" }
+    ]
+  },
+  {
+    "nome": "Esqueleto de Cavalo de Guerra",
+    "cd": "1/2",
+    "ca": 13,
+    "pv": 22,
+    "dadoDeVida": "3d10+6",
+    "deslocamento": "18 m",
+    "atributos": { "forca": 4, "destreza": 1, "constituicao": 2, "inteligencia": -4, "sabedoria": -1, "carisma": -3 },
+    "acoes": [
+      { "nome": "Cascos", "tipo": "ataque", "bonusAcerto": 6, "atributoResistencia": null, "cdResistencia": null, "dano": "2d6+4 concussão" }
+    ]
+  },
+  {
+    "nome": "Esporo de Gás",
+    "cd": "1/2",
+    "ca": 5,
+    "pv": 1,
+    "dadoDeVida": "1d10-4",
+    "deslocamento": "0 m, voo 3 m (planar)",
+    "atributos": { "forca": -3, "destreza": -5, "constituicao": -4, "inteligencia": -5, "sabedoria": -5, "carisma": -5 },
+    "acoes": [
+      { "nome": "Explosão da Morte", "tipo": "resistencia", "bonusAcerto": null, "atributoResistencia": "constituicao", "cdResistencia": 15, "dano": "3d6 veneno" }
+    ]
+  },
+  {
+    "nome": "Gnoll",
+    "cd": "1/2",
+    "ca": 15,
+    "pv": 22,
+    "dadoDeVida": "5d8",
+    "deslocamento": "9 m",
+    "atributos": { "forca": 2, "destreza": 1, "constituicao": 0, "inteligencia": -2, "sabedoria": 0, "carisma": -2 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+2 perfurante" },
+      { "nome": "Lança", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 perfurante" },
+      { "nome": "Arco Longo", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d8+1 perfurante" }
+    ]
+  },
+  {
+    "nome": "Gnomo das Profundezas (Svirfneblin)",
+    "cd": "1/2",
+    "ca": 15,
+    "pv": 16,
+    "dadoDeVida": "3d6+6",
+    "deslocamento": "6 m",
+    "atributos": { "forca": 2, "destreza": 2, "constituicao": 2, "inteligencia": 1, "sabedoria": 0, "carisma": -1 },
+    "acoes": [
+      { "nome": "Picareta de Guerra", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d8+2 perfurante" },
+      { "nome": "Dardo Envenenado", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+2 perfurante" }
+    ]
+  },
+  {
+    "nome": "Hobgoblin Capitão",
+    "cd": "1/2",
+    "ca": 17,
+    "pv": 39,
+    "dadoDeVida": "6d8+12",
+    "deslocamento": "9 m",
+    "atributos": { "forca": 2, "destreza": 2, "constituicao": 2, "inteligencia": 1, "sabedoria": 0, "carisma": 1 },
+    "acoes": [
+      { "nome": "Espada Grande", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "2d6+2 cortante" },
+      { "nome": "Azagaia", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 perfurante" }
+    ]
+  },
+  {
+    "nome": "Hobgoblin",
+    "cd": "1/2",
+    "ca": 18,
+    "pv": 11,
+    "dadoDeVida": "2d8+2",
+    "deslocamento": "9 m",
+    "atributos": { "forca": 1, "destreza": 1, "constituicao": 1, "inteligencia": 0, "sabedoria": 0, "carisma": -1 },
+    "acoes": [
+      { "nome": "Espada Longa", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d8+1 cortante" },
+      { "nome": "Arco Longo", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d8+1 perfurante" }
+    ]
+  },
+  {
+    "nome": "Homem-Chacal",
+    "cd": "1/2",
+    "ca": 12,
+    "pv": 18,
+    "dadoDeVida": "4d8",
+    "deslocamento": "12 m",
+    "atributos": { "forca": 0, "destreza": 2, "constituicao": 0, "inteligencia": 1, "sabedoria": 0, "carisma": 0 },
+    "acoes": [
+      { "nome": "Mordida (Apenas nas Formas de Chacal e Híbrida)", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+2 perfurante" },
+      { "nome": "Cimitarra (Apenas nas Formas de Humana e Híbrida)", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 cortante" },
+      { "nome": "Olhar Adormecente", "tipo": "resistencia", "bonusAcerto": null, "atributoResistencia": "sabedoria", "cdResistencia": 10, "dano": null }
+    ]
+  },
+  {
+    "nome": "Limo Cinzento",
+    "cd": "1/2",
+    "ca": 8,
+    "pv": 22,
+    "dadoDeVida": "3d8+9",
+    "deslocamento": "3 m, escalada 3 m",
+    "atributos": { "forca": 1, "destreza": -2, "constituicao": 3, "inteligencia": -5, "sabedoria": -2, "carisma": -4 },
+    "acoes": [
+      { "nome": "Pseudópode", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+1 concussão + 2d6 ácido" }
+    ]
+  },
+  {
+    "nome": "Magmin",
+    "cd": "1/2",
+    "ca": 14,
+    "pv": 9,
+    "dadoDeVida": "2d6+2",
+    "deslocamento": "9 m",
+    "atributos": { "forca": -2, "destreza": 2, "constituicao": 1, "inteligencia": -1, "sabedoria": 0, "carisma": 0 },
+    "acoes": [
+      { "nome": "Toque", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "2d6 fogo" }
+    ]
+  },
+  {
+    "nome": "Manto Negro",
+    "cd": "1/2",
+    "ca": 11,
+    "pv": 22,
+    "dadoDeVida": "5d6+5",
+    "deslocamento": "3 m, voo 9 m",
+    "atributos": { "forca": 3, "destreza": 1, "constituicao": 1, "inteligencia": -4, "sabedoria": 0, "carisma": -3 },
+    "acoes": [
+      { "nome": "Esmagar", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+3 concussão" }
+    ]
+  },
+  {
+    "nome": "Mephit do Gelo",
+    "cd": "1/2",
+    "ca": 11,
+    "pv": 21,
+    "dadoDeVida": "6d6",
+    "deslocamento": "9 m, voo 9 m",
+    "atributos": { "forca": -2, "destreza": 1, "constituicao": 0, "inteligencia": -1, "sabedoria": 0, "carisma": 1 },
+    "acoes": [
+      { "nome": "Garras", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+1 cortante + 1d4 frio" },
+      { "nome": "Sopro Congelante", "tipo": "resistencia", "bonusAcerto": null, "atributoResistencia": "destreza", "cdResistencia": 10, "dano": "1d8 fogo" }
+    ]
+  },
+  {
+    "nome": "Mephit da Poeira",
+    "cd": "1/2",
+    "ca": 12,
+    "pv": 17,
+    "dadoDeVida": "5d6",
+    "deslocamento": "9 m, voo 9 m",
+    "atributos": { "forca": -3, "destreza": 2, "constituicao": 0, "inteligencia": -1, "sabedoria": 0, "carisma": 0 },
+    "acoes": [
+      { "nome": "Garras", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+2 cortante" },
+      { "nome": "Sopro Cegante", "tipo": "resistencia", "bonusAcerto": null, "atributoResistencia": "destreza", "cdResistencia": 10, "dano": null }
+    ]
+  },
+  {
+    "nome": "Mephit do Magma",
+    "cd": "1/2",
+    "ca": 11,
+    "pv": 22,
+    "dadoDeVida": "5d6+5",
+    "deslocamento": "9 m, voo 9 m",
+    "atributos": { "forca": -1, "destreza": 1, "constituicao": 1, "inteligencia": -2, "sabedoria": 0, "carisma": 0 },
+    "acoes": [
+      { "nome": "Garras", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+1 cortante + 1d4 fogo" },
+      { "nome": "Sopro Flamejante", "tipo": "resistencia", "bonusAcerto": null, "atributoResistencia": "destreza", "cdResistencia": 11, "dano": "2d6 fogo" }
+    ]
+  },
+  {
+    "nome": "Miconide Adulto",
+    "cd": "1/2",
+    "ca": 12,
+    "pv": 22,
+    "dadoDeVida": "4d8+4",
+    "deslocamento": "6 m",
+    "atributos": { "forca": 0, "destreza": 0, "constituicao": 1, "inteligencia": 0, "sabedoria": 1, "carisma": -2 },
+    "acoes": [
+      { "nome": "Punho", "tipo": "ataque", "bonusAcerto": 2, "atributoResistencia": null, "cdResistencia": null, "dano": "2d4 concussão + 2d4 veneno" }
+    ]
+  },
+  {
+    "nome": "Tridrone",
+    "cd": "1/2",
+    "ca": 15,
+    "pv": 16,
+    "dadoDeVida": "3d8+3",
+    "deslocamento": "9 m",
+    "atributos": { "forca": 1, "destreza": 1, "constituicao": 1, "inteligencia": -1, "sabedoria": 0, "carisma": -1 },
+    "acoes": [
+      { "nome": "Punho", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+1 concussão" },
+      { "nome": "Azagaia", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+1 perfurante" }
+    ]
+  },
+  {
+    "nome": "Monstro da Ferrugem",
+    "cd": "1/2",
+    "ca": 14,
+    "pv": 27,
+    "dadoDeVida": "5d8+5",
+    "deslocamento": "12 m",
+    "atributos": { "forca": 1, "destreza": 1, "constituicao": 1, "inteligencia": -4, "sabedoria": 1, "carisma": -2 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d8+1 perfurante" },
+      { "nome": "Antenas", "tipo": "resistencia", "bonusAcerto": null, "atributoResistencia": "destreza", "cdResistencia": 11, "dano": null }
+    ]
+  },
+  {
+    "nome": "Orc",
+    "cd": "1/2",
+    "ca": 13,
+    "pv": 15,
+    "dadoDeVida": "2d8+6",
+    "deslocamento": "9 m",
+    "atributos": { "forca": 3, "destreza": 1, "constituicao": 3, "inteligencia": -2, "sabedoria": 0, "carisma": 0 },
+    "acoes": [
+      { "nome": "Machado Grande", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "1d12+3 cortante" },
+      { "nome": "Azagaia", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+3 perfurante" }
+    ]
+  },
+  {
+    "nome": "Perfurador",
+    "cd": "1/2",
+    "ca": 15,
+    "pv": 22,
+    "dadoDeVida": "3d8+9",
+    "deslocamento": "1,5 m, escalada 1,5 m",
+    "atributos": { "forca": 0, "destreza": 1, "constituicao": 3, "inteligencia": -5, "sabedoria": -2, "carisma": -4 },
+    "acoes": [
+      { "nome": "Queda", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6 perfurante por 3m de queda, até 6d6" }
+    ]
+  },
+  {
+    "nome": "Povo Lagarto",
+    "cd": "1/2",
+    "ca": 15,
+    "pv": 22,
+    "dadoDeVida": "4d8+4",
+    "deslocamento": "9 m, natação 9 m",
+    "atributos": { "forca": 2, "destreza": 0, "constituicao": 1, "inteligencia": -2, "sabedoria": 1, "carisma": -2 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 perfurante" },
+      { "nome": "Clava Pesada", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 concussão" },
+      { "nome": "Azagaia", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 perfurante" },
+      { "nome": "Escudo com Cravos", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 perfurante" }
+    ]
+  },
+  {
+    "nome": "Sahuagin",
+    "cd": "1/2",
+    "ca": 12,
+    "pv": 22,
+    "dadoDeVida": "4d8+4",
+    "deslocamento": "9 m, natação 12 m",
+    "atributos": { "forca": 1, "destreza": 0, "constituicao": 1, "inteligencia": 1, "sabedoria": 1, "carisma": -1 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+1 perfurante" },
+      { "nome": "Garras", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+1 cortante" },
+      { "nome": "Lança", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+1 perfurante" }
+    ]
+  },
+  {
+    "nome": "Sátiro",
+    "cd": "1/2",
+    "ca": 14,
+    "pv": 31,
+    "dadoDeVida": "7d8",
+    "deslocamento": "12 m",
+    "atributos": { "forca": 1, "destreza": 3, "constituicao": 0, "inteligencia": 1, "sabedoria": 0, "carisma": 2 },
+    "acoes": [
+      { "nome": "Cabeçada", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "2d4+1 concussão" },
+      { "nome": "Espada Curta", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+3 perfurante" },
+      { "nome": "Arco Curto", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+3 perfurante" }
+    ]
+  },
+  {
+    "nome": "Sombra",
+    "cd": "1/2",
+    "ca": 12,
+    "pv": 16,
+    "dadoDeVida": "3d8+3",
+    "deslocamento": "12 m",
+    "atributos": { "forca": -2, "destreza": 2, "constituicao": 1, "inteligencia": -2, "sabedoria": 0, "carisma": -1 },
+    "acoes": [
+      { "nome": "Drenar Força", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "2d6+2 necrótico" }
+    ]
+  },
+  {
+    "nome": "Cão da Morte",
+    "cd": "1/2",
+    "ca": 12,
+    "pv": 39,
+    "dadoDeVida": "6d8+12",
+    "deslocamento": "12 m",
+    "atributos": { "forca": 2, "destreza": 2, "constituicao": 2, "inteligencia": -4, "sabedoria": 1, "carisma": -2 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 perfurante" }
+    ]
+  },
+  {
+    "nome": "Cavalo de Guerra",
+    "cd": "1/2",
+    "ca": 11,
+    "pv": 19,
+    "dadoDeVida": "3d10+3",
+    "deslocamento": "18 m",
+    "atributos": { "forca": 4, "destreza": 1, "constituicao": 1, "inteligencia": -4, "sabedoria": 1, "carisma": -2 },
+    "acoes": [
+      { "nome": "Cascos", "tipo": "ataque", "bonusAcerto": 6, "atributoResistencia": null, "cdResistencia": null, "dano": "2d6+4 concussão" }
+    ]
+  },
+  {
+    "nome": "Cavalo Marinho Gigante",
+    "cd": "1/2",
+    "ca": 13,
+    "pv": 16,
+    "dadoDeVida": "3d10",
+    "deslocamento": "0 m, natação 12 m",
+    "atributos": { "forca": 1, "destreza": 2, "constituicao": 0, "inteligencia": -4, "sabedoria": 1, "carisma": -3 },
+    "acoes": [
+      { "nome": "Cabeçada", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+1 concussão" }
+    ]
+  },
+  {
+    "nome": "Crocodilo",
+    "cd": "1/2",
+    "ca": 12,
+    "pv": 19,
+    "dadoDeVida": "3d10+3",
+    "deslocamento": "6 m, natação 9 m",
+    "atributos": { "forca": 2, "destreza": 0, "constituicao": 1, "inteligencia": -4, "sabedoria": 0, "carisma": -3 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d10+2 perfurante" }
+    ]
+  },
+  {
+    "nome": "Enxame de Insetos",
+    "cd": "1/2",
+    "ca": 12,
+    "pv": 22,
+    "dadoDeVida": "5d8",
+    "deslocamento": "6 m, escalada 6 m",
+    "atributos": { "forca": -4, "destreza": 1, "constituicao": 0, "inteligencia": -5, "sabedoria": -2, "carisma": -5 },
+    "acoes": [
+      { "nome": "Mordidas", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "2d4 perfurante" }
+    ]
+  },
+  {
+    "nome": "Gorila",
+    "cd": "1/2",
+    "ca": 12,
+    "pv": 19,
+    "dadoDeVida": "3d8+6",
+    "deslocamento": "9 m, escalada 9 m",
+    "atributos": { "forca": 3, "destreza": 2, "constituicao": 1, "inteligencia": -2, "sabedoria": 1, "carisma": -2 },
+    "acoes": [
+      { "nome": "Punho", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+3 concussão" },
+      { "nome": "Rocha", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+3 concussão" }
+    ]
+  },
+  {
+    "nome": "Tubarão dos Arrecifes",
+    "cd": "1/2",
+    "ca": 12,
+    "pv": 22,
+    "dadoDeVida": "4d8+4",
+    "deslocamento": "0 m, natação 12 m",
+    "atributos": { "forca": 2, "destreza": 1, "constituicao": 1, "inteligencia": -5, "sabedoria": 0, "carisma": -3 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d8+2 perfurante" }
+    ]
+  },
+  {
+    "nome": "Urso Negro",
+    "cd": "1/2",
+    "ca": 11,
+    "pv": 19,
+    "dadoDeVida": "3d8+6",
+    "deslocamento": "12 m, escalada 9 m",
+    "atributos": { "forca": 2, "destreza": 0, "constituicao": 2, "inteligencia": -4, "sabedoria": 1, "carisma": -2 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 perfurante" },
+      { "nome": "Garras", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "2d4+2 cortante" }
+    ]
+  },
+  {
+    "nome": "Vespa Gigante",
+    "cd": "1/2",
+    "ca": 12,
+    "pv": 13,
+    "dadoDeVida": "3d8",
+    "deslocamento": "3 m, voo 15 m",
+    "atributos": { "forca": 0, "destreza": 2, "constituicao": 9, "inteligencia": -5, "sabedoria": 0, "carisma": -4 },
+    "acoes": [
+      { "nome": "Ferrão", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 perfurante" }
+    ]
+  },
+  {
+    "nome": "Worg",
+    "cd": "1/2",
+    "ca": 13,
+    "pv": 26,
+    "dadoDeVida": "4d10+4",
+    "deslocamento": "15 m",
+    "atributos": { "forca": 3, "destreza": 1, "constituicao": 1, "inteligencia": -2, "sabedoria": 0, "carisma": -1 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "2d6+3 perfurante" }
+    ]
+  },
+  {
+    "nome": "Batedor",
+    "cd": "1/2",
+    "ca": 13,
+    "pv": 16,
+    "dadoDeVida": "3d8+3",
+    "deslocamento": "9 m",
+    "atributos": { "forca": 0, "destreza": 2, "constituicao": 1, "inteligencia": 0, "sabedoria": 1, "carisma": 0 },
+    "acoes": [
+      { "nome": "Espada Curta", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 perfurante" },
+      { "nome": "Arco Longo", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d8+2 perfurante" }
+    ]
+  },
+  {
+    "nome": "Rufião",
+    "cd": "1/2",
+    "ca": 11,
+    "pv": 32,
+    "dadoDeVida": "5d8+10",
+    "deslocamento": "9 m",
+    "atributos": { "forca": 2, "destreza": 0, "constituicao": 2, "inteligencia": 0, "sabedoria": 0, "carisma": 0 },
+    "acoes": [
+      { "nome": "Maça", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 concussão" },
+      { "nome": "Besta Pesada", "tipo": "ataque", "bonusAcerto": 2, "atributoResistencia": null, "cdResistencia": null, "dano": "1d10 perfurante" }
+    ]
+  }
+]
