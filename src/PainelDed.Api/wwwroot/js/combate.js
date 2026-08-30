@@ -72,22 +72,31 @@ const Combate = {
       seletorMonstro.appendChild(opcao);
     });
 
+    const campoIniciativa = document.createElement('label');
+    campoIniciativa.className = 'campo-iniciativa-combate';
+    const checkboxIniciativa = document.createElement('input');
+    checkboxIniciativa.type = 'checkbox';
+    checkboxIniciativa.checked = true; // jogador começa por padrão
+    campoIniciativa.appendChild(checkboxIniciativa);
+    campoIniciativa.appendChild(document.createTextNode(' Jogador ataca primeiro (desmarque se o monstro começa)'));
+
     const botaoIniciar = document.createElement('button');
     botaoIniciar.className = 'botao-rolar';
     botaoIniciar.textContent = 'Iniciar combate';
     botaoIniciar.addEventListener('click', async () => {
       const personagemEscolhido = personagens.find((p) => p.id === seletorPersonagem.value);
       const monstroEscolhido = monstros[Number(seletorMonstro.value)];
-      await this.iniciarCombate(personagemEscolhido, monstroEscolhido);
+      await this.iniciarCombate(personagemEscolhido, monstroEscolhido, checkboxIniciativa.checked);
     });
 
     formulario.appendChild(seletorPersonagem);
     formulario.appendChild(seletorMonstro);
+    formulario.appendChild(campoIniciativa);
     formulario.appendChild(botaoIniciar);
     area.appendChild(formulario);
   },
 
-  async iniciarCombate(personagem, monstro) {
+  async iniciarCombate(personagem, monstro, jogadorComeca) {
     this.estado = {
       // atributos do jogador vêm da ficha como valores BRUTOS (ex: Sabedoria 13),
       // diferente do banco de monstros, que já guarda MODIFICADORES prontos — por
@@ -95,7 +104,7 @@ const Combate = {
       // com modificador em ambos os lados (this.modificadorAtributos faz a conversão).
       jogador: { nome: personagem.nome, ca: personagem.ca, pvMax: personagem.pv, pv: personagem.pv, ataques: this.acoesDoJogador(personagem), atributos: this.modificadorAtributos(personagem.atributos), cdMagia: personagem.cdMagia },
       monstro: { nome: monstro.nome, ca: monstro.ca, pvMax: monstro.pv, pv: monstro.pv, atributos: monstro.atributos, acoes: monstro.acoes },
-      turnoDoJogador: true,
+      turnoDoJogador: jogadorComeca,
       log: [],
       terminado: false,
     };
