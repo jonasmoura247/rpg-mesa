@@ -1,0 +1,293 @@
+[
+  {
+    "nome": "Manes",
+    "cd": "1/8",
+    "ca": 9,
+    "pv": 9,
+    "dadoDeVida": "2d6+2",
+    "deslocamento": "6 m",
+    "atributos": { "forca": 0, "destreza": -1, "constituicao": 1, "inteligencia": -4, "sabedoria": -1, "carisma": -3 },
+    "acoes": [
+      { "nome": "Garras", "tipo": "ataque", "bonusAcerto": 2, "atributoResistencia": null, "cdResistencia": null, "dano": "2d4 cortante" }
+    ]
+  },
+  {
+    "nome": "Flumph",
+    "cd": "1/8",
+    "ca": 12,
+    "pv": 7,
+    "dadoDeVida": "2d6",
+    "deslocamento": "1,5 m, voo 9 m",
+    "atributos": { "forca": -2, "destreza": 2, "constituicao": 0, "inteligencia": 2, "sabedoria": 2, "carisma": 0 },
+    "acoes": [
+      { "nome": "Gavinhas", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+2 perfurante mais 1d4 ácido" }
+    ]
+  },
+  {
+    "nome": "Galho Infectado",
+    "cd": "1/8",
+    "ca": 13,
+    "pv": 4,
+    "dadoDeVida": "1d6+1",
+    "deslocamento": "6 m",
+    "atributos": { "forca": -2, "destreza": 1, "constituicao": 1, "inteligencia": -3, "sabedoria": -1, "carisma": -4 },
+    "acoes": [
+      { "nome": "Garras", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+1 perfurante" }
+    ]
+  },
+  {
+    "nome": "Kobold Alado",
+    "cd": "1/8",
+    "ca": 12,
+    "pv": 5,
+    "dadoDeVida": "2d6-2",
+    "deslocamento": "9 m",
+    "atributos": { "forca": -2, "destreza": 2, "constituicao": -1, "inteligencia": -1, "sabedoria": -2, "carisma": -1 },
+    "acoes": [
+      { "nome": "Adaga", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+2 perfurante" },
+      { "nome": "Funda", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+2 concussão" }
+    ]
+  },
+  {
+    "nome": "Monodrone",
+    "cd": "1/8",
+    "ca": 15,
+    "pv": 5,
+    "dadoDeVida": "1d8+1",
+    "deslocamento": "9 m, voo 9 m",
+    "atributos": { "forca": 0, "destreza": 1, "constituicao": 1, "inteligencia": -3, "sabedoria": 0, "carisma": -3 },
+    "acoes": [
+      { "nome": "Adaga", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+1 perfurante" },
+      { "nome": "Azagaia", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+1 perfurante" }
+    ]
+  },
+  {
+    "nome": "Povo do Mar",
+    "cd": "1/8",
+    "ca": 11,
+    "pv": 11,
+    "dadoDeVida": "2d8+2",
+    "deslocamento": "3 m, natação 12 m",
+    "atributos": { "forca": 0, "destreza": 1, "constituicao": 1, "inteligencia": 0, "sabedoria": 0, "carisma": 1 },
+    "acoes": [
+      { "nome": "Lança", "tipo": "ataque", "bonusAcerto": 2, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6 perfurante (1d8 se usada com duas mãos)" }
+    ]
+  },
+  {
+    "nome": "Larva Slaad",
+    "cd": "1/8",
+    "ca": 12,
+    "pv": 10,
+    "dadoDeVida": "4d4",
+    "deslocamento": "9 m",
+    "atributos": { "forca": -2, "destreza": 2, "constituicao": 0, "inteligencia": -4, "sabedoria": -3, "carisma": -4 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+2 perfurante" }
+    ]
+  },
+  {
+    "nome": "Stirge",
+    "cd": "1/8",
+    "ca": 14,
+    "pv": 2,
+    "dadoDeVida": "1d4",
+    "deslocamento": "3 m, voo 12 m",
+    "atributos": { "forca": -3, "destreza": 3, "constituicao": 0, "inteligencia": -4, "sabedoria": -1, "carisma": -2 },
+    "acoes": [
+      { "nome": "Drenar Sangue", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+3 perfurante" }
+    ]
+  },
+  {
+    "nome": "Arminho Gigante",
+    "cd": "1/8",
+    "ca": 13,
+    "pv": 9,
+    "dadoDeVida": "2d8",
+    "deslocamento": "12 m",
+    "atributos": { "forca": 0, "destreza": 3, "constituicao": 0, "inteligencia": -3, "sabedoria": 1, "carisma": -3 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+3 perfurante" }
+    ]
+  },
+  {
+    "nome": "Camelo",
+    "cd": "1/8",
+    "ca": 9,
+    "pv": 15,
+    "dadoDeVida": "2d10+4",
+    "deslocamento": "15 m",
+    "atributos": { "forca": 3, "destreza": -1, "constituicao": 2, "inteligencia": -4, "sabedoria": -1, "carisma": -3 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4 concussão" }
+    ]
+  },
+  {
+    "nome": "Caranguejo",
+    "cd": "1/8",
+    "ca": 11,
+    "pv": 2,
+    "dadoDeVida": "1d4",
+    "deslocamento": "6 m, natação 6 m",
+    "atributos": { "forca": -4, "destreza": 0, "constituicao": 0, "inteligencia": -5, "sabedoria": -1, "carisma": -4 },
+    "acoes": [
+      { "nome": "Garra", "tipo": "ataque", "bonusAcerto": 0, "atributoResistencia": null, "cdResistencia": null, "dano": "1 concussão" }
+    ]
+  },
+  {
+    "nome": "Cobra Voadora",
+    "cd": "1/8",
+    "ca": 14,
+    "pv": 5,
+    "dadoDeVida": "2d4",
+    "deslocamento": "9 m, natação 9 m, voo 18 m",
+    "atributos": { "forca": -3, "destreza": 4, "constituicao": 0, "inteligencia": -4, "sabedoria": 1, "carisma": -3 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 6, "atributoResistencia": null, "cdResistencia": null, "dano": "1 perfurante mais 3d4 veneno" }
+    ]
+  },
+  {
+    "nome": "Falcão de Sangue",
+    "cd": "1/8",
+    "ca": 12,
+    "pv": 7,
+    "dadoDeVida": "2d6",
+    "deslocamento": "3 m, voo 18 m",
+    "atributos": { "forca": -2, "destreza": 2, "constituicao": 0, "inteligencia": -4, "sabedoria": 2, "carisma": -3 },
+    "acoes": [
+      { "nome": "Bicada", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+2 perfurante" }
+    ]
+  },
+  {
+    "nome": "Gato",
+    "cd": "1/8",
+    "ca": 12,
+    "pv": 2,
+    "dadoDeVida": "1d4",
+    "deslocamento": "12 m, escalada 9 m",
+    "atributos": { "forca": -4, "destreza": 2, "constituicao": 0, "inteligencia": -4, "sabedoria": 1, "carisma": -2 },
+    "acoes": [
+      { "nome": "Garras", "tipo": "ataque", "bonusAcerto": 0, "atributoResistencia": null, "cdResistencia": null, "dano": "1 cortante" }
+    ]
+  },
+  {
+    "nome": "Mastim",
+    "cd": "1/8",
+    "ca": 12,
+    "pv": 5,
+    "dadoDeVida": "1d8+1",
+    "deslocamento": "12 m",
+    "atributos": { "forca": 1, "destreza": 2, "constituicao": 1, "inteligencia": -4, "sabedoria": 1, "carisma": -2 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 perfurante" }
+    ]
+  },
+  {
+    "nome": "Piranha",
+    "cd": "1/8",
+    "ca": 13,
+    "pv": 1,
+    "dadoDeVida": "1d4-1",
+    "deslocamento": "0 m, natação 12 m",
+    "atributos": { "forca": -4, "destreza": 3, "constituicao": -1, "inteligencia": -5, "sabedoria": -2, "carisma": -4 },
+    "acoes": [
+      { "nome": "Mordidas", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "1 perfurante" }
+    ]
+  },
+  {
+    "nome": "Pônei",
+    "cd": "1/8",
+    "ca": 10,
+    "pv": 11,
+    "dadoDeVida": "2d8+2",
+    "deslocamento": "12 m",
+    "atributos": { "forca": 2, "destreza": 0, "constituicao": 1, "inteligencia": -4, "sabedoria": 0, "carisma": -2 },
+    "acoes": [
+      { "nome": "Cascos", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "2d4+2 concussão" }
+    ]
+  },
+  {
+    "nome": "Rato Gigante",
+    "cd": "1/8",
+    "ca": 12,
+    "pv": 7,
+    "dadoDeVida": "2d6",
+    "deslocamento": "9 m",
+    "atributos": { "forca": -2, "destreza": 2, "constituicao": 0, "inteligencia": -4, "sabedoria": 0, "carisma": -3 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+2 perfurante" }
+    ]
+  },
+  {
+    "nome": "Serpente Venenosa",
+    "cd": "1/8",
+    "ca": 13,
+    "pv": 2,
+    "dadoDeVida": "1d4",
+    "deslocamento": "9 m, natação 9 m",
+    "atributos": { "forca": -4, "destreza": 3, "constituicao": 0, "inteligencia": -5, "sabedoria": 0, "carisma": -3 },
+    "acoes": [
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "1 perfurante mais 2d4 veneno" }
+    ]
+  },
+  {
+    "nome": "Bandido",
+    "cd": "1/8",
+    "ca": 12,
+    "pv": 11,
+    "dadoDeVida": "2d8+2",
+    "deslocamento": "9 m",
+    "atributos": { "forca": 0, "destreza": 1, "constituicao": 1, "inteligencia": 0, "sabedoria": 0, "carisma": 0 },
+    "acoes": [
+      { "nome": "Cimitarra", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+1 cortante" },
+      { "nome": "Besta Leve", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d8+1 perfurante" }
+    ]
+  },
+  {
+    "nome": "Cultista",
+    "cd": "1/8",
+    "ca": 12,
+    "pv": 9,
+    "dadoDeVida": "2d8",
+    "deslocamento": "9 m",
+    "atributos": { "forca": 0, "destreza": 1, "constituicao": 0, "inteligencia": 0, "sabedoria": 0, "carisma": 0 },
+    "acoes": [
+      { "nome": "Cimitarra", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+1 cortante" }
+    ]
+  },
+  {
+    "nome": "Guarda",
+    "cd": "1/8",
+    "ca": 16,
+    "pv": 11,
+    "dadoDeVida": "2d8+2",
+    "deslocamento": "9 m",
+    "atributos": { "forca": 1, "destreza": 1, "constituicao": 1, "inteligencia": 0, "sabedoria": 0, "carisma": 0 },
+    "acoes": [
+      { "nome": "Lança", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+1 perfurante (1d8+1 se duas mãos)" }
+    ]
+  },
+  {
+    "nome": "Guerreiro Tribal",
+    "cd": "1/8",
+    "ca": 12,
+    "pv": 11,
+    "dadoDeVida": "2d8+2",
+    "deslocamento": "9 m",
+    "atributos": { "forca": 1, "destreza": 0, "constituicao": 1, "inteligencia": -1, "sabedoria": 0, "carisma": -1 },
+    "acoes": [
+      { "nome": "Lança", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+1 perfurante (1d8+1 se duas mãos)" }
+    ]
+  },
+  {
+    "nome": "Nobre",
+    "cd": "1/8",
+    "ca": 15,
+    "pv": 9,
+    "dadoDeVida": "2d8",
+    "deslocamento": "9 m",
+    "atributos": { "forca": 0, "destreza": 1, "constituicao": 0, "inteligencia": 1, "sabedoria": 2, "carisma": 3 },
+    "acoes": [
+      { "nome": "Rapieira", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d8+1 perfurante" }
+    ]
+  }
+]
