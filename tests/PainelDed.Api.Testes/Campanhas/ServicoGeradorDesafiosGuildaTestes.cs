@@ -143,4 +143,30 @@ public class ServicoGeradorDesafiosGuildaTestes
 
         Assert.Equal(2, rascunhos.Count);
     }
+
+    [Fact]
+    public void SortearTres_ComBancoDeApenasUmDesafio_RetornaSoUmSemLancarExcecao()
+    {
+        var caminhoTemporario = Path.GetTempFileName();
+        File.WriteAllText(caminhoTemporario, """
+        [
+          {"titulo":"Único","descricao":"desc","dificuldade":"facil"}
+        ]
+        """);
+        var repositorio = RepositorioDesafiosGuilda.CarregarDeArquivo(caminhoTemporario);
+        File.Delete(caminhoTemporario);
+
+        // Pool de 1 -> quantidade = min(3,1) = 1. Não há "1d1" válido (IDado exige >=2
+        // lados), então o serviço pega o índice 0 direto, sem rolar dado pra escolher
+        // índice — só os 2 rolls de recompensa (XP, PO) do único item.
+        var dado = new DadoSequencia(6, 10);
+        var servico = new ServicoGeradorDesafiosGuilda(repositorio, dado);
+
+        var rascunhos = servico.SortearTres();
+
+        Assert.Single(rascunhos);
+        Assert.Equal("Único", rascunhos[0].TituloSugerido);
+        Assert.Equal(60, rascunhos[0].XpSugerido); // 1d6=6 * 10
+        Assert.Equal("50 PO", rascunhos[0].RecompensaSugerida); // 1d10=10 * 5
+    }
 }

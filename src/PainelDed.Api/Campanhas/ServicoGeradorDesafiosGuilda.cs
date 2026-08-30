@@ -22,7 +22,9 @@ public class ServicoGeradorDesafiosGuilda
         var indicesEscolhidos = new List<int>();
         while (indicesEscolhidos.Count < quantidade)
         {
-            var indice = _dado.Rolar($"1d{desafios.Count}") - 1;
+            // "1dN" exige N >= 2 (IDado.Rolar lança ArgumentException pra "1d1") — com
+            // banco de exatamente 1 item não há o que sortear, então pega o índice 0 direto.
+            var indice = desafios.Count == 1 ? 0 : _dado.Rolar($"1d{desafios.Count}") - 1;
             if (!indicesEscolhidos.Contains(indice))
             {
                 indicesEscolhidos.Add(indice);
