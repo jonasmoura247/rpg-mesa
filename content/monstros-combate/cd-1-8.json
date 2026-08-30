@@ -122,15 +122,15 @@
     ]
   },
   {
-    "nome": "Caranguejo",
+    "nome": "Caranguejo Gigante",
     "cd": "1/8",
-    "ca": 11,
-    "pv": 2,
-    "dadoDeVida": "1d4",
-    "deslocamento": "6 m, natação 6 m",
-    "atributos": { "forca": -4, "destreza": 0, "constituicao": 0, "inteligencia": -5, "sabedoria": -1, "carisma": -4 },
+    "ca": 15,
+    "pv": 13,
+    "dadoDeVida": "3d8",
+    "deslocamento": "9 m, natação 9 m",
+    "atributos": { "forca": 1, "destreza": 2, "constituicao": 0, "inteligencia": -5, "sabedoria": -1, "carisma": -4 },
     "acoes": [
-      { "nome": "Garra", "tipo": "ataque", "bonusAcerto": 0, "atributoResistencia": null, "cdResistencia": null, "dano": "1 concussão" }
+      { "nome": "Garra", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+1 concussão" }
     ]
   },
   {
