@@ -23,6 +23,12 @@ const Quests = {
     botaoNova.addEventListener('click', () => this.abrirFormulario());
     cabecalho.appendChild(botaoNova);
 
+    const botaoSortearGuilda = document.createElement('button');
+    botaoSortearGuilda.className = 'botao-rolar';
+    botaoSortearGuilda.textContent = '🎲 Sortear Desafios da Guilda';
+    botaoSortearGuilda.addEventListener('click', () => this.abrirSorteioDesafiosGuilda());
+    cabecalho.appendChild(botaoSortearGuilda);
+
     principal.appendChild(cabecalho);
 
     const mural = document.createElement('div');
@@ -271,6 +277,108 @@ const Quests = {
     modal.appendChild(acoes);
     fundo.appendChild(modal);
     document.body.appendChild(fundo);
+  },
+
+  async abrirSorteioDesafiosGuilda() {
+    let rascunhos;
+    try {
+      rascunhos = await Api.sortearDesafiosGuilda(Campanha.ativa.id);
+    } catch (erro) {
+      console.error(erro);
+      window.alert('Falha ao sortear desafios da guilda.');
+      return;
+    }
+
+    const fundo = document.createElement('div');
+    fundo.className = 'fundo-modal';
+
+    const modal = document.createElement('div');
+    modal.className = 'modal-formulario modal-sorteio-guilda';
+
+    const titulo = document.createElement('h3');
+    titulo.textContent = '🎲 Desafios da Guilda';
+    modal.appendChild(titulo);
+
+    const grade = document.createElement('div');
+    grade.className = 'grade-sorteio-guilda';
+    modal.appendChild(grade);
+
+    rascunhos.forEach((rascunho) => {
+      const card = this.criarCardRascunhoGuilda(rascunho, () => {
+        grade.removeChild(card);
+        if (grade.children.length === 0) {
+          document.body.removeChild(fundo);
+        }
+      });
+      grade.appendChild(card);
+    });
+
+    const botaoFechar = document.createElement('button');
+    botaoFechar.className = 'botao-secundario';
+    botaoFechar.textContent = 'Fechar';
+    botaoFechar.addEventListener('click', () => document.body.removeChild(fundo));
+    modal.appendChild(botaoFechar);
+
+    fundo.appendChild(modal);
+    document.body.appendChild(fundo);
+  },
+
+  criarCardRascunhoGuilda(rascunho, aoRemover) {
+    const card = document.createElement('div');
+    card.className = 'card-rascunho-guilda';
+
+    const campoTitulo = criarCampoTexto('Título', rascunho.tituloSugerido);
+    const campoDescricao = criarCampoTextarea('Descrição', rascunho.descricaoSugerida);
+    const campoXp = criarCampoTexto('XP sugerido', rascunho.xpSugerido);
+    const campoRecompensa = criarCampoTexto('Recompensa', rascunho.recompensaSugerida);
+    const campoSemana = criarCampoTexto('Semana', '1');
+
+    [campoTitulo, campoDescricao, campoXp, campoRecompensa, campoSemana].forEach((campo) =>
+      card.appendChild(campo.container),
+    );
+
+    const acoes = document.createElement('div');
+    acoes.className = 'acoes-modal';
+
+    const botaoSalvar = document.createElement('button');
+    botaoSalvar.className = 'botao-rolar';
+    botaoSalvar.textContent = 'Salvar';
+    botaoSalvar.addEventListener('click', async () => {
+      const dados = {
+        titulo: campoTitulo.entrada.value.trim(),
+        descricao: campoDescricao.entrada.value.trim(),
+        recompensa: campoRecompensa.entrada.value.trim(),
+        xpSugerido: parseInt(campoXp.entrada.value, 10) || 0,
+        semana: parseInt(campoSemana.entrada.value, 10) || 1,
+        responsavel: null,
+      };
+
+      if (!dados.titulo) {
+        window.alert('Título é obrigatório.');
+        return;
+      }
+
+      try {
+        await Api.criarQuest(Campanha.ativa.id, dados);
+      } catch (erro) {
+        console.error(erro);
+        window.alert('Falha ao salvar o desafio.');
+        return;
+      }
+
+      aoRemover();
+      await this.recarregar();
+    });
+    acoes.appendChild(botaoSalvar);
+
+    const botaoDescartar = document.createElement('button');
+    botaoDescartar.className = 'botao-secundario';
+    botaoDescartar.textContent = 'Descartar';
+    botaoDescartar.addEventListener('click', () => aoRemover());
+    acoes.appendChild(botaoDescartar);
+
+    card.appendChild(acoes);
+    return card;
   },
 };
 

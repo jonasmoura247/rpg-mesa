@@ -77,6 +77,12 @@ const Api = {
     return resposta.json();
   },
 
+  async sortearDesafiosGuilda(campanhaId) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/quests/sortear-desafios-guilda`, { method: 'POST' });
+    if (!resposta.ok) throw new Error('Falha ao sortear desafios da guilda');
+    return resposta.json();
+  },
+
   async listarHistorico(campanhaId) {
     const resposta = await fetch(`/api/campanhas/${campanhaId}/historico`);
     if (!resposta.ok) throw new Error('Falha ao carregar histórico');

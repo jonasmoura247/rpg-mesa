@@ -670,6 +670,23 @@ body {
   margin-top: 1rem;
 }
 
+.modal-sorteio-guilda {
+  max-width: 60rem;
+}
+
+.grade-sorteio-guilda {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-rascunho-guilda {
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  padding: 0.9rem;
+}
+
 .layout-jogadores {
   display: grid;
   grid-template-columns: 260px 1fr;
