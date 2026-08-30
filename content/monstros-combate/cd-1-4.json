@@ -173,7 +173,7 @@
     "deslocamento": "6 m, natação 6 m, voo 6 m",
     "atributos": { "forca": -1, "destreza": 1, "constituicao": 1, "inteligencia": -1, "sabedoria": 0, "carisma": -2 },
     "acoes": [
-      { "nome": "Garras", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+1 cortante + 1d4 fogo" }
+      { "nome": "Punhos", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+1 concussão" }
     ]
   },
   {
