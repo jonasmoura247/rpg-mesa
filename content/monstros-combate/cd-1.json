@@ -383,16 +383,16 @@
     ]
   },
   {
-    "nome": "Urso Polar",
+    "nome": "Urso Marrom",
     "cd": "1",
-    "ca": 12,
-    "pv": 42,
-    "dadoDeVida": "5d10+15",
-    "deslocamento": "12 m, natação 9 m",
-    "atributos": { "forca": 5, "destreza": 0, "constituicao": 3, "inteligencia": -4, "sabedoria": 1, "carisma": -2 },
+    "ca": 11,
+    "pv": 34,
+    "dadoDeVida": "4d10+12",
+    "deslocamento": "12 m, escalada 9 m",
+    "atributos": { "forca": 4, "destreza": 0, "constituicao": 3, "inteligencia": -4, "sabedoria": 1, "carisma": -2 },
     "acoes": [
-      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 7, "atributoResistencia": null, "cdResistencia": null, "dano": "1d8+5 perfurante" },
-      { "nome": "Garras", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "2d6+5 cortante" }
+      { "nome": "Mordida", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "1d8+4 perfurante" },
+      { "nome": "Garras", "tipo": "ataque", "bonusAcerto": 5, "atributoResistencia": null, "cdResistencia": null, "dano": "2d6+4 cortante" }
     ]
   },
   {
