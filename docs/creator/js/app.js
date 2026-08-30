@@ -257,8 +257,10 @@ function renderEtapaClasse() {
     const listaPericias = classe.todasPericias ? DADOS.PERICIAS.map(p => p.nome) : classe.periciasElegiveis;
     const itens = listaPericias.map(nomePericia => {
       const marcado = ficha.periciasEscolhidas.includes(nomePericia);
+      const pericia = DADOS.PERICIAS.find(p => p.nome === nomePericia);
+      const descricao = pericia && pericia.descricao ? pericia.descricao : '';
       return `
-        <label class="item-pericia">
+        <label class="item-pericia" data-tooltip="${descricao.replace(/"/g, '&quot;')}">
           <input type="checkbox" class="checkbox-pericia" value="${nomePericia}" ${marcado ? 'checked' : ''}>
           ${nomePericia}
         </label>`;

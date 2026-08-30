@@ -1,23 +1,23 @@
 (function (raiz) {
   const PERICIAS = [
-    { nome: 'Atletismo', atributo: 'forca' },
-    { nome: 'Acrobacia', atributo: 'destreza' },
-    { nome: 'Furtividade', atributo: 'destreza' },
-    { nome: 'Prestidigitacao', atributo: 'destreza' },
-    { nome: 'Arcanismo', atributo: 'inteligencia' },
-    { nome: 'Historia', atributo: 'inteligencia' },
-    { nome: 'Investigacao', atributo: 'inteligencia' },
-    { nome: 'Natureza', atributo: 'inteligencia' },
-    { nome: 'Religiao', atributo: 'inteligencia' },
-    { nome: 'Adestramento', atributo: 'sabedoria' },
-    { nome: 'Intuicao', atributo: 'sabedoria' },
-    { nome: 'Medicina', atributo: 'sabedoria' },
-    { nome: 'Percepcao', atributo: 'sabedoria' },
-    { nome: 'Sobrevivencia', atributo: 'sabedoria' },
-    { nome: 'Atuacao', atributo: 'carisma' },
-    { nome: 'Engano', atributo: 'carisma' },
-    { nome: 'Intimidacao', atributo: 'carisma' },
-    { nome: 'Persuasao', atributo: 'carisma' }
+    { nome: 'Atletismo', atributo: 'forca', descricao: 'Escalar, saltar, nadar e outras proezas físicas de força.' },
+    { nome: 'Acrobacia', atributo: 'destreza', descricao: 'Manter o equilíbrio e sair de situações fisicamente complicadas com agilidade.' },
+    { nome: 'Furtividade', atributo: 'destreza', descricao: 'Esconder-se e se mover sem ser visto ou ouvido.' },
+    { nome: 'Prestidigitacao', atributo: 'destreza', descricao: 'Trapaças manuais, roubar bolsos, esconder objetos e outros truques com as mãos.' },
+    { nome: 'Arcanismo', atributo: 'inteligencia', descricao: 'Conhecimento sobre magia, itens mágicos e planos de existência.' },
+    { nome: 'Historia', atributo: 'inteligencia', descricao: 'Conhecimento sobre eventos históricos, povos, reinos e guerras passadas.' },
+    { nome: 'Investigacao', atributo: 'inteligencia', descricao: 'Deduzir pistas, encontrar detalhes escondidos e juntar informações.' },
+    { nome: 'Natureza', atributo: 'inteligencia', descricao: 'Conhecimento sobre terrenos, plantas, animais e o clima.' },
+    { nome: 'Religiao', atributo: 'inteligencia', descricao: 'Conhecimento sobre deuses, ritos, símbolos sagrados e práticas religiosas.' },
+    { nome: 'Adestramento', atributo: 'sabedoria', descricao: 'Acalmar, treinar e entender o comportamento de animais.' },
+    { nome: 'Intuicao', atributo: 'sabedoria', descricao: 'Perceber as reais intenções de alguém e detectar mentiras pelo comportamento.' },
+    { nome: 'Medicina', atributo: 'sabedoria', descricao: 'Estabilizar feridos, diagnosticar doenças e identificar causas de morte.' },
+    { nome: 'Percepcao', atributo: 'sabedoria', descricao: 'Notar detalhes, perigos e coisas escondidas ao redor.' },
+    { nome: 'Sobrevivencia', atributo: 'sabedoria', descricao: 'Rastrear, encontrar comida e água, e se orientar em ambientes selvagens.' },
+    { nome: 'Atuacao', atributo: 'carisma', descricao: 'Entreter uma plateia com música, dança, atuação ou contação de histórias.' },
+    { nome: 'Engano', atributo: 'carisma', descricao: 'Mentir de forma convincente e disfarçar suas verdadeiras intenções.' },
+    { nome: 'Intimidacao', atributo: 'carisma', descricao: 'Influenciar alguém através de ameaças, hostilidade ou força de vontade.' },
+    { nome: 'Persuasao', atributo: 'carisma', descricao: 'Convencer alguém através de tato, boas maneiras ou bons argumentos.' }
   ];
 
   const CUSTO_POINT_BUY = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 };

@@ -194,6 +194,37 @@ input[type="checkbox"] {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
+  position: relative;
+  cursor: help;
+}
+
+.item-pericia[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 0.4rem);
+  left: 0;
+  z-index: 10;
+  width: max-content;
+  max-width: 220px;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--cor-destaque);
+  border-radius: 6px;
+  background: var(--cor-fundo-elevado);
+  color: var(--cor-texto);
+  font-size: 0.8rem;
+  line-height: 1.35;
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.item-pericia[data-tooltip]:hover::after,
+.item-pericia[data-tooltip]:focus-within::after {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .opcao-magia {
