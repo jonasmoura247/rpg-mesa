@@ -111,3 +111,23 @@ public record ImportarPersonagemRequisicao(
     List<TracoPersonagem>? TracosRaciais = null,
     List<HabilidadeClasse>? HabilidadesClasse = null,
     List<MagiaPersonagem>? MagiasConhecidas = null);
+
+public record AtributosMonstro(int Forca, int Destreza, int Constituicao, int Inteligencia, int Sabedoria, int Carisma);
+
+public record AcaoMonstro(
+    string Nome,
+    string Tipo,
+    int? BonusAcerto,
+    string? AtributoResistencia,
+    int? CdResistencia,
+    string? Dano);
+
+public record MonstroCombate(
+    string Nome,
+    string Cd,
+    int Ca,
+    int Pv,
+    string DadoDeVida,
+    string Deslocamento,
+    AtributosMonstro Atributos,
+    List<AcaoMonstro> Acoes);
