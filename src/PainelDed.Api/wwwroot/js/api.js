@@ -126,6 +126,22 @@ const Api = {
     return resposta.json();
   },
 
+  async sortearSideQuest(campanhaId, personagemId) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/personagens/${personagemId}/side-quest/sortear`, { method: 'POST' });
+    if (!resposta.ok) throw new Error('Falha ao sortear side quest');
+    return resposta.json();
+  },
+
+  async atualizarStatusSideQuest(campanhaId, personagemId, status) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/personagens/${personagemId}/side-quest/status`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status }),
+    });
+    if (!resposta.ok) throw new Error('Falha ao atualizar side quest');
+    return resposta.json();
+  },
+
   async listarMonstrosCombate() {
     const resposta = await fetch('/api/monstros-combate');
     if (!resposta.ok) throw new Error('Falha ao listar monstros');

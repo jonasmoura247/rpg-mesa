@@ -180,6 +180,12 @@ body {
   color: var(--cor-destaque);
 }
 
+.acoes-side-quest {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
 /* Árvore de navegação (details/summary por seção) */
 
 .grupo-secao {

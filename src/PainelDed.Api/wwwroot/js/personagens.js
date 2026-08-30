@@ -285,6 +285,84 @@ const Personagens = {
       criarListaMagias('Magias de 1º Círculo', personagem.magiasConhecidas.filter((m) => m.circulo === 1));
     }
 
+    const tituloSideQuest = document.createElement('h4');
+    tituloSideQuest.textContent = 'Side Quest';
+    detalhe.appendChild(tituloSideQuest);
+
+    const containerSideQuest = document.createElement('div');
+    containerSideQuest.className = 'side-quest-ficha';
+
+    if (personagem.sideQuestAtual && personagem.sideQuestAtual.status === 'pendente') {
+      const sq = personagem.sideQuestAtual;
+
+      const linhaTitulo = document.createElement('p');
+      const negrito = document.createElement('strong');
+      negrito.textContent = `${sq.titulo} `;
+      linhaTitulo.appendChild(negrito);
+      linhaTitulo.appendChild(document.createTextNode(`(XP sugerido: ${sq.xpSugerido})`));
+      containerSideQuest.appendChild(linhaTitulo);
+
+      const descricao = document.createElement('p');
+      descricao.className = 'texto-livre-ficha';
+      descricao.textContent = sq.descricao;
+      containerSideQuest.appendChild(descricao);
+
+      const acoes = document.createElement('div');
+      acoes.className = 'acoes-side-quest';
+
+      const botaoConcluir = document.createElement('button');
+      botaoConcluir.className = 'botao-rolar';
+      botaoConcluir.textContent = '✅ Concluída';
+      botaoConcluir.addEventListener('click', async () => {
+        botaoConcluir.disabled = true;
+        try {
+          await Api.atualizarStatusSideQuest(Campanha.ativa.id, personagem.id, 'concluida');
+        } catch (erro) {
+          console.error(erro);
+          window.alert('Falha ao atualizar a side quest.');
+          return;
+        }
+        await this.exibirDetalhe(personagem.id);
+      });
+      acoes.appendChild(botaoConcluir);
+
+      const botaoDescartar = document.createElement('button');
+      botaoDescartar.className = 'botao-secundario';
+      botaoDescartar.textContent = '❌ Descartar';
+      botaoDescartar.addEventListener('click', async () => {
+        botaoDescartar.disabled = true;
+        try {
+          await Api.atualizarStatusSideQuest(Campanha.ativa.id, personagem.id, 'descartada');
+        } catch (erro) {
+          console.error(erro);
+          window.alert('Falha ao atualizar a side quest.');
+          return;
+        }
+        await this.exibirDetalhe(personagem.id);
+      });
+      acoes.appendChild(botaoDescartar);
+
+      containerSideQuest.appendChild(acoes);
+    } else {
+      const botaoSortear = document.createElement('button');
+      botaoSortear.className = 'botao-rolar';
+      botaoSortear.textContent = '🎲 Sortear Side Quest';
+      botaoSortear.addEventListener('click', async () => {
+        botaoSortear.disabled = true;
+        try {
+          await Api.sortearSideQuest(Campanha.ativa.id, personagem.id);
+        } catch (erro) {
+          console.error(erro);
+          window.alert('Falha ao sortear side quest.');
+          return;
+        }
+        await this.exibirDetalhe(personagem.id);
+      });
+      containerSideQuest.appendChild(botaoSortear);
+    }
+
+    detalhe.appendChild(containerSideQuest);
+
     if (personagem.historia) {
       const tituloHistoria = document.createElement('h4');
       tituloHistoria.textContent = 'História';
