@@ -305,8 +305,8 @@
     "nome": "Alce Gigante", "cd": "2", "ca": 14, "pv": 42, "dadoDeVida": "5d12+10", "deslocamento": "18 m",
     "atributos": { "forca": 4, "destreza": 3, "constituicao": 2, "inteligencia": -2, "sabedoria": 2, "carisma": 0 },
     "acoes": [
-      { "nome": "Cabeçada", "tipo": "ataque", "bonusAcerto": 2, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+3 concussão" },
-      { "nome": "Cascos", "tipo": "ataque", "bonusAcerto": 2, "atributoResistencia": null, "cdResistencia": null, "dano": "2d4+3 concussão" }
+      { "nome": "Cabeçada", "tipo": "ataque", "bonusAcerto": 6, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+4 concussão" },
+      { "nome": "Cascos", "tipo": "ataque", "bonusAcerto": 6, "atributoResistencia": null, "cdResistencia": null, "dano": "2d4+4 concussão" }
     ]
   },
   {
