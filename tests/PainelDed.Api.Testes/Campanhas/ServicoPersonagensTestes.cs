@@ -200,4 +200,31 @@ public class ServicoPersonagensTestes : IDisposable
         Assert.Equal(2, personagem!.MagiasConhecidas!.Count);
         Assert.Equal("Orientação", personagem.MagiasConhecidas![0].Nome);
     }
+
+    [Fact]
+    public void Importar_ComPersonagemExistenteQueTemSideQuestAtiva_PreservaASideQuest()
+    {
+        // Regressão: ImportarPersonagemRequisicao não tem campo de side quest (o creator
+        // nunca produz isso, é gerenciado só pelo backend) — Importar precisa preservar
+        // a side quest do personagem existente ao reconstruir a ficha, senão reimportar
+        // (ex: depois de editar a ficha no creator) apaga silenciosamente a side quest ativa.
+        var original = _servico.Importar(_campanhaId, RequisicaoDeExemplo())!;
+
+        var estado = _repositorio.CarregarEstado(_campanhaId)!;
+        var personagens = estado.Personagens!;
+        var comSideQuest = original with
+        {
+            SideQuestAtual = new SideQuestPersonagem("Pescar um peixe", "Pesque um peixe fresco.", 10, "pendente")
+        };
+        personagens[personagens.IndexOf(personagens.Find(p => p.Id == original.Id)!)] = comSideQuest;
+        _repositorio.SalvarEstado(_campanhaId, estado with { Personagens = personagens });
+
+        var reimportado = _servico.Importar(_campanhaId, RequisicaoDeExemplo() with { Pv = 12 });
+
+        Assert.NotNull(reimportado);
+        Assert.NotNull(reimportado!.SideQuestAtual);
+        Assert.Equal("Pescar um peixe", reimportado.SideQuestAtual!.Titulo);
+        Assert.Equal("pendente", reimportado.SideQuestAtual.Status);
+        Assert.Equal(12, reimportado.Pv);
+    }
 }

@@ -49,7 +49,8 @@ public class ServicoPersonagens
             requisicao.TestesResistencia,
             requisicao.TracosRaciais,
             requisicao.HabilidadesClasse,
-            requisicao.MagiasConhecidas);
+            requisicao.MagiasConhecidas,
+            existente?.SideQuestAtual);
 
         if (existente is not null)
         {
