@@ -253,7 +253,7 @@ public class ServicoPersonagensTestes : IDisposable
         Assert.Equal("Pescar um peixe", atualizado.SideQuestAtual!.Titulo); // DadoFixo(1) -> índice 0
         Assert.Equal("Pesque um peixe fresco.", atualizado.SideQuestAtual.Descricao);
         Assert.Equal("pendente", atualizado.SideQuestAtual.Status);
-        Assert.True(atualizado.SideQuestAtual.XpSugerido > 0);
+        Assert.Equal(5, atualizado.SideQuestAtual.XpSugerido); // DadoFixo(1) -> 1d6=1 * 5
     }
 
     [Fact]
