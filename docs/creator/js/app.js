@@ -482,6 +482,19 @@ function renderEtapaResumo() {
     `<li>${NOMES_ATRIBUTOS[t.atributo]}${t.proficiente ? ' (proficiente)' : ''}: ${t.bonus >= 0 ? '+' : ''}${t.bonus}</li>`
   ).join('');
 
+  const blocoMagias = dadosFicha.magiasConhecidas.length ? `
+    <h3>Magias</h3>
+    <div class="lista-magias-resumo">
+      ${dadosFicha.magiasConhecidas.map(magia => `
+        <div class="opcao-magia">
+          <strong>${magia.nome}</strong> ${magia.circulo === 0 ? '(Cantrip)' : `(1º Círculo)`}
+          <span class="detalhes-magia">${[magia.escola, magia.tempoConjuracao, magia.alcance, magia.duracao].join(' · ')}</span>
+          <span class="descricao-opcao">${magia.descricao}</span>
+        </div>
+      `).join('')}
+    </div>
+  ` : '';
+
   elementoConteudo.innerHTML = `
     <h2>Resumo — ${escaparHtml(dadosFicha.nome)}</h2>
     <p>${dadosFicha.raca} · ${dadosFicha.classe} · Nível ${dadosFicha.nivel}</p>
@@ -497,6 +510,7 @@ function renderEtapaResumo() {
     <div class="destaques">${destaquesCombate.join('')}</div>
     <h3>Testes de Resistência</h3>
     <ul>${linhasResistencia}</ul>
+    ${blocoMagias}
     <div class="campo-texto-livre">
       <label for="campoHistoria">História (opcional)</label>
       <textarea id="campoHistoria" maxlength="1000" rows="4" placeholder="Uma breve história do personagem..."></textarea>
