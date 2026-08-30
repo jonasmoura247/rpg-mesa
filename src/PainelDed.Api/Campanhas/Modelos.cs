@@ -89,7 +89,8 @@ public record Personagem(
     List<TesteResistencia>? TestesResistencia = null,
     List<TracoPersonagem>? TracosRaciais = null,
     List<HabilidadeClasse>? HabilidadesClasse = null,
-    List<MagiaPersonagem>? MagiasConhecidas = null);
+    List<MagiaPersonagem>? MagiasConhecidas = null,
+    SideQuestPersonagem? SideQuestAtual = null);
 
 public record ImportarPersonagemRequisicao(
     string Nome,
@@ -131,3 +132,7 @@ public record MonstroCombate(
     string Deslocamento,
     AtributosMonstro Atributos,
     List<AcaoMonstro> Acoes);
+
+public record SideQuestCatalogo(string Titulo, string Descricao);
+
+public record SideQuestPersonagem(string Titulo, string Descricao, int XpSugerido, string Status);
