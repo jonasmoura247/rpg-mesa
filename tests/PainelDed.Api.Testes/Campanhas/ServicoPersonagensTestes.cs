@@ -179,4 +179,25 @@ public class ServicoPersonagensTestes : IDisposable
         Assert.Equal(2, personagem!.HabilidadesClasse!.Count);
         Assert.Equal("Especialização", personagem.HabilidadesClasse![0].Nome);
     }
+
+    [Fact]
+    public void Importar_ComMagiasConhecidas_PersisteAsMagias()
+    {
+        var requisicao = RequisicaoDeExemplo() with
+        {
+            MagiasConhecidas = new List<MagiaPersonagem>
+            {
+                new("Orientação", 0, "Adivinhação", "1 ação", "Toque", "Concentração, até 1 minuto", "V, S",
+                    "Toca uma criatura disposta; ela pode somar 1d4 a um teste de habilidade."),
+                new("Cura de Ferimentos", 1, "Evocação", "1 ação", "Toque", "Instantânea", "V, S",
+                    "Uma criatura tocada recupera pontos de vida."),
+            }
+        };
+
+        var personagem = _servico.Importar(_campanhaId, requisicao);
+
+        Assert.NotNull(personagem);
+        Assert.Equal(2, personagem!.MagiasConhecidas!.Count);
+        Assert.Equal("Orientação", personagem.MagiasConhecidas![0].Nome);
+    }
 }

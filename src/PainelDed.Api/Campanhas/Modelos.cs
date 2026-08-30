@@ -55,6 +55,18 @@ public record TracoPersonagem(string Nome, string Descricao);
 
 public record HabilidadeClasse(string Nome, int Nivel, string Descricao);
 
+public record MagiaPersonagem(
+    string Nome,
+    int Circulo,
+    string Escola,
+    string TempoConjuracao,
+    string Alcance,
+    string Duracao,
+    string Componentes,
+    string Descricao,
+    string? Dano = null,
+    string? TesteResistencia = null);
+
 public record Personagem(
     string Id,
     string Nome,
@@ -74,7 +86,8 @@ public record Personagem(
     int? BonusAtaqueMagico = null,
     List<TesteResistencia>? TestesResistencia = null,
     List<TracoPersonagem>? TracosRaciais = null,
-    List<HabilidadeClasse>? HabilidadesClasse = null);
+    List<HabilidadeClasse>? HabilidadesClasse = null,
+    List<MagiaPersonagem>? MagiasConhecidas = null);
 
 public record ImportarPersonagemRequisicao(
     string Nome,
@@ -94,4 +107,5 @@ public record ImportarPersonagemRequisicao(
     int? BonusAtaqueMagico = null,
     List<TesteResistencia>? TestesResistencia = null,
     List<TracoPersonagem>? TracosRaciais = null,
-    List<HabilidadeClasse>? HabilidadesClasse = null);
+    List<HabilidadeClasse>? HabilidadesClasse = null,
+    List<MagiaPersonagem>? MagiasConhecidas = null);

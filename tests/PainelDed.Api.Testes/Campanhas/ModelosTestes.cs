@@ -216,4 +216,49 @@ public class ModelosTestes
         Assert.NotNull(restaurado);
         Assert.Null(restaurado!.HabilidadesClasse);
     }
+
+    [Fact]
+    public void Personagem_ComMagiasConhecidas_SerializaEDesserializaMantendoOsDados()
+    {
+        var original = new Personagem(
+            "p1",
+            "Sael Marévalis",
+            "Humano",
+            "Druida",
+            1,
+            new AtributosPersonagem(9, 14, 16, 11, 16, 11),
+            11,
+            12,
+            new List<PericiaPersonagem>(),
+            MagiasConhecidas: new List<MagiaPersonagem>
+            {
+                new("Orientação", 0, "Adivinhação", "1 ação", "Toque", "Concentração, até 1 minuto", "V, S",
+                    "Toca uma criatura disposta; ela pode somar 1d4 a um teste de habilidade."),
+                new("Cura de Ferimentos", 1, "Evocação", "1 ação", "Toque", "Instantânea", "V, S",
+                    "Uma criatura tocada recupera pontos de vida.", null, null),
+            });
+
+        var json = JsonSerializer.Serialize(original, Opcoes);
+        var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Equal(2, restaurado!.MagiasConhecidas!.Count);
+        Assert.Equal("Orientação", restaurado.MagiasConhecidas[0].Nome);
+        Assert.Equal(1, restaurado.MagiasConhecidas[1].Circulo);
+    }
+
+    [Fact]
+    public void Personagem_SemMagiasConhecidas_DesserializaComListaNula()
+    {
+        // Regressão: fichas exportadas antes desta feature (incluindo as 3 fixtures
+        // de exemplo já existentes) não têm magiasConhecidas no JSON.
+        var json = "{\"Id\":\"p1\",\"Nome\":\"Teste\",\"Raca\":\"Humano\",\"Classe\":\"Guerreiro\",\"Nivel\":1," +
+            "\"Atributos\":{\"Forca\":10,\"Destreza\":10,\"Constituicao\":10,\"Inteligencia\":10,\"Sabedoria\":10,\"Carisma\":10}," +
+            "\"Pv\":10,\"Ca\":10,\"Pericias\":[]}";
+
+        var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Null(restaurado!.MagiasConhecidas);
+    }
 }

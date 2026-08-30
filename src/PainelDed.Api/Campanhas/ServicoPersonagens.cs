@@ -48,7 +48,8 @@ public class ServicoPersonagens
             requisicao.BonusAtaqueMagico,
             requisicao.TestesResistencia,
             requisicao.TracosRaciais,
-            requisicao.HabilidadesClasse);
+            requisicao.HabilidadesClasse,
+            requisicao.MagiasConhecidas);
 
         if (existente is not null)
         {
