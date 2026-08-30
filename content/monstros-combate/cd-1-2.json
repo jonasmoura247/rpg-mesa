@@ -148,7 +148,7 @@
     "atributos": { "forca": -2, "destreza": 1, "constituicao": 0, "inteligencia": -1, "sabedoria": 0, "carisma": 1 },
     "acoes": [
       { "nome": "Garras", "tipo": "ataque", "bonusAcerto": 3, "atributoResistencia": null, "cdResistencia": null, "dano": "1d4+1 cortante + 1d4 frio" },
-      { "nome": "Sopro Congelante", "tipo": "resistencia", "bonusAcerto": null, "atributoResistencia": "destreza", "cdResistencia": 10, "dano": "1d8 fogo" }
+      { "nome": "Sopro Congelante", "tipo": "resistencia", "bonusAcerto": null, "atributoResistencia": "destreza", "cdResistencia": 10, "dano": "2d4 frio" }
     ]
   },
   {
@@ -400,7 +400,7 @@
     "pv": 13,
     "dadoDeVida": "3d8",
     "deslocamento": "3 m, voo 15 m",
-    "atributos": { "forca": 0, "destreza": 2, "constituicao": 9, "inteligencia": -5, "sabedoria": 0, "carisma": -4 },
+    "atributos": { "forca": 0, "destreza": 2, "constituicao": 0, "inteligencia": -5, "sabedoria": 0, "carisma": -4 },
     "acoes": [
       { "nome": "Ferrão", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 perfurante" }
     ]
