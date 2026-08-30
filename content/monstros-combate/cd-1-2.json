@@ -402,7 +402,7 @@
     "deslocamento": "3 m, voo 15 m",
     "atributos": { "forca": 0, "destreza": 2, "constituicao": 0, "inteligencia": -5, "sabedoria": 0, "carisma": -4 },
     "acoes": [
-      { "nome": "Ferrão", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 perfurante" }
+      { "nome": "Ferrão", "tipo": "ataque", "bonusAcerto": 4, "atributoResistencia": null, "cdResistencia": null, "dano": "1d6+2 perfurante + (alvo resiste Constituição CD 11 ou sofre 3d6 veneno, metade se resistir)" }
     ]
   },
   {
