@@ -700,6 +700,65 @@ body {
   align-items: center;
 }
 
+.barras-combate {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.barra-vida {
+  flex: 1;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  padding: 0.6rem;
+}
+
+.trilho-vida {
+  background: var(--cor-fundo);
+  border-radius: 6px;
+  height: 14px;
+  overflow: hidden;
+  margin: 0.3rem 0;
+}
+
+.preenchimento-vida {
+  background: var(--cor-destaque-forte, #5a5);
+  height: 100%;
+}
+
+.painel-acao-combate {
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.painel-acao-combate select,
+.painel-acao-combate input {
+  display: block;
+  margin: 0.4rem 0;
+  padding: 0.4rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+.banner-fim-combate {
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.log-combate {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  list-style: none;
+  padding: 0;
+}
+
 .lista-personagens {
   display: flex;
   flex-direction: column;
