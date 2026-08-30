@@ -17,6 +17,9 @@ builder.Services.AddSingleton(new RepositorioCampanhas(pastaCampanhas));
 builder.Services.AddSingleton<ServicoQuests>();
 builder.Services.AddSingleton<ServicoHistorico>();
 builder.Services.AddSingleton<ServicoGeradorIdeiaQuest>();
+builder.Services.AddSingleton(RepositorioDesafiosGuilda.CarregarDeArquivo(
+    LocalizadorConteudoGuilda.Localizar(builder.Environment.ContentRootPath)));
+builder.Services.AddSingleton<ServicoGeradorDesafiosGuilda>();
 builder.Services.AddSingleton<ServicoPersonagens>();
 
 var app = builder.Build();
@@ -83,6 +86,15 @@ app.MapPost("/api/campanhas/{campanhaId}/quests/gerar-ideia", (string campanhaId
     }
     var rascunho = servico.GerarRascunho();
     return rascunho is null ? Results.NotFound() : Results.Ok(rascunho);
+});
+
+app.MapPost("/api/campanhas/{campanhaId}/quests/sortear-desafios-guilda", (string campanhaId, RepositorioCampanhas repositorioCampanhas, ServicoGeradorDesafiosGuilda servico) =>
+{
+    if (repositorioCampanhas.Obter(campanhaId) is null)
+    {
+        return Results.NotFound();
+    }
+    return Results.Ok(servico.SortearTres());
 });
 
 app.MapGet("/api/campanhas/{campanhaId}/historico", (string campanhaId, ServicoHistorico servico) =>
