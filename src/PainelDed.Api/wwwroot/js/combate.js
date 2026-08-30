@@ -103,9 +103,12 @@ const Combate = {
   },
 
   modificadorAtributos(atributosBrutos) {
+    // Reaproveita modificadorAtributo (global, definida em personagens.js) em vez de
+    // reimplementar a fórmula de modificador de D&D aqui — evita duas fórmulas
+    // divergirem se uma delas for corrigida sem a outra.
     const resultado = {};
     Object.entries(atributosBrutos).forEach(([chave, valor]) => {
-      resultado[chave] = Math.floor((valor - 10) / 2);
+      resultado[chave] = modificadorAtributo(valor);
     });
     return resultado;
   },
