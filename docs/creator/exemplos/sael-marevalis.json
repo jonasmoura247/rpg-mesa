@@ -82,6 +82,86 @@
       "descricao": "Conjurador completo (Sabedoria); prepara magias diariamente a partir de toda a lista de Druida."
     }
   ],
+  "magiasConhecidas": [
+    {
+      "nome": "Orientação",
+      "circulo": 0,
+      "escola": "Adivinhação",
+      "classes": ["Clérigo", "Druida"],
+      "tempoConjuracao": "1 ação",
+      "alcance": "Toque",
+      "duracao": "Concentração, até 1 minuto",
+      "componentes": "V, S",
+      "descricao": "Toca uma criatura disposta; ela pode somar 1d4 a um teste de habilidade à sua escolha antes do fim da magia.",
+      "dano": null,
+      "testeResistencia": null
+    },
+    {
+      "nome": "Produzir Chama",
+      "circulo": 0,
+      "escola": "Conjuração",
+      "classes": ["Druida"],
+      "tempoConjuracao": "1 ação",
+      "alcance": "Pessoal",
+      "duracao": "10 minutos",
+      "componentes": "V, S",
+      "descricao": "Uma chama aparece na sua mão, iluminando como uma tocha, e pode ser arremessada contra um alvo (ataque de magia).",
+      "dano": "1d8 de dano de fogo",
+      "testeResistencia": null
+    },
+    {
+      "nome": "Cura de Ferimentos",
+      "circulo": 1,
+      "escola": "Evocação",
+      "classes": ["Bardo", "Clérigo", "Druida"],
+      "tempoConjuracao": "1 ação",
+      "alcance": "Toque",
+      "duracao": "Instantânea",
+      "componentes": "V, S",
+      "descricao": "Uma criatura tocada recupera 1d8 + o modificador do seu atributo de conjuração em pontos de vida.",
+      "dano": null,
+      "testeResistencia": null
+    },
+    {
+      "nome": "Amizade com Animais",
+      "circulo": 1,
+      "escola": "Encantamento",
+      "classes": ["Bardo", "Druida"],
+      "tempoConjuracao": "1 ação",
+      "alcance": "9 metros",
+      "duracao": "24 horas",
+      "componentes": "V, S, M",
+      "descricao": "Convence uma besta de que você não é uma ameaça; se ela falhar, fica amistosa em relação a você pela duração.",
+      "dano": null,
+      "testeResistencia": "Sabedoria"
+    },
+    {
+      "nome": "Enredar",
+      "circulo": 1,
+      "escola": "Conjuração",
+      "classes": ["Druida"],
+      "tempoConjuracao": "1 ação",
+      "alcance": "27 metros",
+      "duracao": "Concentração, até 1 minuto",
+      "componentes": "V, S",
+      "descricao": "Plantas rasteiras e vinhas brotam numa área de 6 metros; criaturas na área ficam agarradas se falharem no teste, e impedidas enquanto agarradas.",
+      "dano": null,
+      "testeResistencia": "Força"
+    },
+    {
+      "nome": "Falar com Animais",
+      "circulo": 1,
+      "escola": "Adivinhação",
+      "classes": ["Bardo", "Druida"],
+      "tempoConjuracao": "1 ação (ritual)",
+      "alcance": "Pessoal",
+      "duracao": "10 minutos",
+      "componentes": "V, S",
+      "descricao": "Você ganha a capacidade de compreender e se comunicar verbalmente com bestas enquanto durar a magia.",
+      "dano": null,
+      "testeResistencia": null
+    }
+  ],
   "historia": "Sael investiga o desaparecimento de vários pescadores que sumiram rumo à Costa da Travessia nas últimas semanas. Rumores na comunidade falam de criaturas antigas do litoral — nomes como Naga Guardiã e Sess'inek circulam baixinho entre quem ainda ousa sair para o mar. Ligado ao mar desde criança, sente o chamado das marés como um dever e busca respostas tanto por fé quanto por afeto pelos que se foram. É costume seu puxar assunto sobre o Quadro da Guilda, à procura de qualquer pista que leve à Costa.",
   "caracteristicasFisicas": "Pele curtida pelo sol e pelo sal, cabelos claros sempre úmidos e presos por um cordão trançado de fibra marinha. Traz conchas e pequenos ossos de peixe entrelaçados na roupa, um colar feito de dentes de tubarão pendurado no pescoço. Olhos verde-acinzentados, cor de maré revolta, e mãos calejadas de quem passa mais tempo nas redes de pesca do que em terra firme."
 }
