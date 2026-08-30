@@ -96,4 +96,19 @@ public class RepositorioMonstrosCombateTestes
             Directory.Delete(pastaTemporaria, recursive: true);
         }
     }
+
+    [Fact]
+    public void CarregarDePasta_ComPastaContentRealAindaVazia_NaoLancaExcecao()
+    {
+        // content/monstros-combate/ existe no repositorio (garantida pelo .gitkeep) mas
+        // ainda nao tem nenhum arquivo cd-*.json - as proximas tasks do plano vao
+        // popular ela aos poucos. Directory.GetFiles em pasta vazia retorna array vazio
+        // (nao lanca), entao isso precisa continuar funcionando sem quebrar o Program.cs
+        // antes do banco de monstros existir de verdade.
+        var caminho = LocalizadorConteudoMonstrosCombate.Localizar(AppContext.BaseDirectory);
+
+        var repositorio = RepositorioMonstrosCombate.CarregarDePasta(caminho);
+
+        Assert.NotNull(repositorio.Todos);
+    }
 }
