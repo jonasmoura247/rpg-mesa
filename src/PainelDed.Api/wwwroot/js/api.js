@@ -147,4 +147,10 @@ const Api = {
     if (!resposta.ok) throw new Error('Falha ao listar monstros');
     return resposta.json();
   },
+
+  async listarDesafiosGuilda() {
+    const resposta = await fetch('/api/desafios-guilda');
+    if (!resposta.ok) throw new Error('Falha ao listar desafios da guilda');
+    return resposta.json();
+  },
 };

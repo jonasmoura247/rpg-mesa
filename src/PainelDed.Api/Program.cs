@@ -46,6 +46,9 @@ app.MapGet("/api/conteudo/{secao}/{*idNota}", (string secao, string idNota, Repo
 app.MapGet("/api/monstros-combate", (RepositorioMonstrosCombate repositorio) =>
     Results.Ok(repositorio.Todos));
 
+app.MapGet("/api/desafios-guilda", (RepositorioDesafiosGuilda repositorio) =>
+    Results.Ok(repositorio.Todos));
+
 app.MapPost("/api/rolar/{secao}/{*idNota}", (string secao, string idNota, [FromQuery] string tabela, ServicoRolagem servico) =>
 {
     var resultado = servico.Rolar(secao, idNota, tabela);

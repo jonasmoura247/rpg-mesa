@@ -49,6 +49,6 @@ public class ServicoGeradorDesafiosGuilda
             _ => throw new InvalidOperationException($"Dificuldade desconhecida: '{desafio.Dificuldade}' no desafio '{desafio.Titulo}'."),
         };
 
-        return new RascunhoQuest(desafio.Titulo, desafio.Descricao, xp, $"{po} PO");
+        return new RascunhoQuest(desafio.Titulo, desafio.Descricao, xp, $"{po} PO", desafio.Dificuldade);
     }
 }

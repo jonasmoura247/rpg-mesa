@@ -280,6 +280,22 @@ const Quests = {
   },
 
   async abrirSorteioDesafiosGuilda() {
+    let catalogo;
+    try {
+      catalogo = await Api.listarDesafiosGuilda();
+    } catch (erro) {
+      console.error(erro);
+      window.alert('Falha ao carregar o catálogo de desafios da guilda.');
+      return;
+    }
+
+    const colator = new Intl.Collator('pt-BR');
+    const porDificuldade = {
+      facil: catalogo.filter((d) => d.dificuldade === 'facil').sort((a, b) => colator.compare(a.titulo, b.titulo)),
+      media: catalogo.filter((d) => d.dificuldade === 'media').sort((a, b) => colator.compare(a.titulo, b.titulo)),
+      dificil: catalogo.filter((d) => d.dificuldade === 'dificil').sort((a, b) => colator.compare(a.titulo, b.titulo)),
+    };
+
     const fundo = document.createElement('div');
     fundo.className = 'fundo-modal';
 
@@ -306,7 +322,8 @@ const Quests = {
 
       grade.innerHTML = '';
       rascunhos.forEach((rascunho) => {
-        const card = this.criarCardRascunhoGuilda(rascunho, () => {
+        const opcoesDificuldade = porDificuldade[rascunho.dificuldade] || [];
+        const card = this.criarCardRascunhoGuilda(rascunho, opcoesDificuldade, () => {
           grade.removeChild(card);
           if (grade.children.length === 0) {
             document.body.removeChild(fundo);
@@ -339,15 +356,22 @@ const Quests = {
     document.body.appendChild(fundo);
   },
 
-  criarCardRascunhoGuilda(rascunho, aoRemover) {
+  criarCardRascunhoGuilda(rascunho, opcoesDificuldade, aoRemover) {
     const card = document.createElement('div');
     card.className = 'card-rascunho-guilda';
 
-    const campoTitulo = criarCampoTexto('Título', rascunho.tituloSugerido);
+    const campoTitulo = criarCampoSelect('Título', opcoesDificuldade, rascunho.tituloSugerido);
     const campoDescricao = criarCampoTextarea('Descrição', rascunho.descricaoSugerida);
     const campoXp = criarCampoTexto('XP sugerido', rascunho.xpSugerido);
     const campoRecompensa = criarCampoTexto('Recompensa', rascunho.recompensaSugerida);
     const campoSemana = criarCampoTexto('Semana', '1');
+
+    campoTitulo.entrada.addEventListener('change', () => {
+      const escolhido = opcoesDificuldade.find((d) => d.titulo === campoTitulo.entrada.value);
+      if (escolhido) {
+        campoDescricao.entrada.value = escolhido.descricao;
+      }
+    });
 
     [campoTitulo, campoDescricao, campoXp, campoRecompensa, campoSemana].forEach((campo) =>
       card.appendChild(campo.container),
@@ -406,6 +430,24 @@ function criarCampoTexto(rotulo, valorInicial) {
   const entrada = document.createElement('input');
   entrada.type = 'text';
   entrada.value = valorInicial;
+  container.appendChild(textoRotulo);
+  container.appendChild(entrada);
+  return { container, entrada };
+}
+
+function criarCampoSelect(rotulo, opcoes, valorSelecionado) {
+  const container = document.createElement('label');
+  container.className = 'campo-formulario';
+  const textoRotulo = document.createElement('span');
+  textoRotulo.textContent = rotulo;
+  const entrada = document.createElement('select');
+  opcoes.forEach((opcao) => {
+    const elementoOpcao = document.createElement('option');
+    elementoOpcao.value = opcao.titulo;
+    elementoOpcao.textContent = opcao.titulo;
+    elementoOpcao.selected = opcao.titulo === valorSelecionado;
+    entrada.appendChild(elementoOpcao);
+  });
   container.appendChild(textoRotulo);
   container.appendChild(entrada);
   return { container, entrada };

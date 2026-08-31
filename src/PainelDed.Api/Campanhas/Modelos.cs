@@ -37,7 +37,7 @@ public record AtualizarQuestRequisicao(
 
 public record NovaEntradaHistoricoRequisicao(string Descricao);
 
-public record RascunhoQuest(string TituloSugerido, string DescricaoSugerida, int XpSugerido, string RecompensaSugerida);
+public record RascunhoQuest(string TituloSugerido, string DescricaoSugerida, int XpSugerido, string RecompensaSugerida, string? Dificuldade = null);
 
 public record DesafioGuilda(string Titulo, string Descricao, string Dificuldade);
 

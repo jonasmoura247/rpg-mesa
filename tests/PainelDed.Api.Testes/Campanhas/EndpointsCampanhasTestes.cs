@@ -172,6 +172,20 @@ public class EndpointsCampanhasTestes : IClassFixture<WebApplicationFactory<Prog
     }
 
     [Fact]
+    public async Task ListarDesafiosGuilda_RetornaCatalogoCompletoComDificuldade()
+    {
+        var cliente = _fabrica.CreateClient();
+
+        var resposta = await cliente.GetAsync("/api/desafios-guilda");
+        resposta.EnsureSuccessStatusCode();
+        var desafios = await resposta.Content.ReadFromJsonAsync<List<DesafioGuilda>>();
+
+        Assert.NotEmpty(desafios!);
+        Assert.Contains(desafios!, d => d.Titulo == "Cabeça do Rei Goblin" && d.Dificuldade == "dificil");
+        Assert.All(desafios!, d => Assert.False(string.IsNullOrWhiteSpace(d.Dificuldade)));
+    }
+
+    [Fact]
     public async Task ImportarPersonagem_SemNome_Retorna400()
     {
         var cliente = _fabrica.CreateClient();

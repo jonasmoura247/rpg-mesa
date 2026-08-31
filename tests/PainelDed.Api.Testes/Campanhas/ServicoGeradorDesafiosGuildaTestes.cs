@@ -69,14 +69,17 @@ public class ServicoGeradorDesafiosGuildaTestes
         Assert.Equal("O Facil", rascunhos[0].TituloSugerido);
         Assert.Equal(60, rascunhos[0].XpSugerido);
         Assert.Equal("50 PO", rascunhos[0].RecompensaSugerida);
+        Assert.Equal("facil", rascunhos[0].Dificuldade);
 
         Assert.Equal("O Media", rascunhos[1].TituloSugerido);
         Assert.Equal(200, rascunhos[1].XpSugerido);
         Assert.Equal("150 PO", rascunhos[1].RecompensaSugerida);
+        Assert.Equal("media", rascunhos[1].Dificuldade);
 
         Assert.Equal("O Dificil", rascunhos[2].TituloSugerido);
         Assert.Equal(500, rascunhos[2].XpSugerido);
         Assert.Equal("300 PO", rascunhos[2].RecompensaSugerida);
+        Assert.Equal("dificil", rascunhos[2].Dificuldade);
     }
 
     [Fact]
