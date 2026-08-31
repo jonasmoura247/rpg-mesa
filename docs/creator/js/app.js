@@ -529,6 +529,31 @@ function construirFichaFinal() {
   const bonusAtaqueForca = Calculo.bonusPericia(Calculo.modificador(atributos.forca), true, bonusProficiencia);
   const bonusAtaqueDestreza = Calculo.bonusPericia(modDestreza, true, bonusProficiencia);
 
+  const pacoteEquipamento = pacoteEquipamentoSelecionado();
+  const armaduraEquipada = pacoteEquipamento && pacoteEquipamento.armadura
+    ? DADOS.ARMADURAS.find(a => a.nome === pacoteEquipamento.armadura)
+    : null;
+  const temEscudo = Boolean(pacoteEquipamento && pacoteEquipamento.escudo);
+  const ca = Calculo.caArmadura(armaduraEquipada, temEscudo, modDestreza);
+
+  const armas = (pacoteEquipamento ? pacoteEquipamento.armas : []).map(nomeArma => {
+    const arma = DADOS.ARMAS.find(a => a.nome === nomeArma);
+    const usaDuasMaos = Boolean(ficha.equipamento.duasMaos[nomeArma]);
+    const dano = usaDuasMaos && arma.danoVersatil ? arma.danoVersatil : arma.dano;
+    const atributo = arma.propriedades.includes('fineza')
+      ? ficha.equipamento.escolhasAtributo[nomeArma]
+      : (arma.tipo === 'distancia' ? 'destreza' : 'forca');
+    const modAtributo = Calculo.modificador(atributos[atributo]);
+    return {
+      nome: arma.nome,
+      dano,
+      tipoDano: arma.tipoDano,
+      atributo,
+      bonusAcerto: Calculo.bonusPericia(modAtributo, true, bonusProficiencia),
+      modDano: modAtributo
+    };
+  });
+
   const temConjuracao = Boolean(classe.atributoConjuracao);
   const modConjuracao = temConjuracao ? Calculo.modificador(atributos[classe.atributoConjuracao]) : null;
   const cdMagia = temConjuracao ? Calculo.cdMagia(modConjuracao, bonusProficiencia) : null;
@@ -547,8 +572,11 @@ function construirFichaFinal() {
     nivel: 1,
     atributos,
     pv: Calculo.pvInicial(classe.dadoDeVida, modConstituicao),
-    ca: Calculo.caBase(modDestreza),
+    ca,
     pericias,
+    armadura: armaduraEquipada ? armaduraEquipada.nome : null,
+    escudo: temEscudo,
+    armas,
     iniciativa,
     bonusAtaqueForca,
     bonusAtaqueDestreza,
