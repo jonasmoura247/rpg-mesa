@@ -634,17 +634,33 @@ function renderEtapaResumo() {
     </div>
   `;
 
+  const blocoItens = dadosFicha.itens.length ? `
+    <h3>🎒 Itens</h3>
+    <ul>${dadosFicha.itens.map(item => `<li>${item}</li>`).join('')}</ul>
+  ` : '';
+
+  const renderizarMagiaResumo = (magia, selo) => `
+    <div class="opcao-magia">
+      <strong>${magia.nome}</strong>
+      <span class="badge-uso-magia">${selo}</span>
+      <span class="detalhes-magia">${[magia.escola, magia.tempoConjuracao, magia.alcance, magia.duracao].join(' · ')}</span>
+      <span class="descricao-opcao">${magia.descricao}</span>
+    </div>
+  `;
+
+  const cantripsResumo = dadosFicha.magiasConhecidas.filter(m => m.circulo === 0);
+  const nivel1Resumo = dadosFicha.magiasConhecidas.filter(m => m.circulo === 1);
+
   const blocoMagias = dadosFicha.magiasConhecidas.length ? `
     <h3>Magias</h3>
-    <div class="lista-magias-resumo">
-      ${dadosFicha.magiasConhecidas.map(magia => `
-        <div class="opcao-magia">
-          <strong>${magia.nome}</strong> ${magia.circulo === 0 ? '(Cantrip)' : `(1º Círculo)`}
-          <span class="detalhes-magia">${[magia.escola, magia.tempoConjuracao, magia.alcance, magia.duracao].join(' · ')}</span>
-          <span class="descricao-opcao">${magia.descricao}</span>
-        </div>
-      `).join('')}
-    </div>
+    ${cantripsResumo.length ? `
+      <h4>Cantrips</h4>
+      <div class="lista-magias-resumo">${cantripsResumo.map(m => renderizarMagiaResumo(m, 'Uso ilimitado')).join('')}</div>
+    ` : ''}
+    ${nivel1Resumo.length ? `
+      <h4>Magias de 1º Círculo</h4>
+      <div class="lista-magias-resumo">${nivel1Resumo.map(m => renderizarMagiaResumo(m, `${dadosFicha.espacosMagia1} usos — descanso longo`)).join('')}</div>
+    ` : ''}
   ` : '';
 
   elementoConteudo.innerHTML = `
@@ -663,6 +679,7 @@ function renderEtapaResumo() {
     <h3>Testes de Resistência</h3>
     <ul>${linhasResistencia}</ul>
     ${blocoEquipamento}
+    ${blocoItens}
     ${blocoMagias}
     <div class="campo-texto-livre">
       <label for="campoHistoria">História (opcional)</label>
