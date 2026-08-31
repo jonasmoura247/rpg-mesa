@@ -152,4 +152,31 @@ assert.strictEqual(placas.forMinima, 15);
 
 assert.strictEqual(DADOS.ESCUDO.bonusCa, 2);
 
+const NOMES_12_CLASSES = ['Bárbaro', 'Bardo', 'Bruxo', 'Clérigo', 'Druida', 'Feiticeiro', 'Guerreiro', 'Ladino', 'Magista', 'Monge', 'Paladino', 'Patrulheiro'];
+NOMES_12_CLASSES.forEach(nome => {
+  const pacotes = DADOS.PACOTES_EQUIPAMENTO[nome];
+  assert.ok(Array.isArray(pacotes) && pacotes.length === 2, `${nome} deve ter exatamente 2 pacotes de equipamento`);
+  pacotes.forEach(pacote => {
+    assert.ok(typeof pacote.rotulo === 'string' && pacote.rotulo.length > 0, `pacote de ${nome} deve ter rótulo`);
+    assert.ok(Array.isArray(pacote.armas) && pacote.armas.length > 0, `pacote de ${nome} deve ter ao menos 1 arma`);
+    pacote.armas.forEach(nomeArma => {
+      assert.ok(DADOS.ARMAS.some(a => a.nome === nomeArma), `arma '${nomeArma}' do pacote de ${nome} deve existir em DADOS.ARMAS`);
+    });
+    if (pacote.armadura) {
+      assert.ok(DADOS.ARMADURAS.some(a => a.nome === pacote.armadura), `armadura '${pacote.armadura}' do pacote de ${nome} deve existir em DADOS.ARMADURAS`);
+    }
+    assert.strictEqual(typeof pacote.escudo, 'boolean', `pacote de ${nome} deve ter escudo (true/false)`);
+  });
+});
+
+const pacotesGuerreiro = DADOS.PACOTES_EQUIPAMENTO.Guerreiro;
+assert.deepStrictEqual(pacotesGuerreiro[0].armas, ['Espada Longa']);
+assert.strictEqual(pacotesGuerreiro[0].escudo, true);
+assert.strictEqual(pacotesGuerreiro[0].armadura, 'Cota de Malha');
+assert.deepStrictEqual(pacotesGuerreiro[1].armas, ['Arco Longo']);
+assert.strictEqual(pacotesGuerreiro[1].escudo, false);
+
+const pacotesMagista = DADOS.PACOTES_EQUIPAMENTO.Magista;
+assert.strictEqual(pacotesMagista[0].armadura, null);
+
 console.log('dados.test.js (perícias/point buy): OK');

@@ -340,7 +340,58 @@
 
   const ESCUDO = { nome: 'Escudo', bonusCa: 2 };
 
-  const api = { PERICIAS, CUSTO_POINT_BUY, ORCAMENTO_PONTOS, ATRIBUTO_MINIMO, ATRIBUTO_MAXIMO, RACAS, CLASSES, ARMAS, ARMADURAS, ESCUDO };
+  const PACOTES_EQUIPAMENTO = {
+    'Bárbaro': [
+      { rotulo: 'Arma pesada', armas: ['Espada Grande'], escudo: false, armadura: null },
+      { rotulo: 'Arma e escudo', armas: ['Machado de Guerra'], escudo: true, armadura: null },
+    ],
+    'Bardo': [
+      { rotulo: 'Duelista', armas: ['Rapieira'], escudo: false, armadura: 'Couro' },
+      { rotulo: 'Espadachim', armas: ['Espada Longa'], escudo: false, armadura: 'Couro' },
+    ],
+    'Bruxo': [
+      { rotulo: 'À distância', armas: ['Besta Leve'], escudo: false, armadura: 'Couro' },
+      { rotulo: 'Duas adagas', armas: ['Adaga', 'Adaga'], escudo: false, armadura: 'Couro' },
+    ],
+    'Clérigo': [
+      { rotulo: 'Guerreiro sagrado', armas: ['Maça Estrela'], escudo: true, armadura: 'Escamas' },
+      { rotulo: 'À distância', armas: ['Besta Leve'], escudo: false, armadura: 'Couro' },
+    ],
+    'Druida': [
+      { rotulo: 'Cajado e escudo', armas: ['Cajado'], escudo: true, armadura: 'Couro' },
+      { rotulo: 'Machadinha', armas: ['Machadinha'], escudo: false, armadura: 'Couro' },
+    ],
+    'Feiticeiro': [
+      { rotulo: 'À distância', armas: ['Besta Leve'], escudo: false, armadura: null },
+      { rotulo: 'Duas adagas', armas: ['Adaga', 'Adaga'], escudo: false, armadura: null },
+    ],
+    'Guerreiro': [
+      { rotulo: 'Guerreiro corpo a corpo', armas: ['Espada Longa'], escudo: true, armadura: 'Cota de Malha' },
+      { rotulo: 'Guerreiro à distância', armas: ['Arco Longo'], escudo: false, armadura: 'Couro Batido' },
+    ],
+    'Ladino': [
+      { rotulo: 'Duelista', armas: ['Rapieira'], escudo: false, armadura: 'Couro' },
+      { rotulo: 'Duas adagas', armas: ['Adaga', 'Adaga'], escudo: false, armadura: 'Couro' },
+    ],
+    'Magista': [
+      { rotulo: 'Cajado', armas: ['Cajado'], escudo: false, armadura: null },
+      { rotulo: 'Adaga', armas: ['Adaga'], escudo: false, armadura: null },
+    ],
+    'Monge': [
+      { rotulo: 'Adaga', armas: ['Adaga'], escudo: false, armadura: null },
+      { rotulo: 'Clava', armas: ['Clava'], escudo: false, armadura: null },
+    ],
+    'Paladino': [
+      { rotulo: 'Espada e escudo', armas: ['Espada Longa'], escudo: true, armadura: 'Cota de Malha' },
+      { rotulo: 'Alabarda', armas: ['Alabarda'], escudo: false, armadura: 'Cota de Malha' },
+    ],
+    'Patrulheiro': [
+      { rotulo: 'Arqueiro', armas: ['Arco Longo'], escudo: false, armadura: 'Couro Batido' },
+      { rotulo: 'Duas adagas', armas: ['Adaga', 'Adaga'], escudo: false, armadura: 'Couro Batido' },
+    ],
+  };
+
+  const api = { PERICIAS, CUSTO_POINT_BUY, ORCAMENTO_PONTOS, ATRIBUTO_MINIMO, ATRIBUTO_MAXIMO, RACAS, CLASSES, ARMAS, ARMADURAS, ESCUDO, PACOTES_EQUIPAMENTO };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;
