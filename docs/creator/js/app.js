@@ -625,7 +625,7 @@ function renderEtapaResumo() {
       ${dadosFicha.armas.map(arma => `
         <div class="opcao-magia">
           <strong>${arma.nome}</strong>
-          <span class="detalhes-magia">${arma.dano} ${arma.tipoDano} · Ataque ${arma.bonusAcerto >= 0 ? '+' : ''}${arma.bonusAcerto} · Dano +${arma.modDano}</span>
+          <span class="detalhes-magia">${arma.dano} ${arma.tipoDano} · Ataque ${arma.bonusAcerto >= 0 ? '+' : ''}${arma.bonusAcerto} · Dano ${arma.modDano >= 0 ? '+' : ''}${arma.modDano}</span>
         </div>
       `).join('')}
     </div>
