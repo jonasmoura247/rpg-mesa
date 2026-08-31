@@ -123,10 +123,23 @@ const Combate = {
   },
 
   acoesDoJogador(personagem) {
-    const acoes = [
-      { nome: 'Ataque corpo a corpo (Força)', tipo: 'ataque', bonusAcerto: personagem.bonusAtaqueForca, dano: null },
-      { nome: 'Ataque à distância (Destreza)', tipo: 'ataque', bonusAcerto: personagem.bonusAtaqueDestreza, dano: null },
-    ];
+    const temArmas = Array.isArray(personagem.armas) && personagem.armas.length > 0;
+    const acoesArmas = temArmas
+      ? personagem.armas.map((arma) => ({
+          nome: arma.nome,
+          tipo: 'ataque',
+          bonusAcerto: arma.bonusAcerto,
+          danoDados: arma.dano,
+          modDano: arma.modDano,
+          tipoDano: arma.tipoDano,
+          dano: null,
+        }))
+      : [
+          { nome: 'Ataque corpo a corpo (Força)', tipo: 'ataque', bonusAcerto: personagem.bonusAtaqueForca, dano: null },
+          { nome: 'Ataque à distância (Destreza)', tipo: 'ataque', bonusAcerto: personagem.bonusAtaqueDestreza, dano: null },
+        ];
+
+    const acoes = [...acoesArmas];
     (personagem.magiasConhecidas || [])
       .filter((m) => m.dano)
       .forEach((m) => {
