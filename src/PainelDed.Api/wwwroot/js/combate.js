@@ -102,11 +102,13 @@ const Combate = {
       // diferente do banco de monstros, que já guarda MODIFICADORES prontos — por
       // isso convertemos aqui uma vez, pra que o resto do código sempre trabalhe
       // com modificador em ambos os lados (this.modificadorAtributos faz a conversão).
-      jogador: { nome: personagem.nome, ca: personagem.ca, pvMax: personagem.pv, pv: personagem.pv, ataques: this.acoesDoJogador(personagem), atributos: this.modificadorAtributos(personagem.atributos), cdMagia: personagem.cdMagia },
-      monstro: { nome: monstro.nome, ca: monstro.ca, pvMax: monstro.pv, pv: monstro.pv, atributos: monstro.atributos, acoes: monstro.acoes },
+      jogador: { id: personagem.id, nome: personagem.nome, ca: personagem.ca, pvMax: personagem.pv, pv: personagem.pv, ataques: this.acoesDoJogador(personagem), atributos: this.modificadorAtributos(personagem.atributos), cdMagia: personagem.cdMagia },
+      monstro: { nome: monstro.nome, cd: monstro.cd, ca: monstro.ca, pvMax: monstro.pv, pv: monstro.pv, atributos: monstro.atributos, acoes: monstro.acoes },
       turnoDoJogador: jogadorComeca,
       log: [],
       terminado: false,
+      xpConcedido: false,
+      xpGanho: null,
     };
     this.renderizarCombate();
   },
@@ -171,6 +173,13 @@ const Combate = {
       banner.className = 'banner-fim-combate';
       banner.textContent = `🏆 ${vencedor} venceu!`;
       area.appendChild(banner);
+
+      if (this.estado.xpGanho) {
+        const xpTexto = document.createElement('p');
+        xpTexto.className = 'texto-xp-combate';
+        xpTexto.textContent = `+${this.estado.xpGanho} XP para ${this.estado.jogador.nome}`;
+        area.appendChild(xpTexto);
+      }
 
       const botaoNovo = document.createElement('button');
       botaoNovo.className = 'botao-rolar';
@@ -415,6 +424,22 @@ const Combate = {
     combatente.pv = Math.max(0, combatente.pv - dano);
     if (combatente.pv === 0) {
       this.estado.terminado = true;
+      if (combatente === this.estado.monstro) {
+        this.concederXpVitoria();
+      }
     }
+  },
+
+  async concederXpVitoria() {
+    if (this.estado.xpConcedido) return;
+    this.estado.xpConcedido = true;
+    const xp = Experiencia.xpPorCd(this.estado.monstro.cd);
+    try {
+      await Api.adicionarXp(Campanha.ativa.id, this.estado.jogador.id, xp, `venceu ${this.estado.monstro.nome}`);
+      this.estado.xpGanho = xp;
+    } catch (erro) {
+      console.error(erro);
+    }
+    this.renderizarCombate();
   },
 };
