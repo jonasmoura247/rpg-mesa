@@ -305,4 +305,47 @@ public class ModelosTestes
         Assert.NotNull(restaurado);
         Assert.Null(restaurado!.Armas);
     }
+
+    [Fact]
+    public void Personagem_ComXpItensEEspacosMagia_SerializaEDesserializaMantendoOsDados()
+    {
+        var original = new Personagem(
+            "p1",
+            "Sael Marévalis",
+            "Humano",
+            "Magista",
+            1,
+            new AtributosPersonagem(9, 14, 16, 16, 11, 11),
+            8,
+            11,
+            new List<PericiaPersonagem>(),
+            Xp: 350,
+            Itens: new List<string> { "Corda de Cânhamo (15m)", "Tocha (2)" },
+            EspacosMagia1: 3);
+
+        var json = JsonSerializer.Serialize(original, Opcoes);
+        var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Equal(350, restaurado!.Xp);
+        Assert.Equal(2, restaurado.Itens!.Count);
+        Assert.Equal("Corda de Cânhamo (15m)", restaurado.Itens[0]);
+        Assert.Equal(3, restaurado.EspacosMagia1);
+    }
+
+    [Fact]
+    public void Personagem_SemXpItensEEspacosMagia_DesserializaComPadroes()
+    {
+        // Regressão: fichas exportadas antes desta feature não têm esses campos no JSON.
+        var json = "{\"Id\":\"p1\",\"Nome\":\"Teste\",\"Raca\":\"Humano\",\"Classe\":\"Guerreiro\",\"Nivel\":1," +
+            "\"Atributos\":{\"Forca\":10,\"Destreza\":10,\"Constituicao\":10,\"Inteligencia\":10,\"Sabedoria\":10,\"Carisma\":10}," +
+            "\"Pv\":10,\"Ca\":10,\"Pericias\":[]}";
+
+        var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Equal(0, restaurado!.Xp);
+        Assert.Null(restaurado.Itens);
+        Assert.Null(restaurado.EspacosMagia1);
+    }
 }

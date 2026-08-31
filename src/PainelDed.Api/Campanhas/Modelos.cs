@@ -93,7 +93,10 @@ public record Personagem(
     List<HabilidadeClasse>? HabilidadesClasse = null,
     List<MagiaPersonagem>? MagiasConhecidas = null,
     SideQuestPersonagem? SideQuestAtual = null,
-    List<ArmaPersonagem>? Armas = null);
+    List<ArmaPersonagem>? Armas = null,
+    int Xp = 0,
+    List<string>? Itens = null,
+    int? EspacosMagia1 = null);
 
 public record ImportarPersonagemRequisicao(
     string Nome,
@@ -115,9 +118,13 @@ public record ImportarPersonagemRequisicao(
     List<TracoPersonagem>? TracosRaciais = null,
     List<HabilidadeClasse>? HabilidadesClasse = null,
     List<MagiaPersonagem>? MagiasConhecidas = null,
-    List<ArmaPersonagem>? Armas = null);
+    List<ArmaPersonagem>? Armas = null,
+    List<string>? Itens = null,
+    int? EspacosMagia1 = null);
 
 public record AtualizarStatusSideQuestRequisicao(string Status);
+
+public record AdicionarXpRequisicao(int Quantidade, string Motivo = "");
 
 public record AtributosMonstro(int Forca, int Destreza, int Constituicao, int Inteligencia, int Sabedoria, int Carisma);
 
