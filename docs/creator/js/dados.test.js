@@ -2,14 +2,13 @@ const assert = require('assert');
 const DADOS = require('./dados.js');
 
 assert.strictEqual(DADOS.PERICIAS.length, 18, 'devem existir 18 perícias do 5e');
-assert.deepStrictEqual(
-  DADOS.PERICIAS.find(p => p.nome === 'Furtividade'),
-  { nome: 'Furtividade', atributo: 'destreza' }
-);
-assert.deepStrictEqual(
-  DADOS.PERICIAS.find(p => p.nome === 'Atletismo'),
-  { nome: 'Atletismo', atributo: 'forca' }
-);
+const furtividade = DADOS.PERICIAS.find(p => p.nome === 'Furtividade');
+assert.strictEqual(furtividade.atributo, 'destreza');
+assert.ok(furtividade.descricao, 'Furtividade deve ter descrição pro tooltip');
+
+const atletismo = DADOS.PERICIAS.find(p => p.nome === 'Atletismo');
+assert.strictEqual(atletismo.atributo, 'forca');
+assert.ok(atletismo.descricao, 'Atletismo deve ter descrição pro tooltip');
 
 assert.strictEqual(DADOS.CUSTO_POINT_BUY[8], 0);
 assert.strictEqual(DADOS.CUSTO_POINT_BUY[13], 5);
