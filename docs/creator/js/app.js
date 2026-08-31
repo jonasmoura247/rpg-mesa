@@ -618,6 +618,19 @@ function renderEtapaResumo() {
     `<li>${NOMES_ATRIBUTOS[t.atributo]}${t.proficiente ? ' (proficiente)' : ''}: ${t.bonus >= 0 ? '+' : ''}${t.bonus}</li>`
   ).join('');
 
+  const blocoEquipamento = `
+    <h3>Equipamento</h3>
+    <p>${dadosFicha.armadura || 'Sem armadura'}${dadosFicha.escudo ? ' + Escudo' : ''}</p>
+    <div class="lista-magias-resumo">
+      ${dadosFicha.armas.map(arma => `
+        <div class="opcao-magia">
+          <strong>${arma.nome}</strong>
+          <span class="detalhes-magia">${arma.dano} ${arma.tipoDano} · Ataque ${arma.bonusAcerto >= 0 ? '+' : ''}${arma.bonusAcerto} · Dano +${arma.modDano}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+
   const blocoMagias = dadosFicha.magiasConhecidas.length ? `
     <h3>Magias</h3>
     <div class="lista-magias-resumo">
@@ -646,6 +659,7 @@ function renderEtapaResumo() {
     <div class="destaques">${destaquesCombate.join('')}</div>
     <h3>Testes de Resistência</h3>
     <ul>${linhasResistencia}</ul>
+    ${blocoEquipamento}
     ${blocoMagias}
     <div class="campo-texto-livre">
       <label for="campoHistoria">História (opcional)</label>
