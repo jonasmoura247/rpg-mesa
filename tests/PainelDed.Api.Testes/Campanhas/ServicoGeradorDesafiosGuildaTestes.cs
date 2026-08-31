@@ -35,138 +35,102 @@ public class ServicoGeradorDesafiosGuildaTestes
         return repositorio;
     }
 
-    [Fact]
-    public void SortearTres_NuncaRepeteIndice_MesmoComRolagemDuplicada()
+    private static RepositorioDesafiosGuilda CriarRepositorioComUmDeCadaDificuldade()
     {
-        var repositorio = CriarRepositorioComCincoDesafios();
-        // Seleção de índices (1-based, 1d5): 2, 2 (repetido, ignorado), 5, 1 -> escolhe [1,4,0] (0-based)
-        // Depois, pra cada um dos 3 escolhidos (nessa ordem), rola XP e PO:
-        //   Desafio 2 (facil):  XP 1d6=3 -> 30 | PO 1d10=4 -> 20
-        //   Desafio 5 (dificil): XP 1d10=2 -> 180 | PO 1d10=3 -> 125
-        //   Desafio 1 (facil):  XP 1d6=5 -> 50 | PO 1d10=6 -> 30
-        var dado = new DadoSequencia(2, 2, 5, 1, /*Desafio2*/ 3, 4, /*Desafio5*/ 2, 3, /*Desafio1*/ 5, 6);
+        var caminhoTemporario = Path.GetTempFileName();
+        File.WriteAllText(caminhoTemporario, """
+        [
+          {"titulo":"O Facil","descricao":"desc facil","dificuldade":"facil"},
+          {"titulo":"O Media","descricao":"desc media","dificuldade":"media"},
+          {"titulo":"O Dificil","descricao":"desc dificil","dificuldade":"dificil"}
+        ]
+        """);
+        var repositorio = RepositorioDesafiosGuilda.CarregarDeArquivo(caminhoTemporario);
+        File.Delete(caminhoTemporario);
+        return repositorio;
+    }
+
+    [Fact]
+    public void SortearTres_ComUmDeCadaDificuldade_RetornaNaOrdemFacilMediaDificilSemRolarSelecao()
+    {
+        var repositorio = CriarRepositorioComUmDeCadaDificuldade();
+        // Cada dificuldade tem só 1 opção -> não rola dado pra escolher índice, só
+        // pra recompensa (XP, PO) de cada uma, na ordem fácil, média, difícil.
+        var dado = new DadoSequencia(
+            6, 10,   // facil: XP 1d6=6 -> 60 | PO 1d10=10 -> 50
+            10, 10,  // media: XP 1d10=10 -> 200 | PO 1d10=10 -> 150
+            10, 10); // dificil: XP 1d10=10*40+100 -> 500 | PO 1d10=10*25+50 -> 300
         var servico = new ServicoGeradorDesafiosGuilda(repositorio, dado);
 
         var rascunhos = servico.SortearTres();
 
         Assert.Equal(3, rascunhos.Count);
-        var titulos = rascunhos.Select(r => r.TituloSugerido).ToList();
-        Assert.Equal(new[] { "Desafio 2", "Desafio 5", "Desafio 1" }, titulos);
-        Assert.Equal(3, titulos.Distinct().Count());
+
+        Assert.Equal("O Facil", rascunhos[0].TituloSugerido);
+        Assert.Equal(60, rascunhos[0].XpSugerido);
+        Assert.Equal("50 PO", rascunhos[0].RecompensaSugerida);
+
+        Assert.Equal("O Media", rascunhos[1].TituloSugerido);
+        Assert.Equal(200, rascunhos[1].XpSugerido);
+        Assert.Equal("150 PO", rascunhos[1].RecompensaSugerida);
+
+        Assert.Equal("O Dificil", rascunhos[2].TituloSugerido);
+        Assert.Equal(500, rascunhos[2].XpSugerido);
+        Assert.Equal("300 PO", rascunhos[2].RecompensaSugerida);
     }
 
     [Fact]
-    public void SortearTres_DesafioFacil_CalculaXpEPoNaFaixaCorreta()
+    public void SortearTres_ComVariasOpcoesNaMesmaDificuldade_SorteiaDentroDoPoolDaquelaDificuldade()
     {
-        var repositorio = CriarRepositorioComCincoDesafios();
-        // A seleção de índices acontece TODA ANTES do cálculo de XP/PO (o serviço
-        // sorteia os 3 índices distintos primeiro, só depois rola recompensa pra
-        // cada um, na ordem em que foram escolhidos) — por isso a sequência não
-        // intercala índice/xp/po, e sim: [3 rolls de índice] + [2 rolls por item].
-        // Índices 1,2,3 (1d5) -> escolhe Desafio1, Desafio2, Desafio3, nessa ordem.
+        var repositorio = CriarRepositorioComCincoDesafios(); // facil: 1,2 | media: 3,4 | dificil: 5
         var dado = new DadoSequencia(
-            1, 2, 3,       // seleção de índices: Desafio1 (0), Desafio2 (1), Desafio3 (2)
-            6, 10,         // Desafio1 (facil): XP 1d6=6 -> 60 | PO 1d10=10 -> 50
-            1, 1,          // Desafio2 (facil): XP 1d6=1 -> 10 | PO 1d10=1 -> 5
-            1, 1);         // Desafio3 (media): valores não verificados nesse teste
+            2, 3, 4,   // facil (pool 2): 1d2=2 -> Desafio 2; XP 1d6=3 -> 30; PO 1d10=4 -> 20
+            1, 5, 6,   // media (pool 2): 1d2=1 -> Desafio 3; XP 1d10=5 -> 100; PO 1d10=6 -> 90
+            2, 3);     // dificil (pool 1, sem seleção): Desafio 5; XP 1d10=2 -> 180; PO 1d10=3 -> 125
         var servico = new ServicoGeradorDesafiosGuilda(repositorio, dado);
 
         var rascunhos = servico.SortearTres();
 
-        var desafio1 = rascunhos[0];
-        Assert.Equal(60, desafio1.XpSugerido); // 1d6=6 * 10
-        Assert.Equal("50 PO", desafio1.RecompensaSugerida); // 1d10=10 * 5
-
-        var desafio2 = rascunhos[1];
-        Assert.Equal(10, desafio2.XpSugerido); // 1d6=1 * 10
-        Assert.Equal("5 PO", desafio2.RecompensaSugerida); // 1d10=1 * 5
+        Assert.Equal(new[] { "Desafio 2", "Desafio 3", "Desafio 5" }, rascunhos.Select(r => r.TituloSugerido));
     }
 
     [Fact]
-    public void SortearTres_DesafioMedio_CalculaXpEPoNaFaixaCorreta()
-    {
-        var repositorio = CriarRepositorioComCincoDesafios();
-        // Índices 3,1,2 (1d5) -> escolhe Desafio3 (media) primeiro, depois Desafio1, Desafio2.
-        var dado = new DadoSequencia(
-            3, 1, 2,       // seleção de índices: Desafio3 (2), Desafio1 (0), Desafio2 (1)
-            10, 10,        // Desafio3 (media): XP 1d10=10 -> 200 | PO 1d10=10 -> 150
-            1, 1,          // Desafio1 (facil): valores não verificados
-            1, 1);         // Desafio2 (facil): valores não verificados
-        var servico = new ServicoGeradorDesafiosGuilda(repositorio, dado);
-
-        var rascunhos = servico.SortearTres();
-
-        var desafioMedio = rascunhos[0];
-        Assert.Equal(200, desafioMedio.XpSugerido); // 1d10=10 * 20
-        Assert.Equal("150 PO", desafioMedio.RecompensaSugerida); // 1d10=10 * 15
-    }
-
-    [Fact]
-    public void SortearTres_DesafioDificil_CalculaXpEPoNaFaixaCorreta()
-    {
-        var repositorio = CriarRepositorioComCincoDesafios();
-        // Índices 5,1,2 (1d5) -> escolhe Desafio5 (dificil) primeiro, depois Desafio1, Desafio2.
-        var dado = new DadoSequencia(
-            5, 1, 2,       // seleção de índices: Desafio5 (4), Desafio1 (0), Desafio2 (1)
-            10, 10,        // Desafio5 (dificil): XP 1d10=10*40+100 -> 500 | PO 1d10=10*25+50 -> 300
-            1, 1,          // Desafio1 (facil): valores não verificados
-            1, 1);         // Desafio2 (facil): valores não verificados
-        var servico = new ServicoGeradorDesafiosGuilda(repositorio, dado);
-
-        var rascunhos = servico.SortearTres();
-
-        var desafioDificil = rascunhos[0];
-        Assert.Equal(500, desafioDificil.XpSugerido); // 1d10=10 * 40 + 100
-        Assert.Equal("300 PO", desafioDificil.RecompensaSugerida); // 1d10=10 * 25 + 50
-    }
-
-    [Fact]
-    public void SortearTres_ComBancoDeApenasDoisDesafios_RetornaSoDois()
+    public void SortearTres_ComDificuldadeAusenteNoBanco_PulaEssaDificuldadeERetornaAsOutras()
     {
         var caminhoTemporario = Path.GetTempFileName();
         File.WriteAllText(caminhoTemporario, """
         [
-          {"titulo":"Único 1","descricao":"desc","dificuldade":"facil"},
-          {"titulo":"Único 2","descricao":"desc","dificuldade":"facil"}
+          {"titulo":"So Facil","descricao":"desc","dificuldade":"facil"},
+          {"titulo":"So Dificil","descricao":"desc","dificuldade":"dificil"}
         ]
         """);
         var repositorio = RepositorioDesafiosGuilda.CarregarDeArquivo(caminhoTemporario);
         File.Delete(caminhoTemporario);
 
-        // Pool de 2 -> quantidade = min(3,2) = 2. Seleção de índices consome 2 rolls
-        // (1,2 -> ambos distintos de primeira, sem precisar re-rolar), depois 2 rolls
-        // de recompensa por item (4 no total) = 6 valores na fila.
-        var dado = new DadoSequencia(1, 2, 1, 1, 1, 1);
+        // Sem "media" no banco -> pula essa dificuldade; só 2 rascunhos, 4 rolls (XP,PO x2).
+        var dado = new DadoSequencia(6, 10, 10, 10);
         var servico = new ServicoGeradorDesafiosGuilda(repositorio, dado);
 
         var rascunhos = servico.SortearTres();
 
         Assert.Equal(2, rascunhos.Count);
+        Assert.Equal("So Facil", rascunhos[0].TituloSugerido);
+        Assert.Equal("So Dificil", rascunhos[1].TituloSugerido);
     }
 
     [Fact]
-    public void SortearTres_ComBancoDeApenasUmDesafio_RetornaSoUmSemLancarExcecao()
+    public void SortearTres_ComBancoVazio_RetornaListaVazia()
     {
         var caminhoTemporario = Path.GetTempFileName();
-        File.WriteAllText(caminhoTemporario, """
-        [
-          {"titulo":"Único","descricao":"desc","dificuldade":"facil"}
-        ]
-        """);
+        File.WriteAllText(caminhoTemporario, "[]");
         var repositorio = RepositorioDesafiosGuilda.CarregarDeArquivo(caminhoTemporario);
         File.Delete(caminhoTemporario);
 
-        // Pool de 1 -> quantidade = min(3,1) = 1. Não há "1d1" válido (IDado exige >=2
-        // lados), então o serviço pega o índice 0 direto, sem rolar dado pra escolher
-        // índice — só os 2 rolls de recompensa (XP, PO) do único item.
-        var dado = new DadoSequencia(6, 10);
+        var dado = new DadoSequencia();
         var servico = new ServicoGeradorDesafiosGuilda(repositorio, dado);
 
         var rascunhos = servico.SortearTres();
 
-        Assert.Single(rascunhos);
-        Assert.Equal("Único", rascunhos[0].TituloSugerido);
-        Assert.Equal(60, rascunhos[0].XpSugerido); // 1d6=6 * 10
-        Assert.Equal("50 PO", rascunhos[0].RecompensaSugerida); // 1d10=10 * 5
+        Assert.Empty(rascunhos);
     }
 }

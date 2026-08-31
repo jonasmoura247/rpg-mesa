@@ -16,22 +16,27 @@ public class ServicoGeradorDesafiosGuilda
 
     public List<RascunhoQuest> SortearTres()
     {
-        var desafios = _repositorio.Todos;
-        var quantidade = Math.Min(3, desafios.Count);
+        var ordemDificuldades = new[] { "facil", "media", "dificil" };
+        var resultado = new List<RascunhoQuest>();
 
-        var indicesEscolhidos = new List<int>();
-        while (indicesEscolhidos.Count < quantidade)
+        foreach (var dificuldade in ordemDificuldades)
         {
-            // "1dN" exige N >= 2 (IDado.Rolar lança ArgumentException pra "1d1") — com
-            // banco de exatamente 1 item não há o que sortear, então pega o índice 0 direto.
-            var indice = desafios.Count == 1 ? 0 : _dado.Rolar($"1d{desafios.Count}") - 1;
-            if (!indicesEscolhidos.Contains(indice))
+            var doDificuldade = _repositorio.Todos.Where(d => d.Dificuldade == dificuldade).ToList();
+            if (doDificuldade.Count == 0)
             {
-                indicesEscolhidos.Add(indice);
+                continue;
             }
+
+            // "1dN" exige N >= 2 (IDado.Rolar lança ArgumentException pra "1d1") — com só
+            // 1 opção nessa dificuldade não há o que sortear, pega direto.
+            var escolhido = doDificuldade.Count == 1
+                ? doDificuldade[0]
+                : doDificuldade[_dado.Rolar($"1d{doDificuldade.Count}") - 1];
+
+            resultado.Add(GerarRascunho(escolhido));
         }
 
-        return indicesEscolhidos.Select(indice => GerarRascunho(desafios[indice])).ToList();
+        return resultado;
     }
 
     private RascunhoQuest GerarRascunho(DesafioGuilda desafio)
