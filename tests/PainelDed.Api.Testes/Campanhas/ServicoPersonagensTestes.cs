@@ -14,6 +14,7 @@ public class ServicoPersonagensTestes : IDisposable
     private readonly RepositorioCampanhas _repositorio;
     private readonly RepositorioSideQuests _repositorioSideQuests;
     private readonly IDado _dado;
+    private readonly ServicoHistorico _servicoHistorico;
     private readonly ServicoPersonagens _servico;
     private readonly string _campanhaId;
 
@@ -30,7 +31,8 @@ public class ServicoPersonagensTestes : IDisposable
         _repositorioSideQuests = RepositorioSideQuests.CarregarDeArquivo(arquivoSideQuests);
 
         _dado = new DadoFixo(1);
-        _servico = new ServicoPersonagens(_repositorio, _repositorioSideQuests, _dado);
+        _servicoHistorico = new ServicoHistorico(_repositorio);
+        _servico = new ServicoPersonagens(_repositorio, _repositorioSideQuests, _dado, _servicoHistorico);
         _campanhaId = _repositorio.Criar("Campanha de Teste").Id;
     }
 
@@ -293,5 +295,75 @@ public class ServicoPersonagensTestes : IDisposable
     public void AtualizarStatusSideQuest_ComPersonagemInexistente_RetornaNulo()
     {
         Assert.Null(_servico.AtualizarStatusSideQuest(_campanhaId, "nao-existe", "concluida"));
+    }
+
+    [Fact]
+    public void AdicionarXp_ComPersonagemExistente_SomaAoXpEValida()
+    {
+        var criado = _servico.Importar(_campanhaId, RequisicaoDeExemplo())!;
+
+        var atualizado = _servico.AdicionarXp(_campanhaId, criado.Id, 100, "venceu um Rato");
+
+        Assert.NotNull(atualizado);
+        Assert.Equal(100, atualizado!.Xp);
+    }
+
+    [Fact]
+    public void AdicionarXp_ChamadoDuasVezes_AcumulaOXp()
+    {
+        var criado = _servico.Importar(_campanhaId, RequisicaoDeExemplo())!;
+
+        _servico.AdicionarXp(_campanhaId, criado.Id, 100, "primeiro combate");
+        var atualizado = _servico.AdicionarXp(_campanhaId, criado.Id, 50, "segundo combate");
+
+        Assert.Equal(150, atualizado!.Xp);
+    }
+
+    [Fact]
+    public void AdicionarXp_RegistraNoHistoricoDaCampanha()
+    {
+        var criado = _servico.Importar(_campanhaId, RequisicaoDeExemplo())!;
+
+        _servico.AdicionarXp(_campanhaId, criado.Id, 100, "venceu um Rato");
+
+        var historico = _servicoHistorico.Listar(_campanhaId)!;
+        Assert.Single(historico);
+        Assert.Equal("Kess Bramo ganhou 100 XP (venceu um Rato)", historico[0].Descricao);
+    }
+
+    [Fact]
+    public void AdicionarXp_ComCampanhaInexistente_RetornaNulo()
+    {
+        Assert.Null(_servico.AdicionarXp("nao-existe", "qualquer-id", 100, "motivo"));
+    }
+
+    [Fact]
+    public void AdicionarXp_ComPersonagemInexistente_RetornaNulo()
+    {
+        Assert.Null(_servico.AdicionarXp(_campanhaId, "nao-existe", 100, "motivo"));
+    }
+
+    [Fact]
+    public void AtualizarStatusSideQuest_ComStatusConcluida_SomaXpSugeridoAoPersonagem()
+    {
+        var criado = _servico.Importar(_campanhaId, RequisicaoDeExemplo())!;
+        _servico.SortearSideQuest(_campanhaId, criado.Id); // DadoFixo(1) -> XP sugerido = 5
+
+        var atualizado = _servico.AtualizarStatusSideQuest(_campanhaId, criado.Id, "concluida");
+
+        Assert.NotNull(atualizado);
+        Assert.Equal(5, atualizado!.Xp);
+        Assert.Equal("concluida", atualizado.SideQuestAtual!.Status);
+    }
+
+    [Fact]
+    public void AtualizarStatusSideQuest_ComStatusDescartada_NaoSomaXp()
+    {
+        var criado = _servico.Importar(_campanhaId, RequisicaoDeExemplo())!;
+        _servico.SortearSideQuest(_campanhaId, criado.Id);
+
+        var atualizado = _servico.AtualizarStatusSideQuest(_campanhaId, criado.Id, "descartada");
+
+        Assert.Equal(0, atualizado!.Xp);
     }
 }

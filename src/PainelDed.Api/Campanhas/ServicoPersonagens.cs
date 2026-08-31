@@ -7,12 +7,14 @@ public class ServicoPersonagens
     private readonly RepositorioCampanhas _repositorio;
     private readonly RepositorioSideQuests _repositorioSideQuests;
     private readonly IDado _dado;
+    private readonly ServicoHistorico _servicoHistorico;
 
-    public ServicoPersonagens(RepositorioCampanhas repositorio, RepositorioSideQuests repositorioSideQuests, IDado dado)
+    public ServicoPersonagens(RepositorioCampanhas repositorio, RepositorioSideQuests repositorioSideQuests, IDado dado, ServicoHistorico servicoHistorico)
     {
         _repositorio = repositorio;
         _repositorioSideQuests = repositorioSideQuests;
         _dado = dado;
+        _servicoHistorico = servicoHistorico;
     }
 
     public List<Personagem>? Listar(string campanhaId)
@@ -57,7 +59,10 @@ public class ServicoPersonagens
             requisicao.HabilidadesClasse,
             requisicao.MagiasConhecidas,
             existente?.SideQuestAtual,
-            Armas: requisicao.Armas);
+            Armas: requisicao.Armas,
+            Xp: existente?.Xp ?? 0,
+            Itens: requisicao.Itens,
+            EspacosMagia1: requisicao.EspacosMagia1);
 
         if (existente is not null)
         {
@@ -123,6 +128,39 @@ public class ServicoPersonagens
 
         personagens[personagens.IndexOf(existente)] = atualizado;
         _repositorio.SalvarEstado(campanhaId, estado with { Personagens = personagens });
+
+        if (novoStatus == "concluida")
+        {
+            return AdicionarXp(campanhaId, personagemId, existente.SideQuestAtual.XpSugerido, $"side quest: {existente.SideQuestAtual.Titulo}");
+        }
+
+        return atualizado;
+    }
+
+    public Personagem? AdicionarXp(string campanhaId, string personagemId, int quantidade, string motivo)
+    {
+        var estado = _repositorio.CarregarEstado(campanhaId);
+        if (estado is null)
+        {
+            return null;
+        }
+
+        var personagens = estado.Personagens ?? new List<Personagem>();
+        var existente = personagens.FirstOrDefault(p => p.Id == personagemId);
+        if (existente is null)
+        {
+            return null;
+        }
+
+        var atualizado = existente with { Xp = existente.Xp + quantidade };
+        personagens[personagens.IndexOf(existente)] = atualizado;
+        _repositorio.SalvarEstado(campanhaId, estado with { Personagens = personagens });
+
+        var descricao = string.IsNullOrWhiteSpace(motivo)
+            ? $"{atualizado.Nome} ganhou {quantidade} XP"
+            : $"{atualizado.Nome} ganhou {quantidade} XP ({motivo})";
+        _servicoHistorico.Registrar(campanhaId, descricao);
+
         return atualizado;
     }
 }
