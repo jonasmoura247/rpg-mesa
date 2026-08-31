@@ -261,4 +261,48 @@ public class ModelosTestes
         Assert.NotNull(restaurado);
         Assert.Null(restaurado!.MagiasConhecidas);
     }
+
+    [Fact]
+    public void Personagem_ComArmas_SerializaEDesserializaMantendoOsDados()
+    {
+        var original = new Personagem(
+            "p1",
+            "Kess Bramo",
+            "Humano",
+            "Guerreiro",
+            1,
+            new AtributosPersonagem(16, 12, 14, 8, 10, 8),
+            12,
+            16,
+            new List<PericiaPersonagem>(),
+            Armas: new List<ArmaPersonagem>
+            {
+                new("Espada Longa", "1d8", "corte", 5, 3),
+            });
+
+        var json = JsonSerializer.Serialize(original, Opcoes);
+        var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Single(restaurado!.Armas!);
+        Assert.Equal("Espada Longa", restaurado.Armas[0].Nome);
+        Assert.Equal("1d8", restaurado.Armas[0].Dano);
+        Assert.Equal("corte", restaurado.Armas[0].TipoDano);
+        Assert.Equal(5, restaurado.Armas[0].BonusAcerto);
+        Assert.Equal(3, restaurado.Armas[0].ModDano);
+    }
+
+    [Fact]
+    public void Personagem_SemArmas_DesserializaComListaNula()
+    {
+        // Regressão: fichas exportadas antes desta feature não têm armas no JSON.
+        var json = "{\"Id\":\"p1\",\"Nome\":\"Teste\",\"Raca\":\"Humano\",\"Classe\":\"Guerreiro\",\"Nivel\":1," +
+            "\"Atributos\":{\"Forca\":10,\"Destreza\":10,\"Constituicao\":10,\"Inteligencia\":10,\"Sabedoria\":10,\"Carisma\":10}," +
+            "\"Pv\":10,\"Ca\":10,\"Pericias\":[]}";
+
+        var restaurado = JsonSerializer.Deserialize<Personagem>(json, Opcoes);
+
+        Assert.NotNull(restaurado);
+        Assert.Null(restaurado!.Armas);
+    }
 }

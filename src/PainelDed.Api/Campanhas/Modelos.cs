@@ -69,6 +69,8 @@ public record MagiaPersonagem(
     string? Dano = null,
     string? TesteResistencia = null);
 
+public record ArmaPersonagem(string Nome, string Dano, string TipoDano, int BonusAcerto, int ModDano);
+
 public record Personagem(
     string Id,
     string Nome,
@@ -90,7 +92,8 @@ public record Personagem(
     List<TracoPersonagem>? TracosRaciais = null,
     List<HabilidadeClasse>? HabilidadesClasse = null,
     List<MagiaPersonagem>? MagiasConhecidas = null,
-    SideQuestPersonagem? SideQuestAtual = null);
+    SideQuestPersonagem? SideQuestAtual = null,
+    List<ArmaPersonagem>? Armas = null);
 
 public record ImportarPersonagemRequisicao(
     string Nome,
@@ -111,7 +114,8 @@ public record ImportarPersonagemRequisicao(
     List<TesteResistencia>? TestesResistencia = null,
     List<TracoPersonagem>? TracosRaciais = null,
     List<HabilidadeClasse>? HabilidadesClasse = null,
-    List<MagiaPersonagem>? MagiasConhecidas = null);
+    List<MagiaPersonagem>? MagiasConhecidas = null,
+    List<ArmaPersonagem>? Armas = null);
 
 public record AtualizarStatusSideQuestRequisicao(string Status);
 
