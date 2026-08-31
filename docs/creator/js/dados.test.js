@@ -118,4 +118,38 @@ assert.strictEqual(clerigo.magias.tipo, 'preparado');
 const paladino = DADOS.CLASSES.find(c => c.nome === 'Paladino');
 assert.ok(!paladino.magias, 'Paladino não conjura no nível 1, não deve ter magias');
 
+assert.strictEqual(DADOS.ARMAS.length, 16, 'devem existir 16 armas (5 simples corpo a corpo + 6 marciais + 5 à distância)');
+const adaga = DADOS.ARMAS.find(a => a.nome === 'Adaga');
+assert.strictEqual(adaga.dano, '1d4');
+assert.strictEqual(adaga.tipoDano, 'perfuração');
+assert.ok(adaga.propriedades.includes('fineza'));
+assert.ok(adaga.propriedades.includes('leve'));
+
+const espadaLonga = DADOS.ARMAS.find(a => a.nome === 'Espada Longa');
+assert.strictEqual(espadaLonga.dano, '1d8');
+assert.ok(espadaLonga.propriedades.includes('versatil'));
+assert.strictEqual(espadaLonga.danoVersatil, '1d10');
+
+const arcoLongo = DADOS.ARMAS.find(a => a.nome === 'Arco Longo');
+assert.strictEqual(arcoLongo.tipo, 'distancia');
+assert.strictEqual(arcoLongo.categoria, 'marcial');
+
+assert.strictEqual(DADOS.ARMADURAS.length, 10, 'devem existir 10 armaduras (3 leves + 4 médias + 3 pesadas)');
+const couro = DADOS.ARMADURAS.find(a => a.nome === 'Couro');
+assert.strictEqual(couro.categoria, 'leve');
+assert.strictEqual(couro.ca, 11);
+assert.strictEqual(couro.limiteDex, null);
+
+const cotaDeMalha = DADOS.ARMADURAS.find(a => a.nome === 'Cota de Malha');
+assert.strictEqual(cotaDeMalha.categoria, 'media');
+assert.strictEqual(cotaDeMalha.limiteDex, 2);
+
+const placas = DADOS.ARMADURAS.find(a => a.nome === 'Armadura de Placas');
+assert.strictEqual(placas.categoria, 'pesada');
+assert.strictEqual(placas.ca, 18);
+assert.strictEqual(placas.limiteDex, 0);
+assert.strictEqual(placas.forMinima, 15);
+
+assert.strictEqual(DADOS.ESCUDO.bonusCa, 2);
+
 console.log('dados.test.js (perícias/point buy): OK');

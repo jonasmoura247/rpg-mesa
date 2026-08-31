@@ -306,7 +306,41 @@
       ] }
   ];
 
-  const api = { PERICIAS, CUSTO_POINT_BUY, ORCAMENTO_PONTOS, ATRIBUTO_MINIMO, ATRIBUTO_MAXIMO, RACAS, CLASSES };
+  const ARMAS = [
+    { nome: 'Clava', categoria: 'simples', tipo: 'corpoACorpo', dano: '1d4', tipoDano: 'concussão', propriedades: ['leve'] },
+    { nome: 'Adaga', categoria: 'simples', tipo: 'corpoACorpo', dano: '1d4', tipoDano: 'perfuração', propriedades: ['fineza', 'leve', 'arremesso'] },
+    { nome: 'Machadinha', categoria: 'simples', tipo: 'corpoACorpo', dano: '1d6', tipoDano: 'corte', propriedades: ['leve', 'arremesso'] },
+    { nome: 'Lança', categoria: 'simples', tipo: 'corpoACorpo', dano: '1d6', tipoDano: 'perfuração', propriedades: ['arremesso', 'versatil'], danoVersatil: '1d8' },
+    { nome: 'Cajado', categoria: 'simples', tipo: 'corpoACorpo', dano: '1d6', tipoDano: 'concussão', propriedades: ['versatil'], danoVersatil: '1d8' },
+    { nome: 'Espada Longa', categoria: 'marcial', tipo: 'corpoACorpo', dano: '1d8', tipoDano: 'corte', propriedades: ['versatil'], danoVersatil: '1d10' },
+    { nome: 'Machado de Guerra', categoria: 'marcial', tipo: 'corpoACorpo', dano: '1d8', tipoDano: 'corte', propriedades: ['versatil'], danoVersatil: '1d10' },
+    { nome: 'Rapieira', categoria: 'marcial', tipo: 'corpoACorpo', dano: '1d8', tipoDano: 'perfuração', propriedades: ['fineza'] },
+    { nome: 'Alabarda', categoria: 'marcial', tipo: 'corpoACorpo', dano: '1d10', tipoDano: 'corte', propriedades: ['alcance', 'pesada', 'duasMaos'] },
+    { nome: 'Espada Grande', categoria: 'marcial', tipo: 'corpoACorpo', dano: '2d6', tipoDano: 'corte', propriedades: ['pesada', 'duasMaos'] },
+    { nome: 'Maça Estrela', categoria: 'marcial', tipo: 'corpoACorpo', dano: '1d8', tipoDano: 'concussão', propriedades: [] },
+    { nome: 'Arco Curto', categoria: 'simples', tipo: 'distancia', dano: '1d6', tipoDano: 'perfuração', propriedades: [], alcance: '24/96m' },
+    { nome: 'Arco Longo', categoria: 'marcial', tipo: 'distancia', dano: '1d8', tipoDano: 'perfuração', propriedades: [], alcance: '45/180m' },
+    { nome: 'Besta Leve', categoria: 'simples', tipo: 'distancia', dano: '1d8', tipoDano: 'perfuração', propriedades: ['carga'], alcance: '24/96m' },
+    { nome: 'Besta Pesada', categoria: 'marcial', tipo: 'distancia', dano: '1d10', tipoDano: 'perfuração', propriedades: ['carga', 'pesada'], alcance: '30/120m' },
+    { nome: 'Funda', categoria: 'simples', tipo: 'distancia', dano: '1d4', tipoDano: 'concussão', propriedades: [], alcance: '30/120m' }
+  ];
+
+  const ARMADURAS = [
+    { nome: 'Acolchoada', categoria: 'leve', ca: 11, limiteDex: null },
+    { nome: 'Couro', categoria: 'leve', ca: 11, limiteDex: null },
+    { nome: 'Couro Batido', categoria: 'leve', ca: 12, limiteDex: null },
+    { nome: 'Cota de Malha', categoria: 'media', ca: 13, limiteDex: 2 },
+    { nome: 'Escamas', categoria: 'media', ca: 14, limiteDex: 2 },
+    { nome: 'Couraça', categoria: 'media', ca: 14, limiteDex: 2 },
+    { nome: 'Meia-placa', categoria: 'media', ca: 15, limiteDex: 2 },
+    { nome: 'Cota de Anéis', categoria: 'pesada', ca: 14, limiteDex: 0 },
+    { nome: 'Camisão de Malha', categoria: 'pesada', ca: 16, limiteDex: 0, forMinima: 13 },
+    { nome: 'Armadura de Placas', categoria: 'pesada', ca: 18, limiteDex: 0, forMinima: 15 }
+  ];
+
+  const ESCUDO = { nome: 'Escudo', bonusCa: 2 };
+
+  const api = { PERICIAS, CUSTO_POINT_BUY, ORCAMENTO_PONTOS, ATRIBUTO_MINIMO, ATRIBUTO_MAXIMO, RACAS, CLASSES, ARMAS, ARMADURAS, ESCUDO };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;
