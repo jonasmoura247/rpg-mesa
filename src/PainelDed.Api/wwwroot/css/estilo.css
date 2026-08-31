@@ -180,10 +180,26 @@ body {
   color: var(--cor-destaque);
 }
 
-.side-quest-ficha {
+.secao-ficha {
   border: 1px solid var(--cor-borda);
   border-radius: 8px;
   padding: 0.7rem 0.9rem;
+  margin-top: 0.9rem;
+}
+
+.secao-ficha h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.5rem;
+}
+
+.secao-ficha h5 {
+  margin: 0.6rem 0 0.3rem;
+  color: var(--cor-texto-suave);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .acoes-side-quest {
@@ -832,6 +848,58 @@ body {
   padding: 0.35rem 0.8rem;
   border-radius: 8px;
   font-weight: 700;
+}
+
+.chip-xp-cartao {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  color: var(--cor-destaque);
+  font-weight: 600;
+}
+
+.bloco-xp {
+  margin-bottom: 1rem;
+}
+
+.trilho-xp {
+  background: var(--cor-fundo);
+  border-radius: 6px;
+  height: 12px;
+  overflow: hidden;
+  margin: 0.3rem 0;
+}
+
+.preenchimento-xp {
+  background: var(--cor-destaque);
+  height: 100%;
+}
+
+.aviso-nivel {
+  color: var(--cor-destaque);
+  font-weight: 700;
+  margin: 0.4rem 0;
+}
+
+.controle-xp-manual {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.controle-xp-manual input {
+  flex: 1;
+  padding: 0.4rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+.texto-xp-combate {
+  text-align: center;
+  color: var(--cor-destaque);
+  font-weight: 700;
+  margin: -0.5rem 0 1rem;
 }
 
 .grade-atributos-ficha {
