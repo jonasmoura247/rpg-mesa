@@ -5,6 +5,7 @@ const ficha = {
   classe: null,
   atributosBase: { forca: 8, destreza: 8, constituicao: 8, inteligencia: 8, sabedoria: 8, carisma: 8 },
   periciasEscolhidas: [],
+  equipamento: { pacoteIndice: null, escolhasAtributo: {}, duasMaos: {} },
   magiasEscolhidas: [],
   historia: '',
   caracteristicasFisicas: ''
@@ -18,7 +19,7 @@ const botaoVoltar = document.getElementById('btnVoltar');
 const botaoAvancar = document.getElementById('btnAvancar');
 const elementoProgresso = document.getElementById('progresso');
 
-const NOMES_ETAPAS = { atributos: 'Atributos', raca: 'Raça', classe: 'Classe', magias: 'Magias', resumo: 'Resumo' };
+const NOMES_ETAPAS = { raca: 'Raça', classe: 'Classe', atributos: 'Atributos', equipamento: 'Equipamento', magias: 'Magias', resumo: 'Resumo' };
 
 function classeTemMagias() {
   const classe = classeSelecionada();
@@ -26,7 +27,7 @@ function classeTemMagias() {
 }
 
 function etapas() {
-  const passos = ['atributos', 'raca', 'classe'];
+  const passos = ['raca', 'classe', 'atributos', 'equipamento'];
   if (classeTemMagias()) passos.push('magias');
   passos.push('resumo');
   return passos;
