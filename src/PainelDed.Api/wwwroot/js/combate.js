@@ -287,11 +287,23 @@ const Combate = {
     const resultado = document.createElement('p');
     container.appendChild(resultado);
 
+    const detalheDano = document.createElement('p');
+    detalheDano.className = 'detalhes-quest';
+    detalheDano.hidden = true;
+    container.appendChild(detalheDano);
+
     const campoDano = document.createElement('input');
     campoDano.type = 'number';
     campoDano.placeholder = 'dano rolado';
     campoDano.hidden = true;
     container.appendChild(campoDano);
+
+    const botaoRolarDeNovo = document.createElement('button');
+    botaoRolarDeNovo.type = 'button';
+    botaoRolarDeNovo.className = 'botao-secundario';
+    botaoRolarDeNovo.textContent = '🎲 Rolar de novo';
+    botaoRolarDeNovo.hidden = true;
+    container.appendChild(botaoRolarDeNovo);
 
     const botaoAplicar = document.createElement('button');
     botaoAplicar.className = 'botao-rolar';
@@ -299,13 +311,34 @@ const Combate = {
     botaoAplicar.hidden = true;
     container.appendChild(botaoAplicar);
 
+    function rolarDanoAutomatico(critico) {
+      const resultadoDano = Dado.rolarDano(acao.danoDados, acao.modDano, critico);
+      campoDano.value = resultadoDano.total;
+      detalheDano.hidden = false;
+      const nota = critico ? ' (crítico, dados dobrados)' : '';
+      detalheDano.textContent =
+        `Dano: rolou ${resultadoDano.dadosRolados} em ${resultadoDano.quantidadeDados}d${resultadoDano.lados}${nota} ` +
+        `+ ${resultadoDano.modDano} = ${resultadoDano.total} ${acao.tipoDano || ''}`.trim();
+    }
+
     campoD20.addEventListener('input', () => {
-      const total = Number(campoD20.value) + bonus;
+      const valorD20 = Number(campoD20.value);
+      const total = valorD20 + bonus;
       const acertou = total >= alvo.ca;
       resultado.textContent = acertou ? `Acertou (total ${total})` : `Errou (total ${total})`;
       resultado.style.color = acertou ? 'var(--cor-sucesso, #5a5)' : 'var(--cor-erro, #c53)';
       campoDano.hidden = !acertou;
       botaoAplicar.hidden = !acertou;
+      botaoRolarDeNovo.hidden = !(acertou && acao.danoDados);
+      if (acertou && acao.danoDados) {
+        rolarDanoAutomatico(valorD20 === 20);
+      } else {
+        detalheDano.hidden = true;
+      }
+    });
+
+    botaoRolarDeNovo.addEventListener('click', () => {
+      rolarDanoAutomatico(Number(campoD20.value) === 20);
     });
 
     botaoAplicar.addEventListener('click', () => {
