@@ -105,6 +105,22 @@ function podeAvancar() {
     }
     return true;
   }
+  if (passo === 'equipamento') {
+    const pacote = pacoteEquipamentoSelecionado();
+    if (!pacote) {
+      mostrarErro('Escolha um pacote de equipamento.');
+      return false;
+    }
+    const armasComFineza = pacote.armas.filter(nomeArma =>
+      DADOS.ARMAS.find(a => a.nome === nomeArma).propriedades.includes('fineza')
+    );
+    const faltaEscolherAtributo = armasComFineza.some(nomeArma => !ficha.equipamento.escolhasAtributo[nomeArma]);
+    if (faltaEscolherAtributo) {
+      mostrarErro('Escolha Força ou Destreza para toda arma com Fineza.');
+      return false;
+    }
+    return true;
+  }
   if (passo === 'magias') {
     const { limiteCantrips, limiteNivel1, cantripsEscolhidos, nivel1Escolhidas } = infoEscolhaMagias();
     if (cantripsEscolhidos.length !== limiteCantrips || nivel1Escolhidas.length !== limiteNivel1) {
