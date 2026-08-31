@@ -11,6 +11,15 @@ function formatarComSinal(numero) {
   return numero >= 0 ? `+${numero}` : `${numero}`;
 }
 
+function criarSecaoFicha(icone, titulo) {
+  const secao = document.createElement('div');
+  secao.className = 'secao-ficha';
+  const cabecalho = document.createElement('h4');
+  cabecalho.textContent = `${icone} ${titulo}`;
+  secao.appendChild(cabecalho);
+  return secao;
+}
+
 const Personagens = {
   async exibir() {
     const principal = document.getElementById('conteudo-principal');
@@ -100,7 +109,75 @@ const Personagens = {
     linha.textContent = `${personagem.raca} · ${personagem.classe} · Nível ${personagem.nivel}`;
     cartao.appendChild(linha);
 
+    const xpLinha = document.createElement('p');
+    xpLinha.className = 'chip-xp-cartao';
+    xpLinha.textContent = `⭐ ${personagem.xp || 0} XP`;
+    cartao.appendChild(xpLinha);
+
     return cartao;
+  },
+
+  criarBlocoXp(personagem) {
+    const bloco = document.createElement('div');
+    bloco.className = 'bloco-xp';
+
+    const xpAtual = personagem.xp || 0;
+    const baseNivel = Experiencia.xpNivelAtual(personagem.nivel);
+    const proximoNivel = Experiencia.xpProximoNivel(personagem.nivel);
+
+    const linhaTexto = document.createElement('p');
+    linhaTexto.className = 'detalhes-quest';
+    linhaTexto.textContent = proximoNivel === null
+      ? `XP: ${xpAtual} (nível máximo)`
+      : `XP: ${xpAtual}/${proximoNivel} (nível ${personagem.nivel})`;
+    bloco.appendChild(linhaTexto);
+
+    const trilho = document.createElement('div');
+    trilho.className = 'trilho-xp';
+    const preenchimento = document.createElement('div');
+    preenchimento.className = 'preenchimento-xp';
+    const progresso = proximoNivel === null
+      ? 100
+      : Math.min(100, Math.max(0, ((xpAtual - baseNivel) / (proximoNivel - baseNivel)) * 100));
+    preenchimento.style.width = `${progresso}%`;
+    trilho.appendChild(preenchimento);
+    bloco.appendChild(trilho);
+
+    if (proximoNivel !== null && xpAtual >= proximoNivel) {
+      const aviso = document.createElement('p');
+      aviso.className = 'aviso-nivel';
+      aviso.textContent = '🎉 Pronto pra subir de nível!';
+      bloco.appendChild(aviso);
+    }
+
+    const controleManual = document.createElement('div');
+    controleManual.className = 'controle-xp-manual';
+    const campoXp = document.createElement('input');
+    campoXp.type = 'number';
+    campoXp.placeholder = 'Quantidade de XP';
+    const botaoAdicionar = document.createElement('button');
+    botaoAdicionar.className = 'botao-secundario';
+    botaoAdicionar.textContent = '+ Adicionar XP';
+    botaoAdicionar.addEventListener('click', async () => {
+      const quantidade = parseInt(campoXp.value, 10);
+      if (!quantidade) return;
+      botaoAdicionar.disabled = true;
+      try {
+        await Api.adicionarXp(Campanha.ativa.id, personagem.id, quantidade, 'manual (mestre)');
+      } catch (erro) {
+        console.error(erro);
+        window.alert('Falha ao adicionar XP.');
+        botaoAdicionar.disabled = false;
+        return;
+      }
+      await this.exibirDetalhe(personagem.id);
+      await this.recarregar();
+    });
+    controleManual.appendChild(campoXp);
+    controleManual.appendChild(botaoAdicionar);
+    bloco.appendChild(controleManual);
+
+    return bloco;
   },
 
   async exibirDetalhe(personagemId, cartaoSelecionado) {
@@ -142,6 +219,8 @@ const Personagens = {
     });
     detalhe.appendChild(destaques);
 
+    detalhe.appendChild(this.criarBlocoXp(personagem));
+
     const grade = document.createElement('div');
     grade.className = 'grade-atributos-ficha';
     Object.entries(NOMES_ATRIBUTOS_PERSONAGEM).forEach(([chave, rotulo]) => {
@@ -158,10 +237,7 @@ const Personagens = {
     });
     detalhe.appendChild(grade);
 
-    const tituloPericias = document.createElement('h4');
-    tituloPericias.textContent = 'Perícias';
-    detalhe.appendChild(tituloPericias);
-
+    const secaoPericias = criarSecaoFicha('🎯', 'Perícias');
     const listaPericias = document.createElement('ul');
     listaPericias.className = 'lista-pericias-ficha';
     if (personagem.pericias.length === 0) {
@@ -175,13 +251,11 @@ const Personagens = {
         listaPericias.appendChild(item);
       });
     }
-    detalhe.appendChild(listaPericias);
+    secaoPericias.appendChild(listaPericias);
+    detalhe.appendChild(secaoPericias);
 
     if (personagem.testesResistencia && personagem.testesResistencia.length > 0) {
-      const tituloCombate = document.createElement('h4');
-      tituloCombate.textContent = 'Combate';
-      detalhe.appendChild(tituloCombate);
-
+      const secaoCombate = criarSecaoFicha('🛡️', 'Combate');
       const destaquesCombate = document.createElement('div');
       destaquesCombate.className = 'destaques-ficha';
       const statsCombate = [
@@ -199,12 +273,10 @@ const Personagens = {
         destaque.textContent = rotulo === 'CD Magia' ? `${rotulo} ${valor}` : `${rotulo} ${formatarComSinal(valor)}`;
         destaquesCombate.appendChild(destaque);
       });
-      detalhe.appendChild(destaquesCombate);
+      secaoCombate.appendChild(destaquesCombate);
+      detalhe.appendChild(secaoCombate);
 
-      const tituloResistencias = document.createElement('h4');
-      tituloResistencias.textContent = 'Testes de Resistência';
-      detalhe.appendChild(tituloResistencias);
-
+      const secaoResistencias = criarSecaoFicha('🎲', 'Testes de Resistência');
       const listaResistencias = document.createElement('ul');
       listaResistencias.className = 'lista-pericias-ficha';
       personagem.testesResistencia.forEach((teste) => {
@@ -213,14 +285,12 @@ const Personagens = {
         item.textContent = `${rotulo}${teste.proficiente ? ' (proficiente)' : ''}: ${formatarComSinal(teste.bonus)}`;
         listaResistencias.appendChild(item);
       });
-      detalhe.appendChild(listaResistencias);
+      secaoResistencias.appendChild(listaResistencias);
+      detalhe.appendChild(secaoResistencias);
     }
 
     if (personagem.tracosRaciais && personagem.tracosRaciais.length > 0) {
-      const tituloTracos = document.createElement('h4');
-      tituloTracos.textContent = 'Traços Raciais';
-      detalhe.appendChild(tituloTracos);
-
+      const secaoTracos = criarSecaoFicha('🧬', 'Traços Raciais');
       const listaTracos = document.createElement('ul');
       listaTracos.className = 'lista-pericias-ficha';
       personagem.tracosRaciais.forEach((traco) => {
@@ -231,14 +301,12 @@ const Personagens = {
         item.appendChild(document.createTextNode(traco.descricao));
         listaTracos.appendChild(item);
       });
-      detalhe.appendChild(listaTracos);
+      secaoTracos.appendChild(listaTracos);
+      detalhe.appendChild(secaoTracos);
     }
 
     if (personagem.habilidadesClasse && personagem.habilidadesClasse.length > 0) {
-      const tituloHabilidades = document.createElement('h4');
-      tituloHabilidades.textContent = 'Habilidades de Classe';
-      detalhe.appendChild(tituloHabilidades);
-
+      const secaoHabilidades = criarSecaoFicha('⚔️', 'Habilidades de Classe');
       const listaHabilidades = document.createElement('ul');
       listaHabilidades.className = 'lista-pericias-ficha';
       personagem.habilidadesClasse.forEach((habilidade) => {
@@ -249,48 +317,68 @@ const Personagens = {
         item.appendChild(document.createTextNode(habilidade.descricao));
         listaHabilidades.appendChild(item);
       });
-      detalhe.appendChild(listaHabilidades);
+      secaoHabilidades.appendChild(listaHabilidades);
+      detalhe.appendChild(secaoHabilidades);
     }
 
     if (personagem.magiasConhecidas && personagem.magiasConhecidas.length > 0) {
-      const tituloMagias = document.createElement('h4');
-      tituloMagias.textContent = 'Magias';
-      detalhe.appendChild(tituloMagias);
+      const secaoMagias = criarSecaoFicha('✨', 'Magias');
 
-      const criarListaMagias = (titulo, magias) => {
+      const criarListaMagias = (subtituloTexto, magias, calcularSelo) => {
         if (magias.length === 0) return;
         const subtitulo = document.createElement('h5');
-        subtitulo.textContent = titulo;
-        detalhe.appendChild(subtitulo);
+        subtitulo.textContent = subtituloTexto;
+        secaoMagias.appendChild(subtitulo);
 
         const lista = document.createElement('ul');
         lista.className = 'lista-pericias-ficha';
         magias.forEach((magia) => {
           const item = document.createElement('li');
           const negrito = document.createElement('strong');
-          negrito.textContent = `${magia.nome}: `;
+          negrito.textContent = `${magia.nome} `;
           item.appendChild(negrito);
+
+          const badge = document.createElement('span');
+          badge.className = 'etiqueta-dado';
+          badge.textContent = calcularSelo(magia);
+          item.appendChild(badge);
 
           const partesEfeito = [magia.escola, magia.alcance, magia.duracao];
           if (magia.dano) partesEfeito.push(magia.dano);
           if (magia.testeResistencia) partesEfeito.push(`Resistência: ${magia.testeResistencia}`);
+          item.appendChild(document.createElement('br'));
           item.appendChild(document.createTextNode(partesEfeito.join(' · ')));
 
           lista.appendChild(item);
         });
-        detalhe.appendChild(lista);
+        secaoMagias.appendChild(lista);
       };
 
-      criarListaMagias('Cantrips', personagem.magiasConhecidas.filter((m) => m.circulo === 0));
-      criarListaMagias('Magias de 1º Círculo', personagem.magiasConhecidas.filter((m) => m.circulo === 1));
+      criarListaMagias('Cantrips', personagem.magiasConhecidas.filter((m) => m.circulo === 0), () => 'Uso ilimitado');
+      criarListaMagias(
+        'Magias de 1º Círculo',
+        personagem.magiasConhecidas.filter((m) => m.circulo === 1),
+        () => `${personagem.espacosMagia1 ?? '?'} usos — descanso longo`,
+      );
+
+      detalhe.appendChild(secaoMagias);
     }
 
-    const tituloSideQuest = document.createElement('h4');
-    tituloSideQuest.textContent = 'Side Quest';
-    detalhe.appendChild(tituloSideQuest);
+    if (personagem.itens && personagem.itens.length > 0) {
+      const secaoItens = criarSecaoFicha('🎒', 'Itens');
+      const listaItens = document.createElement('ul');
+      listaItens.className = 'lista-pericias-ficha';
+      personagem.itens.forEach((nomeItem) => {
+        const item = document.createElement('li');
+        item.textContent = nomeItem;
+        listaItens.appendChild(item);
+      });
+      secaoItens.appendChild(listaItens);
+      detalhe.appendChild(secaoItens);
+    }
 
+    const secaoSideQuest = criarSecaoFicha('📜', 'Side Quest');
     const containerSideQuest = document.createElement('div');
-    containerSideQuest.className = 'side-quest-ficha';
 
     if (personagem.sideQuestAtual && personagem.sideQuestAtual.status === 'pendente') {
       const sq = personagem.sideQuestAtual;
@@ -323,6 +411,7 @@ const Personagens = {
           return;
         }
         await this.exibirDetalhe(personagem.id);
+        await this.recarregar();
       });
       acoes.appendChild(botaoConcluir);
 
@@ -361,26 +450,25 @@ const Personagens = {
       containerSideQuest.appendChild(botaoSortear);
     }
 
-    detalhe.appendChild(containerSideQuest);
+    secaoSideQuest.appendChild(containerSideQuest);
+    detalhe.appendChild(secaoSideQuest);
 
     if (personagem.historia) {
-      const tituloHistoria = document.createElement('h4');
-      tituloHistoria.textContent = 'História';
-      detalhe.appendChild(tituloHistoria);
+      const secaoHistoria = criarSecaoFicha('📖', 'História');
       const textoHistoria = document.createElement('p');
       textoHistoria.className = 'texto-livre-ficha';
       textoHistoria.textContent = personagem.historia;
-      detalhe.appendChild(textoHistoria);
+      secaoHistoria.appendChild(textoHistoria);
+      detalhe.appendChild(secaoHistoria);
     }
 
     if (personagem.caracteristicasFisicas) {
-      const tituloCaracteristicas = document.createElement('h4');
-      tituloCaracteristicas.textContent = 'Características Físicas';
-      detalhe.appendChild(tituloCaracteristicas);
+      const secaoCaracteristicas = criarSecaoFicha('👤', 'Características Físicas');
       const textoCaracteristicas = document.createElement('p');
       textoCaracteristicas.className = 'texto-livre-ficha';
       textoCaracteristicas.textContent = personagem.caracteristicasFisicas;
-      detalhe.appendChild(textoCaracteristicas);
+      secaoCaracteristicas.appendChild(textoCaracteristicas);
+      detalhe.appendChild(secaoCaracteristicas);
     }
   },
 
