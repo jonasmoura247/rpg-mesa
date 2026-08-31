@@ -391,7 +391,14 @@
     ],
   };
 
-  const api = { PERICIAS, CUSTO_POINT_BUY, ORCAMENTO_PONTOS, ATRIBUTO_MINIMO, ATRIBUTO_MAXIMO, RACAS, CLASSES, ARMAS, ARMADURAS, ESCUDO, PACOTES_EQUIPAMENTO };
+  const KIT_AVENTUREIRO = [
+    'Corda de Cânhamo (15m)',
+    'Kit de Curandeiro',
+    'Rações de Viagem (3 dias)',
+    'Tocha (2)',
+  ];
+
+  const api = { PERICIAS, CUSTO_POINT_BUY, ORCAMENTO_PONTOS, ATRIBUTO_MINIMO, ATRIBUTO_MAXIMO, RACAS, CLASSES, ARMAS, ARMADURAS, ESCUDO, PACOTES_EQUIPAMENTO, KIT_AVENTUREIRO };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;

@@ -179,4 +179,11 @@ assert.strictEqual(pacotesGuerreiro[1].escudo, false);
 const pacotesMagista = DADOS.PACOTES_EQUIPAMENTO.Magista;
 assert.strictEqual(pacotesMagista[0].armadura, null);
 
+assert.deepStrictEqual(DADOS.KIT_AVENTUREIRO, [
+  'Corda de Cânhamo (15m)',
+  'Kit de Curandeiro',
+  'Rações de Viagem (3 dias)',
+  'Tocha (2)',
+]);
+
 console.log('dados.test.js (perícias/point buy): OK');
