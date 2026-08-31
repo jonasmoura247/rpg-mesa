@@ -292,6 +292,7 @@ function renderEtapaClasse() {
   document.getElementById('campoClasse').addEventListener('change', evento => {
     ficha.classe = evento.target.value || null;
     ficha.periciasEscolhidas = [];
+    ficha.equipamento = { pacoteIndice: null, escolhasAtributo: {}, duasMaos: {} };
     renderEtapaClasse();
   });
 
@@ -311,6 +312,96 @@ function renderEtapaClasse() {
       }
       limparErro();
       renderEtapaClasse();
+    });
+  });
+}
+
+function pacotesDaClasse() {
+  const classe = classeSelecionada();
+  return classe ? (DADOS.PACOTES_EQUIPAMENTO[classe.nome] || []) : [];
+}
+
+function pacoteEquipamentoSelecionado() {
+  const pacotes = pacotesDaClasse();
+  return ficha.equipamento.pacoteIndice !== null ? pacotes[ficha.equipamento.pacoteIndice] : null;
+}
+
+function renderEtapaEquipamento() {
+  limparErro();
+  const pacotes = pacotesDaClasse();
+  const modDestreza = Calculo.modificador(atributosFinais().destreza);
+
+  const cartoes = pacotes.map((pacote, indice) => {
+    const armadura = pacote.armadura ? DADOS.ARMADURAS.find(a => a.nome === pacote.armadura) : null;
+    const caPrevia = Calculo.caArmadura(armadura, pacote.escudo, modDestreza);
+    const selecionado = ficha.equipamento.pacoteIndice === indice;
+    return `
+      <label class="pacote-equipamento ${selecionado ? 'selecionado' : ''}">
+        <input type="radio" name="pacoteEquipamento" value="${indice}" ${selecionado ? 'checked' : ''}>
+        <strong>${pacote.rotulo}</strong>
+        <span class="detalhes-magia">${pacote.armas.join(' + ')}${pacote.escudo ? ' + Escudo' : ''}${armadura ? ` · ${armadura.nome}` : ' · Sem armadura'}</span>
+        <span class="descricao-opcao">CA ${caPrevia}</span>
+      </label>`;
+  }).join('');
+
+  const pacote = pacoteEquipamentoSelecionado();
+  let blocoEscolhas = '';
+  if (pacote) {
+    const linhas = pacote.armas.map(nomeArma => {
+      const arma = DADOS.ARMAS.find(a => a.nome === nomeArma);
+      let linha = '';
+      if (arma.propriedades.includes('fineza')) {
+        const escolhida = ficha.equipamento.escolhasAtributo[nomeArma] || '';
+        linha += `
+          <label class="campo-nome">
+            ${nomeArma} — usar Força ou Destreza?
+            <select class="campoFinezaArma" data-arma="${nomeArma}">
+              <option value="">Selecione</option>
+              <option value="forca" ${escolhida === 'forca' ? 'selected' : ''}>Força</option>
+              <option value="destreza" ${escolhida === 'destreza' ? 'selected' : ''}>Destreza</option>
+            </select>
+          </label>`;
+      }
+      if (arma.propriedades.includes('versatil') && !pacote.escudo) {
+        const duasMaos = Boolean(ficha.equipamento.duasMaos[nomeArma]);
+        linha += `
+          <label class="item-pericia">
+            <input type="checkbox" class="campoDuasMaosArma" data-arma="${nomeArma}" ${duasMaos ? 'checked' : ''}>
+            Empunhar ${nomeArma} com duas mãos (dano ${arma.danoVersatil})
+          </label>`;
+      }
+      return linha;
+    }).join('');
+    blocoEscolhas = linhas.trim() ? `<div class="escolhas-livres">${linhas}</div>` : '';
+  }
+
+  elementoConteudo.innerHTML = `
+    <h2>Equipamento</h2>
+    <p>Escolha um pacote de equipamento inicial:</p>
+    <div class="grade-pacotes">${cartoes}</div>
+    ${blocoEscolhas}
+  `;
+
+  document.querySelectorAll('input[name="pacoteEquipamento"]').forEach(radio => {
+    radio.addEventListener('change', evento => {
+      ficha.equipamento.pacoteIndice = Number(evento.target.value);
+      ficha.equipamento.escolhasAtributo = {};
+      ficha.equipamento.duasMaos = {};
+      limparErro();
+      renderEtapaEquipamento();
+    });
+  });
+
+  document.querySelectorAll('.campoFinezaArma').forEach(select => {
+    select.addEventListener('change', evento => {
+      ficha.equipamento.escolhasAtributo[evento.target.dataset.arma] = evento.target.value || null;
+      limparErro();
+    });
+  });
+
+  document.querySelectorAll('.campoDuasMaosArma').forEach(checkbox => {
+    checkbox.addEventListener('change', evento => {
+      ficha.equipamento.duasMaos[evento.target.dataset.arma] = evento.target.checked;
     });
   });
 }
@@ -563,6 +654,7 @@ function renderEtapaAtual() {
   if (passo === 'atributos') renderEtapaAtributos();
   if (passo === 'raca') renderEtapaRaca();
   if (passo === 'classe') renderEtapaClasse();
+  if (passo === 'equipamento') renderEtapaEquipamento();
   if (passo === 'magias') renderEtapaMagias();
   if (passo === 'resumo') renderEtapaResumo();
 
