@@ -19,6 +19,15 @@
     return 10 + modDestreza;
   }
 
+  function caArmadura(armadura, temEscudo, modDestreza) {
+    const bonusEscudo = temEscudo ? 2 : 0;
+    if (!armadura) {
+      return 10 + modDestreza + bonusEscudo;
+    }
+    const dexAplicavel = armadura.limiteDex === null ? modDestreza : Math.min(modDestreza, armadura.limiteDex);
+    return armadura.ca + dexAplicavel + bonusEscudo;
+  }
+
   function bonusPericia(modAtributo, proficiente, bonusProficiencia) {
     return proficiente ? modAtributo + bonusProficiencia : modAtributo;
   }
@@ -34,7 +43,7 @@
     return Math.max(1, modAtributoConjuracao + 1);
   }
 
-  const api = { modificador, custoTotalPointBuy, pontosRestantes, pvInicial, caBase, bonusPericia, cdMagia, quantidadeMagiasNivel1 };
+  const api = { modificador, custoTotalPointBuy, pontosRestantes, pvInicial, caBase, caArmadura, bonusPericia, cdMagia, quantidadeMagiasNivel1 };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;
