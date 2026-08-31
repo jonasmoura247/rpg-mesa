@@ -558,6 +558,7 @@ function construirFichaFinal() {
   const modConjuracao = temConjuracao ? Calculo.modificador(atributos[classe.atributoConjuracao]) : null;
   const cdMagia = temConjuracao ? Calculo.cdMagia(modConjuracao, bonusProficiencia) : null;
   const bonusAtaqueMagico = temConjuracao ? Calculo.bonusPericia(modConjuracao, true, bonusProficiencia) : null;
+  const espacosMagia1 = classe.magias ? Calculo.quantidadeMagiasNivel1(classe.magias, modConjuracao) : null;
 
   const testesResistencia = Object.keys(NOMES_ATRIBUTOS).map(chave => {
     const mod = Calculo.modificador(atributos[chave]);
@@ -577,11 +578,13 @@ function construirFichaFinal() {
     armadura: armaduraEquipada ? armaduraEquipada.nome : null,
     escudo: temEscudo,
     armas,
+    itens: DADOS.KIT_AVENTUREIRO.slice(),
     iniciativa,
     bonusAtaqueForca,
     bonusAtaqueDestreza,
     cdMagia,
     bonusAtaqueMagico,
+    espacosMagia1,
     testesResistencia,
     tracosRaciais: raca.tracos,
     habilidadesClasse: classe.habilidades.filter(h => h.nivel <= 1),
