@@ -142,6 +142,16 @@ const Api = {
     return resposta.json();
   },
 
+  async adicionarXp(campanhaId, personagemId, quantidade, motivo) {
+    const resposta = await fetch(`/api/campanhas/${campanhaId}/personagens/${personagemId}/xp/adicionar`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ quantidade, motivo }),
+    });
+    if (!resposta.ok) throw new Error('Falha ao adicionar XP');
+    return resposta.json();
+  },
+
   async listarMonstrosCombate() {
     const resposta = await fetch('/api/monstros-combate');
     if (!resposta.ok) throw new Error('Falha ao listar monstros');

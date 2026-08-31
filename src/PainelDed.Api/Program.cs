@@ -156,6 +156,12 @@ app.MapPut("/api/campanhas/{campanhaId}/personagens/{personagemId}/side-quest/st
     return personagem is null ? Results.NotFound() : Results.Ok(personagem);
 });
 
+app.MapPost("/api/campanhas/{campanhaId}/personagens/{personagemId}/xp/adicionar", (string campanhaId, string personagemId, AdicionarXpRequisicao requisicao, ServicoPersonagens servico) =>
+{
+    var personagem = servico.AdicionarXp(campanhaId, personagemId, requisicao.Quantidade, requisicao.Motivo);
+    return personagem is null ? Results.NotFound() : Results.Ok(personagem);
+});
+
 app.Run();
 
 public partial class Program { }

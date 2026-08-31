@@ -172,6 +172,35 @@ public class EndpointsCampanhasTestes : IClassFixture<WebApplicationFactory<Prog
     }
 
     [Fact]
+    public async Task AdicionarXp_DepoisObter_RetornaXpAtualizado()
+    {
+        var cliente = _fabrica.CreateClient();
+        var campanhaId = await CriarCampanhaDeTesteAsync(cliente);
+
+        var requisicao = new ImportarPersonagemRequisicao(
+            "Vex, o Trovador",
+            "Humano",
+            "Guerreiro",
+            1,
+            new AtributosPersonagem(16, 12, 14, 8, 10, 8),
+            12,
+            16,
+            new List<PericiaPersonagem>());
+        var importarResposta = await cliente.PostAsJsonAsync($"/api/campanhas/{campanhaId}/personagens/importar", requisicao);
+        var personagem = await importarResposta.Content.ReadFromJsonAsync<Personagem>();
+
+        var xpResposta = await cliente.PostAsJsonAsync(
+            $"/api/campanhas/{campanhaId}/personagens/{personagem!.Id}/xp/adicionar",
+            new AdicionarXpRequisicao(200, "venceu um Goblin"));
+        xpResposta.EnsureSuccessStatusCode();
+
+        var obterResposta = await cliente.GetAsync($"/api/campanhas/{campanhaId}/personagens/{personagem.Id}");
+        var obtido = await obterResposta.Content.ReadFromJsonAsync<Personagem>();
+
+        Assert.Equal(200, obtido!.Xp);
+    }
+
+    [Fact]
     public async Task ListarDesafiosGuilda_RetornaCatalogoCompletoComDificuldade()
     {
         var cliente = _fabrica.CreateClient();
