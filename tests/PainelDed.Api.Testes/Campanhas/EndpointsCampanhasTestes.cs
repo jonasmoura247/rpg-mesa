@@ -139,6 +139,39 @@ public class EndpointsCampanhasTestes : IClassFixture<WebApplicationFactory<Prog
     }
 
     [Fact]
+    public async Task ImportarPersonagemComArmas_DepoisObter_RetornaArmas()
+    {
+        var cliente = _fabrica.CreateClient();
+        var campanhaId = await CriarCampanhaDeTesteAsync(cliente);
+
+        var requisicao = new ImportarPersonagemRequisicao(
+            "Vex, o Trovador",
+            "Humano",
+            "Guerreiro",
+            1,
+            new AtributosPersonagem(16, 12, 14, 8, 10, 8),
+            12,
+            16,
+            new List<PericiaPersonagem>(),
+            Armas: new List<ArmaPersonagem>
+            {
+                new("Espada Longa", "1d8", "corte", 5, 3),
+            });
+
+        var importarResposta = await cliente.PostAsJsonAsync($"/api/campanhas/{campanhaId}/personagens/importar", requisicao);
+        importarResposta.EnsureSuccessStatusCode();
+        var personagem = await importarResposta.Content.ReadFromJsonAsync<Personagem>();
+
+        var obterResposta = await cliente.GetAsync($"/api/campanhas/{campanhaId}/personagens/{personagem!.Id}");
+        obterResposta.EnsureSuccessStatusCode();
+        var obtido = await obterResposta.Content.ReadFromJsonAsync<Personagem>();
+
+        Assert.Single(obtido!.Armas!);
+        Assert.Equal("Espada Longa", obtido.Armas[0].Nome);
+        Assert.Equal(5, obtido.Armas[0].BonusAcerto);
+    }
+
+    [Fact]
     public async Task ImportarPersonagem_SemNome_Retorna400()
     {
         var cliente = _fabrica.CreateClient();

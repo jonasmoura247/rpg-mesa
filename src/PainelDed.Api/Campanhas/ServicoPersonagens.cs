@@ -56,7 +56,8 @@ public class ServicoPersonagens
             requisicao.TracosRaciais,
             requisicao.HabilidadesClasse,
             requisicao.MagiasConhecidas,
-            existente?.SideQuestAtual);
+            existente?.SideQuestAtual,
+            Armas: requisicao.Armas);
 
         if (existente is not null)
         {
