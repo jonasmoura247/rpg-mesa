@@ -7,13 +7,15 @@ namespace PainelDed.Api.Testes.Campanhas;
 public class RepositorioDesafiosGuildaTestes
 {
     [Fact]
-    public void CarregarDeArquivo_ComBancoReal_Carrega100DesafiosComDificuldadeValida()
+    public void CarregarDeArquivo_ComBancoReal_CarregaDesafiosComDificuldadeValida()
     {
         var caminho = LocalizadorConteudoGuilda.Localizar(AppContext.BaseDirectory);
 
         var repositorio = RepositorioDesafiosGuilda.CarregarDeArquivo(caminho);
 
-        Assert.Equal(100, repositorio.Todos.Count);
+        // Não fixa um total exato: o banco (content/guilda/desafios-guilda.json) é
+        // conteúdo editorial que cresce com o tempo, não um contrato de código.
+        Assert.True(repositorio.Todos.Count >= 100, $"esperava pelo menos 100 desafios, achou {repositorio.Todos.Count}");
         Assert.All(repositorio.Todos, d => Assert.Contains(d.Dificuldade, new[] { "facil", "media", "dificil" }));
         Assert.All(repositorio.Todos, d => Assert.False(string.IsNullOrWhiteSpace(d.Titulo)));
     }
