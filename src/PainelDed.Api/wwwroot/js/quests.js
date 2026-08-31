@@ -280,15 +280,6 @@ const Quests = {
   },
 
   async abrirSorteioDesafiosGuilda() {
-    let rascunhos;
-    try {
-      rascunhos = await Api.sortearDesafiosGuilda(Campanha.ativa.id);
-    } catch (erro) {
-      console.error(erro);
-      window.alert('Falha ao sortear desafios da guilda.');
-      return;
-    }
-
     const fundo = document.createElement('div');
     fundo.className = 'fundo-modal';
 
@@ -303,21 +294,46 @@ const Quests = {
     grade.className = 'grade-sorteio-guilda';
     modal.appendChild(grade);
 
-    rascunhos.forEach((rascunho) => {
-      const card = this.criarCardRascunhoGuilda(rascunho, () => {
-        grade.removeChild(card);
-        if (grade.children.length === 0) {
-          document.body.removeChild(fundo);
-        }
+    const preencherGrade = async () => {
+      let rascunhos;
+      try {
+        rascunhos = await Api.sortearDesafiosGuilda(Campanha.ativa.id);
+      } catch (erro) {
+        console.error(erro);
+        window.alert('Falha ao sortear desafios da guilda.');
+        return;
+      }
+
+      grade.innerHTML = '';
+      rascunhos.forEach((rascunho) => {
+        const card = this.criarCardRascunhoGuilda(rascunho, () => {
+          grade.removeChild(card);
+          if (grade.children.length === 0) {
+            document.body.removeChild(fundo);
+          }
+        });
+        grade.appendChild(card);
       });
-      grade.appendChild(card);
-    });
+    };
+
+    await preencherGrade();
+
+    const acoesModal = document.createElement('div');
+    acoesModal.className = 'acoes-modal';
+
+    const botaoRolarDeNovo = document.createElement('button');
+    botaoRolarDeNovo.className = 'botao-rolar';
+    botaoRolarDeNovo.textContent = '🎲 Rolar de novo';
+    botaoRolarDeNovo.addEventListener('click', () => preencherGrade());
+    acoesModal.appendChild(botaoRolarDeNovo);
 
     const botaoFechar = document.createElement('button');
     botaoFechar.className = 'botao-secundario';
     botaoFechar.textContent = 'Fechar';
     botaoFechar.addEventListener('click', () => document.body.removeChild(fundo));
-    modal.appendChild(botaoFechar);
+    acoesModal.appendChild(botaoFechar);
+
+    modal.appendChild(acoesModal);
 
     fundo.appendChild(modal);
     document.body.appendChild(fundo);
