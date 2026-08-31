@@ -1,104 +1,1502 @@
 [
-  { "titulo": "Entrega urgente", "descricao": "Entregar uma encomenda para um comerciante na vila vizinha, sem que se perca ou danifique no caminho.", "dificuldade": "facil" },
-  { "titulo": "Ovelha perdida", "descricao": "Recuperar uma ovelha que fugiu do curral e se perdeu na floresta próxima.", "dificuldade": "facil" },
-  { "titulo": "Companhia na estrada", "descricao": "Escoltar um viajante desarmado até o próximo povoado, sem incidentes.", "dificuldade": "facil" },
-  { "titulo": "Poço entupido", "descricao": "Limpar um poço entupido por detritos no bairro velho da cidade.", "dificuldade": "facil" },
-  { "titulo": "Gato sumido", "descricao": "Encontrar um gato de estimação que sumiu há dias.", "dificuldade": "facil" },
-  { "titulo": "Mensagem urgente", "descricao": "Levar uma mensagem urgente para um posto avançado nas cercanias.", "dificuldade": "facil" },
-  { "titulo": "Cerca quebrada", "descricao": "Ajudar a reparar uma cerca destruída por animais selvagens.", "dificuldade": "facil" },
-  { "titulo": "Ervas do curandeiro", "descricao": "Recolher ervas medicinais específicas na beira da estrada para um curandeiro.", "dificuldade": "facil" },
-  { "titulo": "Acompanhar o bêbado", "descricao": "Acompanhar um bêbado barulhento até em casa em segurança.", "dificuldade": "facil" },
-  { "titulo": "Água do poço isolado", "descricao": "Verificar se um poço isolado ainda tem água potável.", "dificuldade": "facil" },
-  { "titulo": "Item esquecido", "descricao": "Buscar um item esquecido na estalagem de uma cidade vizinha.", "dificuldade": "facil" },
-  { "titulo": "Carregar suprimentos", "descricao": "Ajudar a carregar suprimentos para o armazém da guilda.", "dificuldade": "facil" },
-  { "titulo": "Bando de corvos", "descricao": "Espantar um bando de corvos que está incomodando os moradores.", "dificuldade": "facil" },
-  { "titulo": "Criança perdida na feira", "descricao": "Localizar uma criança que se afastou demais durante uma feira.", "dificuldade": "facil" },
-  { "titulo": "Testemunha do acidente", "descricao": "Testemunhar e relatar um pequeno acidente na estrada pra guilda.", "dificuldade": "facil" },
-  { "titulo": "Bota no brejo", "descricao": "Recuperar uma bota perdida presa em um brejo raso.", "dificuldade": "facil" },
-  { "titulo": "Cavalo assustado", "descricao": "Acalmar um cavalo assustado preso entre as árvores.", "dificuldade": "facil" },
-  { "titulo": "Convite formal", "descricao": "Entregar um convite formal a uma família influente da cidade.", "dificuldade": "facil" },
-  { "titulo": "Luzes estranhas no rio", "descricao": "Verificar boatos sobre luzes estranhas vistas à noite perto do rio.", "dificuldade": "facil" },
-  { "titulo": "Galinhas fugidas", "descricao": "Ajudar um fazendeiro a reunir galinhas fugidas antes do anoitecer.", "dificuldade": "facil" },
-  { "titulo": "Remédio simples", "descricao": "Buscar um remédio simples na farmácia da cidade vizinha.", "dificuldade": "facil" },
-  { "titulo": "Vigiar a barraca", "descricao": "Vigiar uma barraca no mercado por algumas horas para o dono.", "dificuldade": "facil" },
-  { "titulo": "Lenha para o inverno", "descricao": "Recolher lenha extra para o inverno de uma família necessitada.", "dificuldade": "facil" },
-  { "titulo": "Sementes da horta", "descricao": "Levar um pacote de sementes até uma horta comunitária.", "dificuldade": "facil" },
-  { "titulo": "Barulho na taverna", "descricao": "Investigar um barulho estranho relatado numa taverna à noite.", "dificuldade": "facil" },
-  { "titulo": "Corda dos pescadores", "descricao": "Buscar uma corda perdida na beira do rio, usada por pescadores.", "dificuldade": "facil" },
-  { "titulo": "Ponte insegura", "descricao": "Confirmar se uma ponte de madeira ainda está segura para travessia.", "dificuldade": "facil" },
-  { "titulo": "Pacote do viajante ausente", "descricao": "Recolher um pacote deixado na casa de um viajante ausente.", "dificuldade": "facil" },
-  { "titulo": "Ferramentas pesadas", "descricao": "Ajudar um artesão a transportar ferramentas pesadas até a oficina.", "dificuldade": "facil" },
-  { "titulo": "Ratos no depósito", "descricao": "Espantar ratos que invadiram o depósito de grãos da cidade.", "dificuldade": "facil" },
-  { "titulo": "Flores para o túmulo", "descricao": "Levar flores para um túmulo recém-cavado, a pedido de um enlutado.", "dificuldade": "facil" },
-  { "titulo": "Preço das mercadorias", "descricao": "Buscar informações sobre o preço de mercadorias em outra cidade.", "dificuldade": "facil" },
-  { "titulo": "Mercador nervoso", "descricao": "Acompanhar um mercador nervoso até a praça central.", "dificuldade": "facil" },
-  { "titulo": "Chave perdida", "descricao": "Recuperar uma chave perdida em algum lugar da estalagem.", "dificuldade": "facil" },
-  { "titulo": "Sino da torre", "descricao": "Verificar se o sino da torre da cidade ainda funciona corretamente.", "dificuldade": "facil" },
-
-  { "titulo": "Escolta da caravana", "descricao": "Escoltar uma pequena caravana de mercadores até a cidade vizinha, através de uma estrada pouco segura.", "dificuldade": "media" },
-  { "titulo": "Saques na fazenda", "descricao": "Investigar relatos de saques a uma fazenda isolada nos arredores.", "dificuldade": "media" },
-  { "titulo": "Ladrão do porto", "descricao": "Capturar vivo um ladrão conhecido que anda agindo perto do porto.", "dificuldade": "media" },
-  { "titulo": "Item roubado", "descricao": "Recuperar um item roubado de um comerciante local, provavelmente escondido nos becos.", "dificuldade": "media" },
-  { "titulo": "Caverna dos ataques", "descricao": "Explorar uma caverna próxima onde animais selvagens têm atacado viajantes.", "dificuldade": "media" },
-  { "titulo": "Trégua entre famílias", "descricao": "Negociar (ou intimidar) uma trégua entre duas famílias rivais da cidade.", "dificuldade": "media" },
-  { "titulo": "Cheiro pútrido", "descricao": "Encontrar a origem de um cheiro pútrido que vem incomodando um bairro inteiro.", "dificuldade": "media" },
-  { "titulo": "Levantamento arqueológico", "descricao": "Escoltar um estudioso até ruínas próximas para um levantamento arqueológico.", "dificuldade": "media" },
-  { "titulo": "Desaparecimentos na estrada", "descricao": "Investigar desaparecimentos recentes de viajantes numa estrada isolada.", "dificuldade": "media" },
-  { "titulo": "Animal exótico fugido", "descricao": "Recuperar um animal de estimação exótico fugido, que pode ser perigoso.", "dificuldade": "media" },
-  { "titulo": "Início de incêndio", "descricao": "Ajudar a conter um pequeno incêndio numa propriedade rural antes que se espalhe.", "dificuldade": "media" },
-  { "titulo": "Bando de saqueadores", "descricao": "Rastrear e afugentar um bando de saqueadores menores que ameaça uma vila.", "dificuldade": "media" },
-  { "titulo": "Contrabando na estrada", "descricao": "Investigar um caso de contrabando que passa pela estrada principal.", "dificuldade": "media" },
-  { "titulo": "Informante nervoso", "descricao": "Encontrar e escoltar um informante nervoso até um local seguro.", "dificuldade": "media" },
-  { "titulo": "Torre com luzes", "descricao": "Explorar uma torre abandonada onde luzes foram avistadas à noite.", "dificuldade": "media" },
-  { "titulo": "Documentos perdidos", "descricao": "Recuperar documentos importantes perdidos durante um assalto a uma carroça.", "dificuldade": "media" },
-  { "titulo": "Deslizamento de terra", "descricao": "Confirmar a extensão de um deslizamento de terra que bloqueou uma estrada.", "dificuldade": "media" },
-  { "titulo": "Casa mal-assombrada", "descricao": "Investigar rumores de um espírito assombrando uma casa vazia.", "dificuldade": "media" },
-  { "titulo": "Comerciante de joias", "descricao": "Escoltar um comerciante de joias até a cidade, discretamente.", "dificuldade": "media" },
-  { "titulo": "Água contaminada", "descricao": "Localizar uma fonte de água contaminada que está deixando moradores doentes.", "dificuldade": "media" },
-  { "titulo": "Cão no poço", "descricao": "Resgatar um cão de guarda que caiu num poço abandonado.", "dificuldade": "media" },
-  { "titulo": "Terras usurpadas", "descricao": "Negociar a devolução de terras usurpadas por um vizinho hostil.", "dificuldade": "media" },
-  { "titulo": "Roubo de gado", "descricao": "Investigar um roubo de gado que vem afetando várias fazendas.", "dificuldade": "media" },
-  { "titulo": "Testemunha relutante", "descricao": "Escoltar uma testemunha relutante até o tribunal da cidade.", "dificuldade": "media" },
-  { "titulo": "Mapa do explorador", "descricao": "Encontrar um mapa perdido que pertence a um velho explorador aposentado.", "dificuldade": "media" },
-  { "titulo": "Combate na clareira", "descricao": "Investigar barulhos de combate ouvidos vindos de uma clareira isolada.", "dificuldade": "media" },
-  { "titulo": "Arma de família", "descricao": "Recuperar uma arma de família roubada de um veterano de guerra.", "dificuldade": "media" },
-  { "titulo": "Goblins na estrada", "descricao": "Localizar um bando de goblins que anda roubando suprimentos da estrada.", "dificuldade": "media" },
-  { "titulo": "Praga na vila", "descricao": "Escoltar um curandeiro até uma vila afetada por uma pequena praga.", "dificuldade": "media" },
-  { "titulo": "Furtos no mercado", "descricao": "Investigar uma série de pequenos furtos misteriosos no mercado.", "dificuldade": "media" },
-  { "titulo": "Posto de guarda abandonado", "descricao": "Explorar um antigo posto de guarda abandonado nos limites do território.", "dificuldade": "media" },
-  { "titulo": "Disputa territorial", "descricao": "Ajudar a resolver uma disputa territorial entre pescadores e caçadores.", "dificuldade": "media" },
-  { "titulo": "Barco roubado", "descricao": "Recuperar um barco de pesca roubado escondido em algum lugar da costa.", "dificuldade": "media" },
-  { "titulo": "Culto nos arredores", "descricao": "Investigar um culto pequeno se formando nos arredores da cidade.", "dificuldade": "media" },
-  { "titulo": "Escolta de prisioneiros", "descricao": "Escoltar prisioneiros até a prisão mais próxima com segurança.", "dificuldade": "media" },
-  { "titulo": "Esconderijo de assaltantes", "descricao": "Localizar o esconderijo de uma quadrilha de assaltantes de estrada.", "dificuldade": "media" },
-  { "titulo": "Criaturas se aproximando", "descricao": "Investigar sinais de criaturas selvagens se aproximando perigosamente da cidade.", "dificuldade": "media" },
-  { "titulo": "Cavalo de raça roubado", "descricao": "Recuperar um cavalo de raça roubado de um estábulo nobre.", "dificuldade": "media" },
-  { "titulo": "Evacuação da enchente", "descricao": "Ajudar a evacuar moradores de uma área ameaçada por enchente.", "dificuldade": "media" },
-  { "titulo": "Mensageiro real", "descricao": "Escoltar um mensageiro real através de território disputado.", "dificuldade": "media" },
-  { "titulo": "Mina com ruídos estranhos", "descricao": "Investigar uma mina abandonada de onde vêm ruídos estranhos.", "dificuldade": "media" },
-  { "titulo": "Mercenários desertores", "descricao": "Negociar com um grupo de mercenários desertores acampados nos arredores.", "dificuldade": "media" },
-  { "titulo": "Artefato de família", "descricao": "Recuperar um artefato de família roubado por um espírito travesso.", "dificuldade": "media" },
-  { "titulo": "Pegadas suspeitas", "descricao": "Rastrear pegadas suspeitas que levam a uma caverna próxima.", "dificuldade": "media" },
-  { "titulo": "Refugiados desabrigados", "descricao": "Escoltar um grupo de refugiados até um abrigo seguro.", "dificuldade": "media" },
-
-  { "titulo": "Ruína das Bruxas", "descricao": "Encontrar a Ruína das Bruxas, um local que ninguém mapeou ainda, e trazer um relatório detalhado.", "dificuldade": "dificil" },
-  { "titulo": "Cabeça do Rei Goblin", "descricao": "Trazer a cabeça do Rei Goblin que lidera um bando cada vez mais ousado.", "dificuldade": "dificil" },
-  { "titulo": "Machado sagrado", "descricao": "Roubar de volta o machado sagrado tomado por um orc renegado poderoso.", "dificuldade": "dificil" },
-  { "titulo": "Espectador na caverna", "descricao": "Derrotar um espectador que se instalou numa caverna próxima e ataca viajantes.", "dificuldade": "dificil" },
-  { "titulo": "Medusa das ruínas", "descricao": "Capturar viva uma medusa que aterroriza uma região de ruínas antigas.", "dificuldade": "dificil" },
-  { "titulo": "Lâmia sedutora", "descricao": "Investigar e neutralizar uma lâmia que vem seduzindo e roubando viajantes ricos.", "dificuldade": "dificil" },
-  { "titulo": "Duergar dos túneis", "descricao": "Confrontar um pequeno grupo de duergar que emergiu de túneis desconhecidos.", "dificuldade": "dificil" },
-  { "titulo": "Reféns na fortaleza", "descricao": "Resgatar reféns mantidos por uma quadrilha bem armada numa fortaleza abandonada.", "dificuldade": "dificil" },
-  { "titulo": "Catacumba amaldiçoada", "descricao": "Explorar profundamente uma catacumba amaldiçoada e recuperar uma relíquia perdida.", "dificuldade": "dificil" },
-  { "titulo": "Troglodita alfa", "descricao": "Derrotar um troglodita alfa que lidera uma incursão contra assentamentos próximos.", "dificuldade": "dificil" },
-  { "titulo": "Criatura do manguezal", "descricao": "Investigar desaparecimentos ligados a uma criatura desconhecida no manguezal.", "dificuldade": "dificil" },
-  { "titulo": "Anomalia mágica", "descricao": "Localizar e neutralizar a origem de uma anomalia mágica que afeta a região.", "dificuldade": "dificil" },
-  { "titulo": "Labirinto nas montanhas", "descricao": "Escoltar uma expedição perigosa até o labirinto em ruínas nas montanhas.", "dificuldade": "dificil" },
-  { "titulo": "Saqueadores gigantes", "descricao": "Enfrentar um grupo de saqueadores gigantes que ameaça destruir uma vila inteira.", "dificuldade": "dificil" },
-  { "titulo": "Tesouro da prisão antiga", "descricao": "Recuperar um tesouro perdido guardado por armadilhas mortais numa prisão antiga.", "dificuldade": "dificil" },
-  { "titulo": "Zigurate esquecido", "descricao": "Investigar rumores sombrios vindos de um zigurate esquecido na selva.", "dificuldade": "dificil" },
-  { "titulo": "Assentamento de fadas", "descricao": "Negociar (ou combater) com um assentamento hostil de fadas antes que ataquem.", "dificuldade": "dificil" },
-  { "titulo": "Portal instável", "descricao": "Derrotar um grupo de corruptores menores que abriram um portal instável.", "dificuldade": "dificil" },
-  { "titulo": "Criatura das profundezas", "descricao": "Confrontar diretamente uma criatura das profundezas avistada perto da costa.", "dificuldade": "dificil" },
-  { "titulo": "O que desperta na Costa", "descricao": "Descobrir o que desperta criaturas antigas nas profundezas perto da Costa da Travessia.", "dificuldade": "dificil" }
+  {
+    "titulo": "Entrega urgente",
+    "descricao": "Entregar uma encomenda para um comerciante na vila vizinha, sem que se perca ou danifique no caminho.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Ovelha perdida",
+    "descricao": "Recuperar uma ovelha que fugiu do curral e se perdeu na floresta próxima.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Companhia na estrada",
+    "descricao": "Escoltar um viajante desarmado até o próximo povoado, sem incidentes.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Poço entupido",
+    "descricao": "Limpar um poço entupido por detritos no bairro velho da cidade.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Gato sumido",
+    "descricao": "Encontrar um gato de estimação que sumiu há dias.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Mensagem urgente",
+    "descricao": "Levar uma mensagem urgente para um posto avançado nas cercanias.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Cerca quebrada",
+    "descricao": "Ajudar a reparar uma cerca destruída por animais selvagens.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Ervas do curandeiro",
+    "descricao": "Recolher ervas medicinais específicas na beira da estrada para um curandeiro.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Acompanhar o bêbado",
+    "descricao": "Acompanhar um bêbado barulhento até em casa em segurança.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Água do poço isolado",
+    "descricao": "Verificar se um poço isolado ainda tem água potável.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Item esquecido",
+    "descricao": "Buscar um item esquecido na estalagem de uma cidade vizinha.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Carregar suprimentos",
+    "descricao": "Ajudar a carregar suprimentos para o armazém da guilda.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Bando de corvos",
+    "descricao": "Espantar um bando de corvos que está incomodando os moradores.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Criança perdida na feira",
+    "descricao": "Localizar uma criança que se afastou demais durante uma feira.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Testemunha do acidente",
+    "descricao": "Testemunhar e relatar um pequeno acidente na estrada pra guilda.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Bota no brejo",
+    "descricao": "Recuperar uma bota perdida presa em um brejo raso.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Cavalo assustado",
+    "descricao": "Acalmar um cavalo assustado preso entre as árvores.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Convite formal",
+    "descricao": "Entregar um convite formal a uma família influente da cidade.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Luzes estranhas no rio",
+    "descricao": "Verificar boatos sobre luzes estranhas vistas à noite perto do rio.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Galinhas fugidas",
+    "descricao": "Ajudar um fazendeiro a reunir galinhas fugidas antes do anoitecer.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Remédio simples",
+    "descricao": "Buscar um remédio simples na farmácia da cidade vizinha.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Vigiar a barraca",
+    "descricao": "Vigiar uma barraca no mercado por algumas horas para o dono.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Lenha para o inverno",
+    "descricao": "Recolher lenha extra para o inverno de uma família necessitada.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Sementes da horta",
+    "descricao": "Levar um pacote de sementes até uma horta comunitária.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Barulho na taverna",
+    "descricao": "Investigar um barulho estranho relatado numa taverna à noite.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Corda dos pescadores",
+    "descricao": "Buscar uma corda perdida na beira do rio, usada por pescadores.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Ponte insegura",
+    "descricao": "Confirmar se uma ponte de madeira ainda está segura para travessia.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Pacote do viajante ausente",
+    "descricao": "Recolher um pacote deixado na casa de um viajante ausente.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Ferramentas pesadas",
+    "descricao": "Ajudar um artesão a transportar ferramentas pesadas até a oficina.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Ratos no depósito",
+    "descricao": "Espantar ratos que invadiram o depósito de grãos da cidade.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Flores para o túmulo",
+    "descricao": "Levar flores para um túmulo recém-cavado, a pedido de um enlutado.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Preço das mercadorias",
+    "descricao": "Buscar informações sobre o preço de mercadorias em outra cidade.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Mercador nervoso",
+    "descricao": "Acompanhar um mercador nervoso até a praça central.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Chave perdida",
+    "descricao": "Recuperar uma chave perdida em algum lugar da estalagem.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Sino da torre",
+    "descricao": "Verificar se o sino da torre da cidade ainda funciona corretamente.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Escolta da caravana",
+    "descricao": "Escoltar uma pequena caravana de mercadores até a cidade vizinha, através de uma estrada pouco segura.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Saques na fazenda",
+    "descricao": "Investigar relatos de saques a uma fazenda isolada nos arredores.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Ladrão do porto",
+    "descricao": "Capturar vivo um ladrão conhecido que anda agindo perto do porto.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Item roubado",
+    "descricao": "Recuperar um item roubado de um comerciante local, provavelmente escondido nos becos.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Caverna dos ataques",
+    "descricao": "Explorar uma caverna próxima onde animais selvagens têm atacado viajantes.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Trégua entre famílias",
+    "descricao": "Negociar (ou intimidar) uma trégua entre duas famílias rivais da cidade.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Cheiro pútrido",
+    "descricao": "Encontrar a origem de um cheiro pútrido que vem incomodando um bairro inteiro.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Levantamento arqueológico",
+    "descricao": "Escoltar um estudioso até ruínas próximas para um levantamento arqueológico.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Desaparecimentos na estrada",
+    "descricao": "Investigar desaparecimentos recentes de viajantes numa estrada isolada.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Animal exótico fugido",
+    "descricao": "Recuperar um animal de estimação exótico fugido, que pode ser perigoso.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Início de incêndio",
+    "descricao": "Ajudar a conter um pequeno incêndio numa propriedade rural antes que se espalhe.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Bando de saqueadores",
+    "descricao": "Rastrear e afugentar um bando de saqueadores menores que ameaça uma vila.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Contrabando na estrada",
+    "descricao": "Investigar um caso de contrabando que passa pela estrada principal.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Informante nervoso",
+    "descricao": "Encontrar e escoltar um informante nervoso até um local seguro.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Torre com luzes",
+    "descricao": "Explorar uma torre abandonada onde luzes foram avistadas à noite.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Documentos perdidos",
+    "descricao": "Recuperar documentos importantes perdidos durante um assalto a uma carroça.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Deslizamento de terra",
+    "descricao": "Confirmar a extensão de um deslizamento de terra que bloqueou uma estrada.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Casa mal-assombrada",
+    "descricao": "Investigar rumores de um espírito assombrando uma casa vazia.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Comerciante de joias",
+    "descricao": "Escoltar um comerciante de joias até a cidade, discretamente.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Água contaminada",
+    "descricao": "Localizar uma fonte de água contaminada que está deixando moradores doentes.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Cão no poço",
+    "descricao": "Resgatar um cão de guarda que caiu num poço abandonado.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Terras usurpadas",
+    "descricao": "Negociar a devolução de terras usurpadas por um vizinho hostil.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Roubo de gado",
+    "descricao": "Investigar um roubo de gado que vem afetando várias fazendas.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Testemunha relutante",
+    "descricao": "Escoltar uma testemunha relutante até o tribunal da cidade.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Mapa do explorador",
+    "descricao": "Encontrar um mapa perdido que pertence a um velho explorador aposentado.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Combate na clareira",
+    "descricao": "Investigar barulhos de combate ouvidos vindos de uma clareira isolada.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Arma de família",
+    "descricao": "Recuperar uma arma de família roubada de um veterano de guerra.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Goblins na estrada",
+    "descricao": "Localizar um bando de goblins que anda roubando suprimentos da estrada.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Praga na vila",
+    "descricao": "Escoltar um curandeiro até uma vila afetada por uma pequena praga.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Furtos no mercado",
+    "descricao": "Investigar uma série de pequenos furtos misteriosos no mercado.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Posto de guarda abandonado",
+    "descricao": "Explorar um antigo posto de guarda abandonado nos limites do território.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Disputa territorial",
+    "descricao": "Ajudar a resolver uma disputa territorial entre pescadores e caçadores.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Barco roubado",
+    "descricao": "Recuperar um barco de pesca roubado escondido em algum lugar da costa.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Culto nos arredores",
+    "descricao": "Investigar um culto pequeno se formando nos arredores da cidade.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Escolta de prisioneiros",
+    "descricao": "Escoltar prisioneiros até a prisão mais próxima com segurança.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Esconderijo de assaltantes",
+    "descricao": "Localizar o esconderijo de uma quadrilha de assaltantes de estrada.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Criaturas se aproximando",
+    "descricao": "Investigar sinais de criaturas selvagens se aproximando perigosamente da cidade.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Cavalo de raça roubado",
+    "descricao": "Recuperar um cavalo de raça roubado de um estábulo nobre.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Evacuação da enchente",
+    "descricao": "Ajudar a evacuar moradores de uma área ameaçada por enchente.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Mensageiro real",
+    "descricao": "Escoltar um mensageiro real através de território disputado.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Mina com ruídos estranhos",
+    "descricao": "Investigar uma mina abandonada de onde vêm ruídos estranhos.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Mercenários desertores",
+    "descricao": "Negociar com um grupo de mercenários desertores acampados nos arredores.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Artefato de família",
+    "descricao": "Recuperar um artefato de família roubado por um espírito travesso.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Pegadas suspeitas",
+    "descricao": "Rastrear pegadas suspeitas que levam a uma caverna próxima.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Refugiados desabrigados",
+    "descricao": "Escoltar um grupo de refugiados até um abrigo seguro.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Ruína das Bruxas",
+    "descricao": "Encontrar a Ruína das Bruxas, um local que ninguém mapeou ainda, e trazer um relatório detalhado.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Cabeça do Rei Goblin",
+    "descricao": "Trazer a cabeça do Rei Goblin que lidera um bando cada vez mais ousado.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Machado sagrado",
+    "descricao": "Roubar de volta o machado sagrado tomado por um orc renegado poderoso.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Espectador na caverna",
+    "descricao": "Derrotar um espectador que se instalou numa caverna próxima e ataca viajantes.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Medusa das ruínas",
+    "descricao": "Capturar viva uma medusa que aterroriza uma região de ruínas antigas.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Lâmia sedutora",
+    "descricao": "Investigar e neutralizar uma lâmia que vem seduzindo e roubando viajantes ricos.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Duergar dos túneis",
+    "descricao": "Confrontar um pequeno grupo de duergar que emergiu de túneis desconhecidos.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Reféns na fortaleza",
+    "descricao": "Resgatar reféns mantidos por uma quadrilha bem armada numa fortaleza abandonada.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Catacumba amaldiçoada",
+    "descricao": "Explorar profundamente uma catacumba amaldiçoada e recuperar uma relíquia perdida.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Troglodita alfa",
+    "descricao": "Derrotar um troglodita alfa que lidera uma incursão contra assentamentos próximos.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Criatura do manguezal",
+    "descricao": "Investigar desaparecimentos ligados a uma criatura desconhecida no manguezal.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Anomalia mágica",
+    "descricao": "Localizar e neutralizar a origem de uma anomalia mágica que afeta a região.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Labirinto nas montanhas",
+    "descricao": "Escoltar uma expedição perigosa até o labirinto em ruínas nas montanhas.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Saqueadores gigantes",
+    "descricao": "Enfrentar um grupo de saqueadores gigantes que ameaça destruir uma vila inteira.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Tesouro da prisão antiga",
+    "descricao": "Recuperar um tesouro perdido guardado por armadilhas mortais numa prisão antiga.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Zigurate esquecido",
+    "descricao": "Investigar rumores sombrios vindos de um zigurate esquecido na selva.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Assentamento de fadas",
+    "descricao": "Negociar (ou combater) com um assentamento hostil de fadas antes que ataquem.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Portal instável",
+    "descricao": "Derrotar um grupo de corruptores menores que abriram um portal instável.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Criatura das profundezas",
+    "descricao": "Confrontar diretamente uma criatura das profundezas avistada perto da costa.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O que desperta na Costa",
+    "descricao": "Descobrir o que desperta criaturas antigas nas profundezas perto da Costa da Travessia.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O sino desaparecido",
+    "descricao": "Encontrar um pequeno sino roubado da capela da vila antes da próxima cerimônia.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Peixe para a estalagem",
+    "descricao": "Pescar uma quantidade específica de peixes no rio para abastecer uma estalagem local.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Pomar danificado",
+    "descricao": "Descobrir quais animais estão destruindo o pomar de um fazendeiro durante a noite.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Carta para a viúva",
+    "descricao": "Entregar uma carta pessoal a uma viúva que vive em uma aldeia próxima.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Lanterna apagada",
+    "descricao": "Subir até uma torre de sinalização e reacender sua lanterna antes do anoitecer.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Buraco na estrada",
+    "descricao": "Sinalizar e ajudar a isolar um grande buraco que surgiu na estrada comercial.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Cesta de cogumelos",
+    "descricao": "Coletar cogumelos comestíveis em uma área segura da floresta para uma cozinheira.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Cabra teimosa",
+    "descricao": "Recuperar uma cabra que fugiu para uma colina próxima e se recusa a voltar.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Tinta do escriba",
+    "descricao": "Buscar frascos de tinta especial em uma oficina distante.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Livro emprestado",
+    "descricao": "Localizar um livro emprestado que deveria ter sido devolvido à biblioteca local.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Mercadoria molhada",
+    "descricao": "Resgatar caixas de mercadorias que caíram de uma carroça perto do rio.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Pombos mensageiros",
+    "descricao": "Recuperar alguns pombos mensageiros que escaparam do criadouro da guilda.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Chapéu do prefeito",
+    "descricao": "Encontrar um chapéu cerimonial perdido durante uma celebração pública.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Horta invadida",
+    "descricao": "Afastar pequenos animais que estão destruindo uma horta comunitária.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Pegadas no celeiro",
+    "descricao": "Descobrir qual animal está entrando em um celeiro durante a madrugada.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Vela para o farol",
+    "descricao": "Transportar caixas de velas até um pequeno farol costeiro.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "O padeiro atrasado",
+    "descricao": "Escoltar um padeiro até uma aldeia próxima para uma encomenda importante.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Barril furado",
+    "descricao": "Localizar e recuperar um barril de água potável perdido durante uma viagem.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Corda para a ponte",
+    "descricao": "Levar cordas resistentes para trabalhadores que consertam uma ponte rural.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "A chave da capela",
+    "descricao": "Encontrar uma chave antiga perdida nos arredores da capela.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Sementes raras",
+    "descricao": "Buscar sementes de uma planta comum em uma região vizinha.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Cartaz rasgado",
+    "descricao": "Recolher cartazes importantes espalhados pelo vento antes de uma reunião pública.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Mula desaparecida",
+    "descricao": "Encontrar uma mula de carga que se afastou do acampamento durante a noite.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Cesto de ovos",
+    "descricao": "Transportar ovos delicados até o mercado sem quebrá-los pelo caminho.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Pequeno incêndio",
+    "descricao": "Apagar um princípio de incêndio em uma pilha de feno antes que alcance os celeiros.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Cão de caça",
+    "descricao": "Encontrar um cão de caça perdido que pertence a um comerciante.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Pedra no moinho",
+    "descricao": "Remover uma grande pedra que travou o mecanismo de um moinho.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Visita ao eremita",
+    "descricao": "Levar comida e suprimentos a um eremita que vive perto da estrada.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Mapa da trilha",
+    "descricao": "Confirmar a segurança de uma trilha usada por viajantes locais.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Brinquedo perdido",
+    "descricao": "Encontrar o brinquedo favorito de uma criança em um parque ou praça.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Flores da primavera",
+    "descricao": "Recolher flores específicas para uma celebração da cidade.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Caixa de ferramentas",
+    "descricao": "Recuperar uma caixa de ferramentas esquecida em uma obra fora da cidade.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Roupas na lavanderia",
+    "descricao": "Levar uma encomenda de roupas até uma lavanderia em outro bairro.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Pena de grifo",
+    "descricao": "Descobrir onde um criador encontrou uma pena incomum antes que colecionadores a roubem.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Caminho bloqueado",
+    "descricao": "Remover galhos e pedras de um caminho usado pelos moradores.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Sombra no galpão",
+    "descricao": "Investigar uma sombra estranha vista dentro de um galpão abandonado.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Recado para o guarda",
+    "descricao": "Entregar informações ao guarda de um posto próximo antes da troca de turno.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "A carroça atolada",
+    "descricao": "Ajudar um comerciante a retirar uma carroça presa na lama.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Cesto do herbalista",
+    "descricao": "Encontrar o cesto de coleta perdido por um herbalista na floresta.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Bebedouro dos cavalos",
+    "descricao": "Consertar um bebedouro quebrado usado pelos cavalos de uma estalagem.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "O sino da manhã",
+    "descricao": "Descobrir por que o sino usado para marcar o amanhecer deixou de tocar.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Pequenos furtos",
+    "descricao": "Descobrir quem está pegando pequenas moedas deixadas em uma banca do mercado.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Ovelhas assustadas",
+    "descricao": "Descobrir o que está assustando um rebanho todas as noites.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Caderno do aprendiz",
+    "descricao": "Encontrar o caderno perdido de um aprendiz de mago.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "A ponte dos viajantes",
+    "descricao": "Verificar uma ponte de pedra depois de moradores ouvirem sons vindos de baixo dela.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Frutas para a feira",
+    "descricao": "Transportar frutas frescas até a feira antes que estraguem.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Saco de farinha",
+    "descricao": "Recuperar um saco de farinha que caiu de uma carroça na estrada.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Velha placa da estrada",
+    "descricao": "Encontrar uma placa de estrada retirada por uma tempestade.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "O gato do ferreiro",
+    "descricao": "Resgatar o gato do ferreiro que subiu em uma árvore alta.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Ervas amargas",
+    "descricao": "Coletar ervas específicas para preparar um remédio simples.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Banco quebrado",
+    "descricao": "Consertar ou substituir um banco público danificado na praça.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Caminho das abelhas",
+    "descricao": "Ajudar um apicultor a recuperar uma colmeia deslocada por uma tempestade.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "O aprendiz atrasado",
+    "descricao": "Encontrar um aprendiz que deveria ter chegado à oficina horas atrás.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Carta sem destinatário",
+    "descricao": "Descobrir a quem pertence uma carta encontrada na estrada.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Caixa de maçãs",
+    "descricao": "Recuperar caixas de maçãs deixadas perto de uma antiga ponte.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "A velha fonte",
+    "descricao": "Investigar por que a fonte pública deixou de fornecer água.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Pássaros no telhado",
+    "descricao": "Afastar um grande bando de pássaros que tomou conta do telhado de uma estalagem.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "O lampião quebrado",
+    "descricao": "Consertar ou substituir um lampião importante em uma rua escura.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Lençóis da hospedaria",
+    "descricao": "Buscar tecidos limpos em uma aldeia próxima para uma hospedaria lotada.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Caminho para o pasto",
+    "descricao": "Localizar uma passagem segura para levar o gado até um novo pasto.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Saco de moedas perdido",
+    "descricao": "Encontrar um pequeno saco de moedas perdido por um trabalhador na feira.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "A carroça do leiteiro",
+    "descricao": "Ajudar um leiteiro a terminar suas entregas depois que sua carroça quebrou.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "O barril na estrada",
+    "descricao": "Encontrar um barril de suprimentos que caiu de uma carroça durante a viagem.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "O ferreiro viajante",
+    "descricao": "Ajudar um ferreiro itinerante a localizar sua mula antes de seguir viagem.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "A janela quebrada",
+    "descricao": "Descobrir quem está quebrando as janelas de uma casa durante a madrugada.",
+    "dificuldade": "facil"
+  },
+  {
+    "titulo": "Emboscada na estrada velha",
+    "descricao": "Investigar uma série de emboscadas contra viajantes e descobrir quem está por trás delas.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O covil dos kobolds",
+    "descricao": "Explorar um esconderijo de kobolds que está roubando ferramentas e comida de uma comunidade.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Contrabandistas do cais",
+    "descricao": "Descobrir onde uma carga ilegal está sendo desembarcada e apreender as mercadorias.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A torre do vigia",
+    "descricao": "Retomar uma torre de vigia ocupada por saqueadores que ameaçam a região.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Caravana desaparecida",
+    "descricao": "Rastrear uma caravana que sumiu entre duas cidades e localizar seus sobreviventes.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O druida furioso",
+    "descricao": "Descobrir por que um druida está atacando lenhadores e negociar o fim dos conflitos.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Ruínas sob a fazenda",
+    "descricao": "Explorar câmaras antigas descobertas sob uma propriedade rural.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A mina dos kobolds",
+    "descricao": "Investigar uma mina onde trabalhadores estão desaparecendo e expulsar os responsáveis.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Cultistas do poço",
+    "descricao": "Descobrir o que um pequeno culto está realizando em segredo dentro de uma cisterna abandonada.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O barco sem tripulação",
+    "descricao": "Investigar um barco que retorna sozinho ao porto todas as noites.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Bandidos da estrada norte",
+    "descricao": "Localizar o acampamento de bandidos que vem cobrando pedágio ilegal de viajantes.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A ponte sabotada",
+    "descricao": "Descobrir quem está sabotando uma ponte estratégica e impedir um novo ataque.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Mercador desaparecido",
+    "descricao": "Rastrear um mercador desaparecido e recuperar sua carga antes que seja revendida.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A cripta esquecida",
+    "descricao": "Explorar uma pequena cripta onde mortos recentes parecem ter sido perturbados.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O monstro do moinho",
+    "descricao": "Descobrir qual criatura está ocupando um moinho abandonado e impedir seus ataques.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Resgate na ravina",
+    "descricao": "Resgatar exploradores presos em uma ravina depois de um deslizamento.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O acampamento abandonado",
+    "descricao": "Investigar um acampamento vazio e descobrir o destino de seus antigos ocupantes.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Goblin de olhos vermelhos",
+    "descricao": "Encontrar a origem de goblins que estão atacando caravanas com comportamento incomum.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A máscara roubada",
+    "descricao": "Recuperar uma máscara ritual roubada antes de uma cerimônia importante.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A floresta silenciosa",
+    "descricao": "Investigar por que animais e viajantes estão desaparecendo em uma área da floresta.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Prisioneiro de resgate",
+    "descricao": "Libertar um informante mantido em uma casa fortificada nos arredores.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O altar subterrâneo",
+    "descricao": "Encontrar um altar oculto e descobrir para qual divindade desconhecida ele é dedicado.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Lobos da colina",
+    "descricao": "Descobrir por que uma matilha de lobos se tornou agressiva e eliminar a ameaça que os está atraindo.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A aldeia ameaçada",
+    "descricao": "Defender uma aldeia contra ataques recorrentes de criaturas vindas das colinas.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O mapa incompleto",
+    "descricao": "Completar um mapa de ruínas perigosas explorando uma região ainda desconhecida.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A torre do necromante",
+    "descricao": "Investigar uma torre abandonada onde sinais de magia necromântica foram encontrados.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Caçadores desaparecidos",
+    "descricao": "Localizar dois caçadores desaparecidos e descobrir se uma criatura os atacou.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A carga amaldiçoada",
+    "descricao": "Transportar uma carga suspeita enquanto se descobre por que todos que a guardam têm pesadelos.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O espírito da ponte",
+    "descricao": "Descobrir a identidade de um espírito que impede viajantes de atravessar uma ponte.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O tesouro do bandido",
+    "descricao": "Encontrar o esconderijo de um antigo bandido antes que uma nova gangue o alcance.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A arena clandestina",
+    "descricao": "Investigar combates ilegais organizados nos subterrâneos da cidade.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O ladrão mascarado",
+    "descricao": "Identificar um ladrão habilidoso que vem roubando nobres sem deixar pistas.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Ataque ao entreposto",
+    "descricao": "Defender um entreposto comercial contra uma ofensiva organizada de saqueadores.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O círculo de pedras",
+    "descricao": "Investigar um círculo de pedras que começou a emitir luz durante a noite.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A caravana dos refugiados",
+    "descricao": "Escoltar refugiados por uma região onde monstros e saqueadores disputam território.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O templo profanado",
+    "descricao": "Descobrir quem profanou um templo e recuperar objetos sagrados roubados.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O espião da guilda",
+    "descricao": "Descobrir qual membro de uma guilda está entregando informações a criminosos.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A criatura no celeiro",
+    "descricao": "Investigar ataques noturnos e descobrir uma criatura escondida sob uma propriedade.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A passagem secreta",
+    "descricao": "Encontrar uma passagem subterrânea usada por criminosos para entrar na cidade.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O forte tomado",
+    "descricao": "Retomar um pequeno forte ocupado por mercenários e descobrir quem os contratou.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A colheita envenenada",
+    "descricao": "Descobrir a origem de uma contaminação mágica que está destruindo plantações.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A ponte dos mortos",
+    "descricao": "Explorar uma ponte onde várias pessoas desapareceram e descobrir a causa.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O acampamento orc",
+    "descricao": "Investigar um acampamento de orcs próximo e determinar se eles pretendem atacar a região.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O mensageiro ferido",
+    "descricao": "Proteger um mensageiro ferido enquanto ele tenta entregar informações militares importantes.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A joia desaparecida",
+    "descricao": "Recuperar uma joia valiosa roubada durante uma recepção de nobres.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O navio encalhado",
+    "descricao": "Explorar um navio encalhado que parece ter sido abandonado às pressas.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A caverna dos ecos",
+    "descricao": "Investigar uma caverna onde vozes desconhecidas repetem os nomes dos visitantes.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O círculo de bruxos",
+    "descricao": "Descobrir o objetivo de um pequeno grupo de conjuradores reunido fora da cidade.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O poço profundo",
+    "descricao": "Explorar um poço antigo que parece esconder uma passagem para túneis subterrâneos.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A criatura da pedreira",
+    "descricao": "Descobrir o que está atacando trabalhadores de uma pedreira abandonada.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O mapa do tesouro",
+    "descricao": "Seguir um mapa antigo até uma pequena masmorra e recuperar seu tesouro.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A estrada interditada",
+    "descricao": "Descobrir quem colocou armadilhas na estrada principal e limpar o caminho.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "O forte dos saqueadores",
+    "descricao": "Invadir um pequeno forte usado por saqueadores e recuperar mercadorias roubadas.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A criatura do lago",
+    "descricao": "Investigar ataques a pescadores e descobrir qual criatura está vivendo nas águas do lago.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "A biblioteca selada",
+    "descricao": "Encontrar uma forma segura de entrar em uma biblioteca antiga e recuperar um tomo importante.",
+    "dificuldade": "media"
+  },
+  {
+    "titulo": "Dragão sobre as colinas",
+    "descricao": "Investigar ataques devastadores contra aldeias e descobrir se um jovem dragão estabeleceu território na região.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A fortaleza dos hobgoblins",
+    "descricao": "Invadir uma fortaleza militarizada de hobgoblins e impedir uma campanha de conquista.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Cavaleiro da morte",
+    "descricao": "Rastrear um cavaleiro morto-vivo que lidera ataques contra povoados durante a noite.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A cripta do lich",
+    "descricao": "Entrar em uma cripta ancestral e impedir que um fragmento do poder de um lich seja restaurado.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Gigante da tempestade",
+    "descricao": "Descobrir por que um gigante está ameaçando comunidades costeiras e impedir uma catástrofe.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Covil do basilisco",
+    "descricao": "Eliminar um basilisco que transformou uma antiga estrada em território mortal.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A cidade subterrânea",
+    "descricao": "Explorar uma cidade subterrânea dominada por criaturas hostis e recuperar um artefato antigo.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Ritual do eclipse",
+    "descricao": "Interromper um ritual realizado por cultistas antes que um fenômeno mágico cubra toda a região.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A fortaleza voadora",
+    "descricao": "Investigar uma fortaleza suspensa por magia e impedir que seus ocupantes ataquem a superfície.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Rei dos trolls",
+    "descricao": "Derrotar o líder de um clã de trolls que começou a exigir tributos de várias aldeias.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O templo do abismo",
+    "descricao": "Invadir um templo dedicado a forças abissais e destruir a fonte de sua corrupção.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A floresta encantada",
+    "descricao": "Entrar em uma floresta dominada por magia feérica e encontrar uma forma de quebrar sua influência.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Hidra do pântano",
+    "descricao": "Localizar e derrotar uma hidra que está impedindo o acesso a uma importante região.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O castelo amaldiçoado",
+    "descricao": "Explorar um castelo abandonado onde uma maldição transforma seus habitantes em mortos-vivos.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Exército dos mortos",
+    "descricao": "Descobrir quem está levantando cadáveres em antigos campos de batalha e destruir sua fonte de poder.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A espada dos reis",
+    "descricao": "Recuperar uma espada lendária guardada por uma criatura poderosa em uma fortaleza esquecida.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Demônio no santuário",
+    "descricao": "Impedir que cultistas libertem um demônio aprisionado sob um antigo santuário.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O titã adormecido",
+    "descricao": "Investigar tremores causados por uma entidade colossal que começa a despertar sob as montanhas.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A torre dos espelhos",
+    "descricao": "Explorar uma torre mágica onde cópias hostis dos aventureiros protegem seus segredos.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "Rainha das aranhas",
+    "descricao": "Derrotar uma poderosa soberana drow que transformou cavernas inteiras em território de caça.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O coração do vulcão",
+    "descricao": "Alcançar o interior de um vulcão e recuperar um artefato antes de uma erupção provocada magicamente.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A peste sobrenatural",
+    "descricao": "Encontrar a origem de uma praga mágica que transforma criaturas comuns em monstros agressivos.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O príncipe desaparecido",
+    "descricao": "Resgatar um príncipe mantido em uma fortaleza inimiga e descobrir uma conspiração dentro da corte.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A ilha dos mortos",
+    "descricao": "Explorar uma ilha tomada por mortos-vivos e destruir o artefato que os mantém ativos.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A espada amaldiçoada",
+    "descricao": "Localizar uma arma amaldiçoada que está corrompendo seu portador e impedir que ela chegue a um exército.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O culto do dragão",
+    "descricao": "Desmantelar um culto que pretende oferecer uma cidade inteira a um dragão poderoso.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A ponte entre mundos",
+    "descricao": "Impedir que uma passagem planar permaneça aberta e permita que criaturas perigosas atravessem.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O colosso de pedra",
+    "descricao": "Investigar um construto colossal que começou a caminhar em direção a uma cidade.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A cripta dos sete reis",
+    "descricao": "Explorar uma cripta protegida por antigas maldições e recuperar uma relíquia real.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O arquimago desaparecido",
+    "descricao": "Encontrar um arquimago desaparecido em sua própria torre antes que sua magia saia de controle.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A cidade em ruínas",
+    "descricao": "Investigar uma cidade destruída onde uma força desconhecida continua eliminando sobreviventes.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O pacto das bruxas",
+    "descricao": "Quebrar um pacto entre bruxas poderosas que está condenando uma região inteira a uma maldição.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O navio fantasma",
+    "descricao": "Perseguir um navio fantasma responsável pelo desaparecimento de embarcações inteiras.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A montanha viva",
+    "descricao": "Descobrir por que uma montanha parece se mover e impedir que uma criatura colossal desperte.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O demônio da mina",
+    "descricao": "Descer até uma mina profunda e enfrentar uma entidade que corrompe os trabalhadores.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O espelho profético",
+    "descricao": "Recuperar um espelho mágico capaz de revelar o futuro antes que um culto o utilize.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O príncipe dos mortos",
+    "descricao": "Derrotar um poderoso morto-vivo que se apresenta como governante legítimo de um reino extinto.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A guerra dos gigantes",
+    "descricao": "Impedir que duas facções de gigantes iniciem uma guerra que devastaria os assentamentos próximos.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O santuário celestial",
+    "descricao": "Defender um santuário sagrado contra uma invasão de criaturas extraplanares.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O coração da floresta",
+    "descricao": "Encontrar uma entidade corrompida no centro de uma floresta e restaurar o equilíbrio natural.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A máscara do demônio",
+    "descricao": "Recuperar uma máscara demoníaca que concede grande poder ao seu portador, mas ameaça corrompê-lo.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O exército de sombras",
+    "descricao": "Descobrir a origem de um exército de sombras que aparece ao anoitecer e avança sobre vilas.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A fortaleza de gelo",
+    "descricao": "Invadir uma fortaleza congelada e derrotar seu governante antes que um inverno mágico se espalhe.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O portal do inferno",
+    "descricao": "Fechar um portal infernal que está aumentando de tamanho dentro de uma antiga ruína.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A rainha medusa",
+    "descricao": "Derrotar uma medusa poderosa que transformou um antigo palácio em seu domínio.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O templo submerso",
+    "descricao": "Explorar um templo submerso e recuperar uma relíquia antes que uma criatura marinha desperte.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O senhor dos mortos",
+    "descricao": "Rastrear um poderoso necromante e destruir sua fortaleza antes que ele complete seu exército.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A coroa perdida",
+    "descricao": "Recuperar uma coroa lendária protegida por uma criatura ancestral e impedir uma guerra sucessória.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O ritual da lua negra",
+    "descricao": "Interromper um ritual que pretende alterar permanentemente a magia de uma região.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A cidadela do abismo",
+    "descricao": "Invadir uma cidadela dominada por criaturas abissais e destruir seu comandante.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O dragão sob a cidade",
+    "descricao": "Descobrir a verdade sobre tremores subterrâneos e impedir que um dragão ancestral desperte sob a cidade.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O labirinto sem fim",
+    "descricao": "Explorar um labirinto mágico que muda de forma e recuperar o artefato escondido em seu centro.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A relíquia dos deuses",
+    "descricao": "Recuperar uma relíquia divina roubada por uma entidade poderosa antes que ela seja usada para iniciar uma guerra.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O trono vazio",
+    "descricao": "Investigar o desaparecimento de um governante e descobrir uma criatura sobrenatural ocupando secretamente seu lugar.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A estrela caída",
+    "descricao": "Localizar um fragmento celestial que caiu em uma região remota e impedir que sua energia corrompa os habitantes.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O reino dos espelhos",
+    "descricao": "Entrar em um domínio mágico refletido e derrotar a entidade que controla suas versões distorcidas.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A cidade congelada",
+    "descricao": "Libertar uma cidade presa em uma tempestade sobrenatural antes que seus habitantes desapareçam para sempre.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O deus adormecido",
+    "descricao": "Descobrir o que está despertando sob um antigo templo e impedir que uma entidade esquecida retorne ao mundo.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O exército sem bandeira",
+    "descricao": "Investigar um exército de soldados mortos-vivos que marcha sem comandante conhecido.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A fortaleza nas nuvens",
+    "descricao": "Alcançar uma fortaleza celestial ocupada por inimigos e impedir que ela seja usada contra o reino.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O rei sem rosto",
+    "descricao": "Descobrir a identidade de uma criatura que tomou o controle de uma corte por meio de magia e manipulação.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A maldição do sangue",
+    "descricao": "Quebrar uma maldição hereditária que está transformando membros de uma antiga família em monstros.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A floresta dos gigantes",
+    "descricao": "Atravessar uma floresta dominada por gigantes e recuperar um artefato necessário para proteger uma cidade.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O coração do abismo",
+    "descricao": "Destruir uma fonte de energia abissal antes que ela transforme toda a região ao redor.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A torre do fim",
+    "descricao": "Subir uma torre arcana durante uma tempestade mágica e impedir um ritual capaz de alterar o clima de um reino.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O guardião ancestral",
+    "descricao": "Derrotar um guardião milenar que despertou para proteger um segredo que pode mudar o equilíbrio político da região.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A cidade dos mortos",
+    "descricao": "Entrar em uma cidade governada por mortos-vivos e recuperar um objeto capaz de quebrar sua dominação.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A última barreira",
+    "descricao": "Defender uma fortaleza enquanto um portal inimigo é selado por um ritual que exige tempo e proteção.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O artefato faminto",
+    "descricao": "Encontrar um artefato que absorve energia mágica e impedir que ele consuma uma fonte de poder regional.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A queda do tirano",
+    "descricao": "Invadir o palácio de um tirano protegido por magia e aliados monstruosos e derrubar seu regime.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O reino subterrâneo",
+    "descricao": "Explorar um reino subterrâneo hostil e negociar ou lutar para recuperar uma relíquia de superfície.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A noite eterna",
+    "descricao": "Descobrir a origem de uma noite sobrenatural que não termina e restaurar o ciclo natural do dia.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A coroa das sombras",
+    "descricao": "Impedir que um artefato sombrio seja colocado sobre um novo rei durante uma cerimônia que selaria seu poder.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O templo do vazio",
+    "descricao": "Explorar um templo dedicado ao vazio e impedir que sua influência apague partes da realidade.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O último dragão",
+    "descricao": "Localizar um dragão ancestral e decidir como lidar com sua presença antes que reinos vizinhos iniciem uma guerra.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A guerra planar",
+    "descricao": "Fechar múltiplas fendas planares que estão permitindo a entrada de criaturas em diferentes pontos do território.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O eclipse eterno",
+    "descricao": "Derrotar a entidade responsável por um eclipse permanente antes que a região seja consumida pela escuridão.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O dragão da montanha",
+    "descricao": "Enfrentar um dragão que estabeleceu seu domínio nas montanhas e ameaça vários povoados.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "A fortaleza demoníaca",
+    "descricao": "Invadir uma fortaleza corrompida por forças demoníacas e destruir o foco que sustenta sua proteção.",
+    "dificuldade": "dificil"
+  },
+  {
+    "titulo": "O ritual dos antigos",
+    "descricao": "Impedir que um grupo de conjuradores complete um ritual capaz de despertar uma entidade ancestral.",
+    "dificuldade": "dificil"
+  }
 ]
